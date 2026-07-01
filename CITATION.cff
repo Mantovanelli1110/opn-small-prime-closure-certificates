@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use these certificates or verifier scripts, please cite the accompanying paper."
+title: "Certified Minimal-Prime Branch Closures for Odd Perfect Numbers"
+authors:
+  - family-names: "Mantovanelli"
+    given-names: "Marco"
+date-released: 2026-07-01
+version: "C-small-2026-07"
+license: "MIT"
+repository-code: "https://github.com/Mantovanelli1110/opn-small-prime-closure-certificates"
+url: "https://github.com/Mantovanelli1110/opn-small-prime-closure-certificates/releases/tag/C-small-2026-07"
+preferred-citation:
+  type: article
+  title: "Certified Minimal-Prime Branch Closures for Odd Perfect Numbers"
+  authors:
+    - family-names: "Mantovanelli"
+      given-names: "Marco"
+  year: 2026

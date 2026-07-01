@@ -13,6 +13,9 @@ where `C_small` denotes `C_{\mathrm{small}}` in the paper.
 
 The corresponding Git release tag is `C-small-2026-07`.
 
+The GitHub release page for this tag is
+<https://github.com/Mantovanelli1110/opn-small-prime-closure-certificates/releases/tag/C-small-2026-07>.
+
 The verifier scripts were tested with Python 3.14.4.
 They use only the Python standard library.
 
@@ -33,6 +36,17 @@ They use only the Python standard library.
 Before running the verifiers, check the frozen release hashes:
 
 ```bash
+sha256sum -c SHA256SUMS.txt
+```
+
+## Clone and Verify the Frozen Release
+
+From a fresh checkout, reproduce the frozen release state with:
+
+```bash
+git clone https://github.com/Mantovanelli1110/opn-small-prime-closure-certificates.git
+cd opn-small-prime-closure-certificates
+git checkout C-small-2026-07
 sha256sum -c SHA256SUMS.txt
 ```
 
