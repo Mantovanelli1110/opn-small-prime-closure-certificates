@@ -4,6 +4,8 @@ title: "Certified Minimal-Prime Branch Closures for Odd Perfect Numbers"
 authors:
   - family-names: "Mantovanelli"
     given-names: "Marco"
+    affiliation: "Independent Researcher"
+    email: "marco@mantovanelli.de"
 date-released: 2026-07-01
 version: "C-small-2026-07"
 license: "MIT"
@@ -15,4 +17,6 @@ preferred-citation:
   authors:
     - family-names: "Mantovanelli"
       given-names: "Marco"
+      affiliation: "Independent Researcher"
+      email: "marco@mantovanelli.de"
   year: 2026
