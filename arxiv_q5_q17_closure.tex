@@ -51,18 +51,24 @@ Independent Researcher\\[0.5em]
 \maketitle
 
 \begin{abstract}
-Let \(N\) be a hypothetical odd perfect number and let
-\(q=\min\{p:p\mid N\}\) be its smallest prime divisor.  This paper isolates
-the certified minimal-prime part of a broader cyclotomic-certificate framework.
-It proves, within the frozen certificate release \(\Csmall\), that the branch
-inventories for \(q=5,7,11,13,17\) are exhausted.  The result is deliberately
-not stated as an unconditional
-nonexistence proof for odd perfect numbers: the structurally exceptional branch
-\(q=3\) and the residual branch \(q\ge19\) remain outside the scope of this
-paper.  The main text gives the branch definitions, valuation balance,
-coverage splits, certificate contract, and one closure theorem per branch.
-Detailed JSONL archives, large finite tables, and verifier outputs are kept as
-separate machine-readable certificates.
+For an odd perfect number \(N\), write
+\(q=\min\{p:p\mid N\}\) for its smallest prime divisor.  This paper closes the
+five certified minimal-prime branches
+\(q=5,7,11,13,17\): every branch generated from the exact \(q\)-adic valuation
+balance for \(\sigma(N)=2N\) and the lower-prime avoidance constraints
+terminates before a compatible branch realization can occur.  The valuation
+balance specifies the \(q\)-adic contribution that must be supplied by
+cyclotomic factors \(\sigma(p^e)\), while lower-prime avoidance forbids any
+support prime below \(q\) from appearing in those factors.  Together these
+conditions reduce each branch to finite coverage splits in the first relevant
+input prime or Euler-residue class.  At the terminal records, the certificates
+then verify the remaining arithmetic obstruction: a residual cofactor forces
+additional support primes, a pure cyclotomic equation has only excluded
+solutions, an endpoint factorization/order check closes an exceptional case, or
+an exact tail-abundance product stays below \(2\).  The \(q=5\) closure is
+presented as the detailed model; the closures for \(q=7,11,13,17\) use the same
+forced-or-pure reduction and are reproduced from the included JSONL bundles by
+the listed Python verifiers.
 \end{abstract}
 
 \noindent\textbf{Keywords.}
