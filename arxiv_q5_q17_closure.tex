@@ -1,0 +1,1382 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{enumitem}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{placeins}
+\usepackage{hyperref}
+\geometry{margin=1in}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{criterion}[theorem]{Criterion}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\rad}{rad}
+\newcommand{\vp}{v_p}
+\newcommand{\vq}{v_q}
+\newcommand{\OPN}{\mathrm{OPN}}
+\newcommand{\PhiD}{\Phi_d}
+\newcommand{\Lset}{\mathcal L}
+\newcommand{\B}{\mathcal B}
+\newcommand{\K}{\mathcal K}
+\newcommand{\Hfun}{H}
+\newcommand{\CertRelease}{\ensuremath{\mathcal C^{(2026\text{-}07)}_{5,7,11,13,17}}}
+\newcommand{\Csmall}{\ensuremath{\mathcal C_{\mathrm{small}}}}
+\newcommand{\sha}[1]{\nolinkurl{#1}}
+\newcommand{\shasplit}[2]{\begin{tabular}[t]{@{}l@{}}{\ttfamily\tiny #1}\\[-1pt]{\ttfamily\tiny #2}\end{tabular}}
+\urlstyle{same}
+
+\title{Certified Minimal-Prime Branch Closures for Odd Perfect Numbers}
+\author{Marco Mantovanelli}
+\date{July 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Let \(N\) be a hypothetical odd perfect number and let
+\[
+  q=\min\{p:p\mid N\}
+\]
+be its smallest prime divisor.  This paper isolates the certified
+minimal-prime part of a broader cyclotomic-certificate framework.  It proves, within
+the frozen certificate release \(\Csmall\), that the branch inventories for
+\[
+  q=5,\ 7,\ 11,\ 13,\ 17
+\]
+are exhausted.  The result is deliberately not stated as an unconditional
+nonexistence proof for odd perfect numbers: the structurally exceptional branch
+\(q=3\) and the residual branch \(q\ge19\) remain outside the scope of this
+paper.  The main text gives the branch definitions, valuation balance,
+coverage splits, certificate contract, and one closure theorem per branch.
+Detailed JSONL archives, large finite tables, and verifier outputs are kept as
+separate machine-readable certificates.
+\end{abstract}
+
+\noindent\textbf{Keywords.}
+Odd perfect numbers; divisor sums; cyclotomic factors; \(p\)-adic valuations;
+minimal prime divisor; branch-and-bound certification; computer-assisted proof.
+
+\section{Introduction}
+
+An odd perfect number is a positive odd integer \(N\) satisfying
+\[
+  \sigma(N)=2N,
+\]
+where \(\sigma\) denotes the sum of divisors.  The existence of odd perfect
+numbers is one of the classical open problems in number theory; Deza's book
+\cite{Deza2022} gives a broad account of the surrounding perfect-number and
+amicable-number landscape.  Euler proved that any such \(N\) has the form
+\[
+  N=\pi^\alpha M^2,\qquad
+  \pi\equiv \alpha\equiv1\pmod4,\qquad (\pi,M)=1,
+\]
+so exactly one prime divisor of \(N\), called the Euler prime, occurs to an odd
+exponent.
+
+The modern literature supplies strong global filters, but not a complete
+nonexistence proof.  Nielsen proved that an odd perfect number must have many
+distinct prime divisors and also developed effective upper-bound technology
+\cite{Nielsen2007,Nielsen2015}.  Ochem and Rao proved the landmark lower bound
+\(N>10^{1500}\) and strong multiplicity constraints \cite{OchemRao2012}.
+Goto--Ohno and Iannucci established large-prime-factor lower bounds
+\cite{GotoOhno2008,Iannucci1999,Iannucci2000}.  More recent work of Zelinsky,
+Bibby--Vyncke--Zelinsky, Clayton--Hansen, and Stone gives further constraints
+on prime counts, largest prime factors, reciprocal abundance, and
+smallest-prime behavior
+\cite{Zelinsky2019,Zelinsky2021,Zelinsky2023SmallPrimes,
+BibbyVynckeZelinsky2021,ClaytonHansen2023,Stone2024,
+Zelinsky2025ReciprocalPrimeDivisors}.  The present paper uses these results
+only as branch filters and consistency checks; the actual branch closures below
+are driven by valuation-labeled cyclotomic input and finite certificates.
+
+The present paper concerns only a finite list of minimal-prime branches.  Write
+\[
+  S=\{p:p\mid N\},\qquad
+  q=\min S,\qquad
+  N=\prod_{p\in S}p^{e_p}.
+\]
+The branch \(q=5\), for example, means that \(5\mid N\) and \(3\nmid N\).  It
+does not mean merely that \(5\mid N\).  This distinction is essential.  An odd
+perfect number divisible by both \(3\) and \(5\), if it existed, would belong to
+the minimal-prime branch \(q=3\), not to the branch \(q=5\).
+
+The main theorem proved here is the following certificate theorem.
+
+\begin{theorem}[Certified small minimal-prime closure]
+\label{thm:intro-main}
+Relative to the explicitly listed verifier contract and the frozen certificate
+release \(\Csmall\) described in Section~\ref{sec:certificates}, there is
+no odd perfect number with
+\[
+  \min\{p:p\mid N\}\in\{5,7,11,13,17\}.
+\]
+Equivalently, the five minimal-prime branch inventories in \(\Csmall\)
+are exhausted.
+\end{theorem}
+
+The theorem is intentionally scoped.  It is not an unconditional proof that odd
+perfect numbers do not exist.  After the certified closures in this paper, a
+complete proof program must still treat
+\[
+  q=3
+  \qquad\text{and}\qquad
+  q\ge19.
+\]
+The branch \(q=3\) has no lower-prime avoidance layer and therefore behaves
+differently from all branches treated here.  The residual branch \(q\ge19\)
+should be attacked only after the small-prime branch architecture has been made
+fully proof-grade.
+
+\section{Minimal-Prime Branches and Scope}
+\label{sec:scope}
+
+\begin{definition}[Minimal-prime branch]
+\label{def:minimal-prime-branch}
+Let \(q\) be an odd prime.  The minimal-prime branch \(\B_q\) is the set of all
+formal odd-perfect-number realizations satisfying
+\[
+  q=\min\{p:p\mid N\}.
+\]
+Thus \(q\in S\), all odd primes \(\ell<q\) are absent from \(S\), and every
+branch calculation is carried out under Euler's form and the equation
+\(\sigma(N)=2N\).
+\end{definition}
+
+\begin{definition}[Frozen certificate release]
+\label{def:frozen-certificate-release}
+The symbol
+\[
+  \CertRelease
+\]
+denotes the July 2026 release of the five small minimal-prime certificate
+packages used in this paper.  It consists of the bundle files, verifier files,
+expected terminal outputs, and SHA256 hashes listed in
+Table~\ref{tab:reproducibility-release}.  The word ``release'' is meant
+literally: the proof statements below are relative to these frozen files, not
+to whatever local working copy may exist later.
+For readability, after this definition we also write
+\[
+  \Csmall := \CertRelease.
+\]
+\end{definition}
+
+\begin{definition}[Release branch inventory]
+\label{def:release-branch-inventory}
+For \(q=5,7,11,13,17\), the \emph{\(\Csmall\)-branch inventory} is the
+finite, machine-readable collection of coverage splits, forced cofactors,
+leaf-status records, tail certificates, pure-exception records, and master
+coverage wrappers listed in the release JSONL certificate files.  A branch is
+called \emph{closed relative to \(\Csmall\)} when every leaf in that
+inventory is certified as refuted, forced-tail-controlled, pure-tail-controlled,
+or delegated to a certified child archive, and when the master wrapper verifies
+that the listed leaves cover the parent branch.
+\end{definition}
+
+\begin{remark}[Scope warning]
+\label{rem:scope-warning}
+Every closure theorem below is a minimal-prime theorem.  The statement
+``the \(q=11\) branch is closed'' means
+\[
+  \min\{p:p\mid N\}=11
+\]
+has no realization in the certified branch inventory.  It does not assert that
+no odd perfect number can be divisible by \(11\).  If an odd perfect number
+were divisible by \(3\) and \(11\), it would lie in the \(q=3\) branch.
+\end{remark}
+
+\section{Valuation Balance}
+\label{sec:valuation-balance}
+
+The branch closures are driven by local valuations of divisor sums.
+
+\begin{lemma}[Odd-prime valuation balance]
+\label{lem:odd-prime-valuation-balance}
+Let \(N=\prod_{p\in S}p^{e_p}\) be an odd perfect number, and let \(q\) be an
+odd prime.  If \(q\mid N\), then
+\[
+  e_q
+  =
+  \sum_{\substack{p\in S\\p\ne q}}
+  v_q(\sigma(p^{e_p})).
+\]
+If \(q\nmid N\), then
+\[
+  \sum_{p\in S}v_q(\sigma(p^{e_p}))=0.
+\]
+\end{lemma}
+
+\begin{proof}
+By multiplicativity of \(\sigma\) and by \(\sigma(N)=2N\),
+\[
+  v_q(\sigma(N))=v_q(2N)=v_q(N)
+\]
+for odd \(q\).  If \(q\mid N\), this value is \(e_q\).  The factor
+\(\sigma(q^{e_q})=1+q+\cdots+q^{e_q}\) is congruent to \(1\pmod q\), so it
+contributes no \(q\)-adic valuation.  This gives the first identity.  If
+\(q\nmid N\), the right side is \(v_q(2N)=0\); since each summand is
+nonnegative, all summands vanish.
+\end{proof}
+
+\begin{lemma}[Cyclotomic input condition]
+\label{lem:cyclotomic-input-condition}
+Let \(p\ne q\) be primes with \(q\) odd, and let \(e\ge0\).  Put
+\[
+  n=e+1,\qquad d=\ord_q(p).
+\]
+Then
+\[
+  v_q(\sigma(p^e))
+  =
+  \begin{cases}
+  0, & d\nmid n,\\[3pt]
+  v_q(p^d-1)+v_q(n/d), & d>1\text{ and }d\mid n,\\[3pt]
+  v_q(n), & d=1.
+  \end{cases}
+\]
+In particular,
+\[
+  q\mid \sigma(p^e)
+  \quad\Longleftrightarrow\quad
+  \begin{cases}
+  d\mid e+1, & d>1,\\
+  q\mid e+1, & d=1.
+  \end{cases}
+\]
+\end{lemma}
+
+\begin{proof}
+Since
+\[
+  \sigma(p^e)=\frac{p^{e+1}-1}{p-1},
+\]
+we have
+\[
+  v_q(\sigma(p^e))=v_q(p^n-1)-v_q(p-1).
+\]
+If \(d\nmid n\), then \(p^n\not\equiv1\pmod q\), hence the valuation is zero.
+If \(d>1\) and \(d\mid n\), write \(n=dm\).  Then \(q\nmid p-1\), and LTE gives
+\[
+  v_q(p^n-1)=v_q((p^d)^m-1)=v_q(p^d-1)+v_q(m).
+\]
+If \(d=1\), then \(p\equiv1\pmod q\), and LTE gives
+\[
+  v_q(p^n-1)=v_q(p-1)+v_q(n).
+\]
+Subtracting \(v_q(p-1)\) proves the formula.
+\end{proof}
+
+The exact formula of Bordelles \cite{Bordelles2026} gives a published
+valuation-level check for this same local rule, while the Ross--Shen--Cai
+Lucas-sequence valuation formula \cite{RossShenCai2025} gives an independent
+check for the cyclotomic labels \(v_r(\Phi_d(p))\).  The certificate system
+uses direct factorization and order checks, with these published formulas as
+the theorem-level background.
+
+\section{Lower-Prime Avoidance}
+\label{sec:lower-prime-avoidance}
+
+\begin{definition}[Lower-prime set and avoidance predicate]
+For an odd prime \(q\), define
+\[
+  \Lset(q):=\{\ell:\ell\text{ is an odd prime and }\ell<q\}.
+\]
+For an odd prime \(\ell\), a prime \(p\ne\ell\), and \(e\ge1\), define
+\[
+  \operatorname{Avoid}_{\ell}(p,e)
+\]
+to mean
+\[
+  \begin{cases}
+  \ord_\ell(p)\nmid e+1, & \ord_\ell(p)>1,\\[3pt]
+  \ell\nmid e+1, & \ord_\ell(p)=1.
+  \end{cases}
+\]
+By Lemma~\ref{lem:cyclotomic-input-condition}, this is equivalent to
+\[
+  v_\ell(\sigma(p^e))=0.
+\]
+\end{definition}
+
+\begin{lemma}[Lower-prime avoidance]
+\label{lem:lower-prime-avoidance}
+Assume \(N\) is an odd perfect number and \(q=\min S\).  Then for every
+\(\ell\in\Lset(q)\) and every \(p\in S\),
+\[
+  v_\ell(\sigma(p^{e_p}))=0.
+\]
+Equivalently,
+\[
+  \operatorname{Avoid}_{\ell}(p,e_p)
+\]
+holds for all \(\ell<q\) and all support primes \(p\).
+\end{lemma}
+
+\begin{proof}
+Let \(\ell<q=\min S\).  Then \(\ell\notin S\), so \(\ell\nmid N\).  Applying
+Lemma~\ref{lem:odd-prime-valuation-balance} to \(\ell\) gives
+\[
+  \sum_{p\in S}v_\ell(\sigma(p^{e_p}))=0.
+\]
+Each summand is nonnegative, and therefore every summand is zero.  The
+equivalence with \(\operatorname{Avoid}_{\ell}\) is exactly
+Lemma~\ref{lem:cyclotomic-input-condition}.
+\end{proof}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{c|l}
+\toprule
+branch \(q=\min S\) & lower primes avoided by every support prime power \\
+\midrule
+\(5\) & \(3\)\\
+\(7\) & \(3,5\)\\
+\(11\) & \(3,5,7\)\\
+\(13\) & \(3,5,7,11\)\\
+\(17\) & \(3,5,7,11,13\)\\
+\bottomrule
+\end{tabular}
+\caption{Lower-prime avoidance constraints used in this paper.}
+\label{tab:lower-prime-avoidance}
+\end{table}
+
+\begin{corollary}[Support floors from excluded small primes]
+\label{cor:support-floors}
+In the minimal-prime branches treated here, the active published lower bound
+for the number of distinct prime divisors is
+\[
+\begin{array}{c|c}
+q & \text{active lower bound for }\omega(N)\\
+\hline
+5,7 & 12,\\
+11,13,17 & 27.
+\end{array}
+\]
+\end{corollary}
+
+\begin{proof}
+If \(q=5\) or \(q=7\), then \(3\nmid N\), so Nielsen's lower bound in the
+form surveyed by Deza \cite{Deza2022,Nielsen2007} gives
+\(\omega(N)\ge12\).  If \(q\ge11\), then \(3,5,7\nmid N\); the same
+Deza--Nielsen sources record the corresponding small-prime-exclusion form,
+which gives \(\omega(N)\ge27\) in this situation.
+\end{proof}
+
+\section{Input Orders and Coverage Splits}
+\label{sec:coverage}
+
+\begin{definition}[\(q\)-input witness]
+In the branch \(q=\min S\), a prime \(p\in S\), \(p\ne q\), is a
+\(q\)-input witness if
+\[
+  v_q(\sigma(p^{e_p}))>0.
+\]
+Its order type is \(d=\ord_q(p)\).
+\end{definition}
+
+\begin{lemma}[Existence of a \(q\)-input witness]
+\label{lem:q-input-exists}
+Let \(q=\min S\).  Then at least one \(q\)-input witness exists.
+\end{lemma}
+
+\begin{proof}
+Since \(q\in S\), we have \(e_q>0\).  The \(q\)-adic balance gives
+\[
+  e_q=\sum_{\substack{p\in S\\p\ne q}}v_q(\sigma(p^{e_p})).
+\]
+The right side is a sum of nonnegative integers and is positive.  Hence at
+least one summand is positive.
+\end{proof}
+
+\begin{lemma}[Allowed input orders]
+\label{lem:allowed-input-orders}
+Let \(q\) be one of \(5,7,11,13,17\), and let \(p\ne q\) be a \(q\)-input
+witness.  If \(p\) is non-Euler, then \(\ord_q(p)\) is an odd divisor of
+\(q-1\).  If \(p=\pi\) is the Euler prime, then \(\ord_q(\pi)\mid q-1\) and
+\[
+  v_2(\ord_q(\pi))\le1.
+\]
+\end{lemma}
+
+\begin{proof}
+By Lemma~\ref{lem:cyclotomic-input-condition}, either \(\ord_q(p)\mid e_p+1\)
+or, in the order-one case, \(q\mid e_p+1\).  For non-Euler \(p\), Euler's form
+gives \(e_p\) even, so \(e_p+1\) is odd; hence only odd orders can divide it.
+For the Euler prime, \(\alpha\equiv1\pmod4\), so \(\alpha+1\equiv2\pmod4\);
+therefore no divisor of \(\alpha+1\) is divisible by \(4\).  In all cases the
+order divides \(q-1\).
+\end{proof}
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{c|l|l}
+\toprule
+\(q\) & non-Euler input children & Euler input children\\
+\midrule
+\(5\)  & \(N_1\) & \(E_1,E_2\)\\
+\(7\)  & \(N_1,N_3\) & \(E_1,E_2,E_3,E_6\)\\
+\(11\) & \(N_1,N_5\) & \(E_1,E_2,E_5,E_{10}\)\\
+\(13\) & \(N_1,N_3\) & \(E_1,E_2,E_3,E_6\)\\
+\(17\) & \(N_1\) & \(E_1,E_2\)\\
+\bottomrule
+\end{tabular}
+\caption{First-input coverage labels.  \(N_d\) means a non-Euler
+\(q\)-input witness of exact order \(d\) modulo \(q\); \(E_d\) means the Euler
+prime is a \(q\)-input witness of exact order \(d\).}
+\label{tab:first-input-labels}
+\end{table}
+
+\begin{proposition}[Coverage split for \(q=5,7,11,13,17\)]
+\label{prop:general-coverage-split}
+For each \(q\in\{5,7,11,13,17\}\), every hypothetical odd perfect number in the
+minimal-prime branch \(q=\min S\) realizes at least one child listed in
+Table~\ref{tab:first-input-labels}.
+\end{proposition}
+
+\begin{proof}
+By Lemma~\ref{lem:q-input-exists}, a \(q\)-input witness exists.  If the
+witness is non-Euler, Lemma~\ref{lem:allowed-input-orders} restricts its order
+to the odd divisors of \(q-1\), giving exactly the \(N_d\)-labels in
+Table~\ref{tab:first-input-labels}.  If the witness is the Euler prime, the
+same lemma restricts the order to those divisors of \(q-1\) not divisible by
+\(4\), giving exactly the \(E_d\)-labels in the table.  The split is a coverage
+split, not necessarily a disjoint split: a single branch could contain several
+input witnesses.
+\end{proof}
+
+\section{Reduced Cofactors and Pure Exceptions}
+\label{sec:cofactors}
+
+The first-input splits produce cyclotomic factors dividing one of the
+divisor-sum terms \(\sigma(x^{e_x})\).  After removing the contribution of the
+minimal prime \(q\), the remaining cofactor either has a lower-prime divisor,
+has a new forced support prime, or falls into a pure exceptional row.
+
+\begin{definition}[Reduced cofactor]
+\label{def:reduced-cofactor}
+Let \(q=\min S\), and let \(x\) be a \(q\)-input source of order \(d\).
+For \(d>1\), the reduced cofactor is the corresponding cyclotomic factor
+\[
+  C_d^{(q)}(x)
+  :=
+  \frac{\Phi_d(x)}{q^{v_q(\Phi_d(x))}}.
+\]
+For order-one input, the first nontrivial \(q\)-cyclotomic cofactor is
+\[
+  C_q(x):=\frac{\Phi_q(x)}{q}.
+\]
+For Euler order-two input, the reduced linear cofactor is
+\[
+  C_2^{(q)}(\pi):=\frac{\pi+1}{q^{v_q(\pi+1)}}.
+\]
+When \(q=17\), the certificate records the odd part of this cofactor for the
+forced-prime alternative, and records the remaining power-of-two case as a pure
+row.
+\end{definition}
+
+\begin{lemma}[Forced-prime alternative]
+\label{lem:forced-prime-alternative}
+Let \(q=\min S\), and suppose a reduced cofactor \(C\) divides
+\(\sigma(x^{e_x})\).  If \(C\) has an odd prime divisor \(r\) with \(r>q\), then
+\[
+  r\in S.
+\]
+Moreover, if \(r\mid\Phi_d(x)\) and \(r\nmid d\), then
+\[
+  \ord_r(x)=d.
+\]
+\end{lemma}
+
+\begin{proof}
+Since \(C\mid\sigma(x^{e_x})\mid\sigma(N)=2N\), every odd prime divisor
+\(r\) of \(C\) divides \(N\), hence \(r\in S\).  If \(r\mid\Phi_d(x)\),
+\(r\nmid d\), and \(r\ne x\), then the standard cyclotomic order property gives
+\(\ord_r(x)=d\).  Here \(r\ne x\) because \(\Phi_d(x)\equiv1\pmod x\) for the
+prime \(x\) in all cases used by the certificates.
+\end{proof}
+
+\begin{lemma}[Lower-prime cofactor refutation]
+\label{lem:lower-prime-cofactor-refutation}
+Let \(q=\min S\), and let \(C\mid\sigma(x^{e_x})\) be a reduced cofactor.  If
+some odd prime \(\ell<q\) divides \(C\), then the branch is empty.
+\end{lemma}
+
+\begin{proof}
+The divisibility \(\ell\mid C\mid\sigma(x^{e_x})\) gives
+\[
+  v_\ell(\sigma(x^{e_x}))>0,
+\]
+contradicting lower-prime avoidance in Lemma~\ref{lem:lower-prime-avoidance}.
+\end{proof}
+
+\begin{definition}[Pure row]
+\label{def:pure-row}
+A row is called \emph{pure} if, after removing the required \(q\)-power and
+after applying all lower-prime avoidance refutations, the reduced cofactor
+contributes no odd support prime larger than \(q\).  A pure row is not accepted
+as closed merely because no forced prime appears.  It must be eliminated by a
+separate Diophantine filter or controlled by a pure-kernel tail certificate.
+\end{definition}
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{c|l}
+\toprule
+branch & pure-exception mechanism used in the certificate package\\
+\midrule
+\(q=5\) &
+parametric \(C_5(x)\)-tail and \(C_2(\pi)\)-post-window records\\
+\(q=7\) &
+order-three pure leaves are archive-refuted; \(E_2\) and \(E_6\) pure kernels are tail-controlled\\
+\(q=11\) &
+\(\Phi_5(x)=11^c\) and \(\Phi_{10}(x)=11^c\) filters; \(E_2\) pure family \(\pi=2\cdot11^{2t}-1\)\\
+\(q=13\) &
+\(\Phi_3(x)=13^c\) and \(\Phi_6(x)=13^c\) filters; \(E_2\) pure family \(\pi=2\cdot13^b-1\)\\
+\(q=17\) &
+only \(E_2\) has a pure family, \(\pi=2\cdot17^b-1\)\\
+\bottomrule
+\end{tabular}
+\caption{Reduced cofactor and pure-exception mechanisms.}
+\label{tab:pure-exceptions}
+\end{table}
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.22\textwidth}
+  >{\raggedright\arraybackslash}p{0.17\textwidth}
+  >{\raggedright\arraybackslash}X
+  >{\raggedright\arraybackslash}p{0.20\textwidth}}
+\toprule
+pure equation & certificate-verified solution set & method in \(\Csmall\) & branch reason for rejection\\
+\midrule
+\(\Phi_5(x)=11^c\) & \((x,c)=(3,2)\) &
+lower-level Diophantine screen; direct substitution of the listed solution &
+\(x=3<11\), impossible when \(q=11\)\\
+\(\Phi_{10}(x)=11^c\) & \((x,c)=(2,1)\) &
+lower-level Diophantine screen; direct substitution of the listed solution &
+\(x=2\) is outside the odd \(q=11\) support\\
+\(\Phi_3(x)=13^c\) & \((x,c)=(3,1)\) &
+quadratic pure screen with finite exponent audit &
+\(x=3<13\), impossible when \(q=13\)\\
+\(\Phi_6(x)=13^c\) & \((x,c)=(4,1)\) &
+quadratic pure screen with finite exponent audit &
+\(x=4\) is not a support prime\\
+\bottomrule
+\end{tabularx}
+\caption{Pure Diophantine screens used for \(q=11\) and \(q=13\).  The master
+wrappers check that these lower-level screen records are present before
+accepting the corresponding strict frontier closures.}
+\label{tab:pure-screen-details}
+\end{table}
+
+\section{The Certificate System}
+\label{sec:certificates}
+
+The proof is finite but not purely handwritten: the branch leaves are closed by
+machine-readable certificates.  The verifier contract has two layers.  The
+lower layer checks arithmetic records: integer factorizations, order records,
+valuation labels, pure-screen records, endpoint records, and exact rational
+inequalities.  The upper layer is a master-wrapper layer: it checks that the
+expected records are present, that their labels match the mathematical coverage
+split, and that no release leaf remains unresolved.
+
+In particular, the \(q=17\) verifier in \(\Csmall\) is explicitly a
+master-wrapper verifier.  It verifies the frontier labels, record types,
+endpoint inequalities, coverage wrapper, and the small endpoint certificates in
+Table~\ref{tab:q17-endpoint-certificates}.  It should not be read as a
+standalone general-purpose arithmetic verifier for arbitrary \(q=17\) data.
+
+\begin{definition}[Certificate record families]
+The certificate files use the following record families.
+\[
+  \texttt{branch\_archive},\quad
+  \texttt{coverage\_split},\quad
+  \texttt{leaf\_status},\quad
+  \texttt{forced\_cofactor},
+\]
+\[
+  \texttt{tail\_count\_certificate},\quad
+  \texttt{abundance\_obstruction},\quad
+  \texttt{literature\_filter\_certificate},
+\]
+together with the strict frontier records
+\[
+  \begin{array}{l}
+  \texttt{strict\_q7\_forced\_or\_pure\_tail\_closure},\\
+  \texttt{strict\_q11\_forced\_or\_pure\_tail\_closure},\\
+  \texttt{strict\_q13\_forced\_or\_pure\_tail\_closure},\\
+  \texttt{strict\_q17\_forced\_or\_pure\_tail\_closure}.
+  \end{array}
+\]
+For \(q=5\), the final layer also uses the parametric records
+\[
+  \begin{array}{l}
+  \texttt{parametric\_post\_window\_closure},\\
+  \texttt{parametric\_q5e1\_pi\_window\_closure},\\
+  \texttt{parametric\_q5n\_witness\_window\_closure}.
+  \end{array}
+\]
+\end{definition}
+
+\begin{definition}[Envelope tuple]
+\label{def:envelope-tuple}
+For a tail estimate we allow repeated lower-bound placeholders.  An
+\emph{envelope tuple} is a finite tuple
+\[
+  K_{\rm env}=(k_1,\ldots,k_t)
+\]
+of primes or certified prime lower bounds, and
+\[
+  \Hfun(K_{\rm env})
+  :=
+  \prod_{i=1}^t\frac{k_i}{k_i-1}.
+\]
+Thus \(K_{\rm env}=(7,29,29)\) is a tuple, not a set: the two occurrences of
+\(29\) represent two independent worst-case support-prime slots.
+\end{definition}
+
+\begin{lemma}[Tail envelope]
+\label{lem:tail-envelope}
+Let \(K_{\rm env}=(k_1,\ldots,k_t)\) be a certified envelope tuple.  Suppose a branch
+certifies that all remaining support primes are at least \(B\), and that at
+most \(M\) such remaining primes can occur.  If
+\[
+  \Hfun(K_{\rm env})\left(\frac{B}{B-1}\right)^M<2,
+\]
+then the branch contains no odd perfect number.
+\end{lemma}
+
+\begin{proof}
+For any support set \(S\),
+\[
+  \frac{\sigma(N)}{N}
+  =
+  \prod_{p\in S}\frac{1-p^{-(e_p+1)}}{1-p^{-1}}
+  <
+  \prod_{p\in S}\frac{p}{p-1}
+  =\Hfun(S).
+\]
+If \(N\) is perfect, the left side is \(2\), hence \(2<\Hfun(S)\).  Under the
+branch hypotheses,
+\[
+  \Hfun(S)
+  \le
+  \Hfun(K_{\rm env})\left(\frac{B}{B-1}\right)^M
+  <2,
+\]
+a contradiction.
+\end{proof}
+
+\begin{definition}[\texttt{tail\_count\_certificate}\((B,M)\)]
+\label{def:tail-count-certificate}
+A record
+\[
+  \texttt{tail\_count\_certificate}(B,M)
+\]
+certifies two branch-specific facts after the displayed envelope tuple has been
+fixed:
+\begin{enumerate}[label=(\roman*),leftmargin=2.2em]
+\item every unresolved support prime not already represented in the envelope
+tuple is at least \(B\);
+\item at most \(M\) such further support-prime slots remain.
+\end{enumerate}
+The number \(M=18\) used in the strict frontier records of \(\Csmall\) is
+therefore not a universal constant.  It is release data: each strict frontier
+record carries a tail-count certificate with
+\[
+  B=59,\qquad M=18,
+\]
+and the master wrapper accepts the final tail inequality only after that record
+has been checked.  The proof does not require \(M=18\) to be optimal.
+\end{definition}
+
+\begin{criterion}[Master-wrapper soundness]
+\label{crit:master-wrapper}
+A master wrapper closes a branch when it verifies all of the following:
+\begin{enumerate}[label=(\roman*),leftmargin=2.2em]
+\item the mathematical coverage split for the branch;
+\item the presence and uniqueness of the expected terminal labels;
+\item for every terminal label, one accepted refutation, forced-tail closure,
+pure-tail closure, or certified child archive;
+\item exact rational verification of every tail inequality;
+\item no unresolved, reduced, or delegated leaf remains outside an accepted
+child archive.
+\end{enumerate}
+\end{criterion}
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{p{0.34\textwidth}|p{0.56\textwidth}}
+\toprule
+endpoint item & lower-level check in \(\Csmall\)\\
+\midrule
+order-\(17\) forced endpoint \(103\) &
+The endpoint certificate checks that \(103\) is prime, \(103\equiv1\pmod{17}\),
+and that the preceding candidates \(35,52,69,86\) in the progression
+\(1\pmod{17}\) are composite.\\
+Euler order-two forced endpoint \(19\) &
+The frontier record uses only \(r>17\) and \(\ord_r(\pi)=2\); the least odd
+prime \(>17\) is \(19\).\\
+pure endpoint \(577\) in \(\pi=2\cdot17^b-1\) &
+The endpoint certificate checks \(2\cdot17-1=33=3\cdot11\) and
+\(2\cdot17^2-1=577\), with \(577\) prime.\\
+\bottomrule
+\end{tabular}
+\caption{Lower-level endpoint checks used by the \(q=17\) master-wrapper
+verifier.}
+\label{tab:q17-endpoint-certificates}
+\end{table}
+
+\begin{remark}[Certificate files]
+The certificate files used by this paper are:
+\[
+\begin{array}{ll}
+q=5: & \texttt{q5\_master\_bundle.jsonl},\quad
+       \texttt{q5\_branch\_closure\_verifier\_strict.py},\\
+q=7: & \texttt{q7\_master\_bundle.jsonl},\quad
+       \texttt{q7\_branch\_closure\_verifier.py},\\
+q=11: & \texttt{q11\_master\_bundle.jsonl},\quad
+        \texttt{q11\_branch\_closure\_verifier.py},\\
+q=13: & \texttt{q13\_master\_bundle.jsonl},\quad
+        \texttt{q13\_branch\_closure\_verifier.py},\\
+q=17: & \texttt{q17\_master\_bundle.jsonl},\quad
+        \texttt{q17\_branch\_closure\_verifier.py}.
+\end{array}
+\]
+The \(q=17\) master bundle records the strict frontier layer in the same
+minimal format used for \(q=11\) and \(q=13\), plus the endpoint certificates
+listed in Table~\ref{tab:q17-endpoint-certificates}.
+\end{remark}
+
+\begin{table}[p]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\begin{tabularx}{\textwidth}{c l
+  >{\raggedright\arraybackslash}p{0.25\textwidth}
+  >{\raggedright\arraybackslash}p{0.31\textwidth}
+  >{\raggedright\arraybackslash}X}
+\toprule
+\(q\) & artifact & file & SHA256 & expected terminal output\\
+\midrule
+5 &
+bundle &
+\path{q5_master_bundle.jsonl} &
+\shasplit{90fc8b3a1210f3397e9a6baef9c43a4cd}{7bdb347f3f418efd81ca75ec1dc62aa} &
+\texttt{q=5 branch inventory exhausted}\\
+ &
+verifier &
+\path{q5_branch_closure_verifier_strict.py} &
+\shasplit{ef1dd7e0e3b3d727bd71ead4f3aebeef}{0c4db89810f4f5fcd5d60ad072cefc26} &
+\\
+\addlinespace
+7 &
+bundle &
+\path{q7_master_bundle.jsonl} &
+\shasplit{b49297450faef6f707044e6ad0b02e712}{d3475d1609ab2df37763f044320521d} &
+\texttt{q=7 branch inventory exhausted}\\
+ &
+verifier &
+\path{q7_branch_closure_verifier.py} &
+\shasplit{2643e2747d8ff52b740a9de2141982f}{abeb53e637ff3c92cc10b589fa6157e6c} &
+\\
+\addlinespace
+11 &
+bundle &
+\path{q11_master_bundle.jsonl} &
+\shasplit{30ebf8c3beb98047e78419f7baaec153}{f4ceedf8a848c02ec9aaaec9127909e2} &
+\texttt{q=11 branch inventory exhausted}\\
+ &
+verifier &
+\path{q11_branch_closure_verifier.py} &
+\shasplit{b66828e75a0911b5c82cc67abb5293cd}{b43e8961c3bf7c878b6c02eec16c0491} &
+\\
+\addlinespace
+13 &
+bundle &
+\path{q13_master_bundle.jsonl} &
+\shasplit{7e2b38f8c8e10a792a39f2bfc64db0f}{b332507b6607c9c693a04d8dbae437b22} &
+\texttt{q=13 branch inventory exhausted}\\
+ &
+verifier &
+\path{q13_branch_closure_verifier.py} &
+\shasplit{1f64d79777b0b20d630a4059ea063943}{221474b541e7b013aa34bb93e9c73561} &
+\\
+\addlinespace
+17 &
+bundle &
+\path{q17_master_bundle.jsonl} &
+\shasplit{8619738b072708ef5379c45c2fdb1baf}{bb0d28a7f24262cbaf7b4e49d6682e4d} &
+\texttt{q=17 branch inventory exhausted}\\
+ &
+verifier &
+\path{q17_branch_closure_verifier.py} &
+\shasplit{c0c1650e38c69ddba4c8911e282a6643}{0ffc71042fcb59e30bbe3d2879dc51bd} &
+\\
+\bottomrule
+\end{tabularx}
+\caption{Reproducibility table for the frozen certificate release
+\(\Csmall=\CertRelease\).}
+\label{tab:reproducibility-release}
+\end{table}
+
+\begin{remark}[Ancillary Git repository]
+All files in Table~\ref{tab:reproducibility-release} are included as ancillary
+files and in the accompanying Git repository
+\begin{center}
+  \url{https://github.com/Mantovanelli1110/opn-small-prime-closure-certificates}.
+\end{center}
+The corresponding Git release tag is \texttt{C-small-2026-07}.
+Running each listed verifier on the listed bundle from the repository root
+produces the stated terminal output.  The exact reproduction commands are:
+\begin{verbatim}
+python q5_branch_closure_verifier_strict.py q5_master_bundle.jsonl
+python q7_branch_closure_verifier.py q7_master_bundle.jsonl
+python q11_branch_closure_verifier.py q11_master_bundle.jsonl
+python q13_branch_closure_verifier.py q13_master_bundle.jsonl
+python q17_branch_closure_verifier.py q17_master_bundle.jsonl
+\end{verbatim}
+The repository also contains the paper source, the expanded \(q=5\) detail
+file, the bibliography file, a release manifest, and the local dependency
+modules imported by the \(q=5\) and \(q=7\) wrapper scripts.
+\end{remark}
+
+\section{Closure of the \(q=5\) Branch}
+\label{sec:q5}
+
+The \(q=5\) branch has only one lower prime to avoid, namely \(3\).  First,
+lower-prime avoidance excludes the Euler residue \(\pi\equiv2\pmod3\), because
+then \(\ord_3(\pi)=2\) and \(\alpha+1\equiv2\pmod4\) would force
+\[
+  3\mid\sigma(\pi^\alpha).
+\]
+Hence every surviving \(q=5\) row has
+\[
+  \pi\equiv1\pmod3.
+\]
+In particular \(5\) itself is non-Euler.
+
+\begin{proposition}[First \(q=5\) coverage split]
+\label{prop:q5-coverage}
+Every odd perfect number in the branch \(q=5\) realizes at least one of the
+three children
+\[
+  \mathbf{Q5E2},\qquad \mathbf{Q5E1},\qquad \mathbf{Q5N},
+\]
+where
+\[
+  \mathbf{Q5E2}:\ \pi\equiv-1\pmod5,
+\]
+\[
+  \mathbf{Q5E1}:\ \pi\equiv1\pmod5,\quad 5\mid\alpha+1,
+\]
+and
+\[
+  \mathbf{Q5N}:\ \exists p\in S,\ p\ne5,\ p\ne\pi,\quad
+  p\equiv1\pmod5,\quad 5\mid e_p+1.
+\]
+\end{proposition}
+
+\begin{proof}
+By Lemma~\ref{lem:q-input-exists}, there is a \(5\)-input witness \(p\ne5\).
+If it is non-Euler, then \(e_p+1\) is odd.  The only odd input order modulo
+\(5\) is \(1\), so \(p\equiv1\pmod5\), and the order-one input condition gives
+\(5\mid e_p+1\).  This is \(\mathbf{Q5N}\).
+
+If the witness is the Euler prime, then \(\alpha+1\equiv2\pmod4\).  The
+possible orders modulo \(5\) are \(1,2,4\).  Order \(4\) cannot divide
+\(\alpha+1\).  Order \(1\) gives \(\pi\equiv1\pmod5\) and
+\(5\mid\alpha+1\), which is \(\mathbf{Q5E1}\).  Order \(2\) gives
+\(\pi\equiv-1\pmod5\), which is \(\mathbf{Q5E2}\).
+\end{proof}
+
+\begin{proposition}[Reduced \(q=5\) cofactors]
+\label{prop:q5-reduced-cofactors}
+The three \(q=5\) children reduce as follows.
+\begin{enumerate}[label=(\roman*),leftmargin=2.2em]
+\item In \(\mathbf{Q5N}\) and \(\mathbf{Q5E1}\), the cofactor
+\[
+  C_5(x)=\frac{\Phi_5(x)}5
+\]
+is an integer \(>1\).  If \(3\mid C_5(x)\), the row is refuted by lower-prime
+avoidance.  Otherwise \(C_5(x)\) forces a support prime \(r>5\) with
+\[
+  \ord_r(x)=5,\qquad r\equiv1\pmod5.
+\]
+\item In \(\mathbf{Q5E2}\), the cofactor
+\[
+  C_2(\pi)=\frac{\pi+1}{5^{v_5(\pi+1)}}
+\]
+is an integer \(>1\).  If \(3\mid C_2(\pi)\), the row is refuted by
+lower-prime avoidance.  Otherwise it forces a support prime \(r>5\) with
+\[
+  \ord_r(\pi)=2.
+\]
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+For \(\mathbf{Q5N}\) and \(\mathbf{Q5E1}\), the source \(x\) satisfies
+\(x\equiv1\pmod5\) and \(5\mid e_x+1\).  Thus \(\Phi_5(x)\mid\sigma(x^{e_x})\).
+LTE gives \(v_5(\Phi_5(x))=1\), so \(C_5(x)\) is integral and not divisible by
+\(5\).  Since \(x>5\), \(C_5(x)>1\).  A divisor \(3\) contradicts
+lower-prime avoidance.  Any other prime divisor \(r\) is \(>5\), lies in \(S\),
+and has \(\ord_r(x)=5\).
+
+For \(\mathbf{Q5E2}\), \(\pi\equiv-1\pmod5\) and
+\(\alpha+1\equiv2\pmod4\), so \(\Phi_2(\pi)=\pi+1\) divides
+\(\sigma(\pi^\alpha)\).  Removing the full \(5\)-power gives \(C_2(\pi)\).
+The same lower-prime and forced-prime argument applies, and a surviving odd
+prime divisor \(r>5\) of \(\pi+1\) has \(\ord_r(\pi)=2\).
+\end{proof}
+
+\begin{theorem}[Closure of the \(q=5\) inventory]
+\label{thm:q5-closed}
+Relative to the certificate release \(\Csmall\), the \(q=5\) branch inventory is
+exhausted.
+\end{theorem}
+
+\begin{proof}
+By Proposition~\ref{prop:q5-coverage}, every realization of the \(q=5\) branch
+lies in at least one of \(\mathbf{Q5E2}\), \(\mathbf{Q5E1}\), and
+\(\mathbf{Q5N}\).
+
+The certificate package closes \(\mathbf{Q5E2}\) by finite successor archives
+for the four post-window pairs
+\[
+  (109,11),\quad (229,23),\quad (349,7),\quad (409,41),
+\]
+together with parametric post-window records.  It closes \(\mathbf{Q5E1}\) by
+the exact finite Euler-prime window
+\[
+  \pi<1381,\qquad \pi\equiv1\pmod{60},
+\]
+and a parametric \(C_5(\pi)\)-tail record for \(\pi\ge1381\).  It closes
+\(\mathbf{Q5N}\) by the exact finite witness-prime window
+\[
+  p<211,\qquad p\equiv1\pmod5,
+\]
+and a parametric \(C_5(p)\)-tail record for \(p\ge211\).
+
+The strict wrapper verifies these dependencies and prints the terminal summary
+\[
+\begin{gathered}
+  \mathtt{Q5E2\ closed},\qquad
+  \mathtt{Q5E1\ closed},\qquad
+  \mathtt{Q5N\ closed},\\
+  \mathtt{q=5\ branch\ inventory\ exhausted}.
+\end{gathered}
+\]
+Thus no certified leaf remains in any child, and the three children cover the
+parent branch.
+\end{proof}
+
+\section{Expanded \(q=5\) Derivation}
+\label{sec:q5-expanded-derivation}
+
+The preceding section gives the compressed branch proof.  For readability and
+auditability, this section includes the fuller \(q=5\) derivation extracted
+from the revised source draft.  This is the didactic branch: it shows in detail
+how lower-prime avoidance, the first \(5\)-input split, second-level cofactors,
+finite successor windows, and parametric tail records fit together before the
+same forced-or-pure pattern is reused for \(q=7,11,13,17\).
+
+\input{arxiv_q5_expanded_detail.tex}
+
+\section{Closure of the \(q=7\) Branch}
+\label{sec:q7}
+
+For \(q=7\), lower-prime avoidance applies to \(3\) and \(5\).  The first
+coverage split consists of six children:
+\[
+  \mathbf{Q7N1},\quad \mathbf{Q7N3},\quad
+  \mathbf{Q7E1},\quad \mathbf{Q7E2},\quad
+  \mathbf{Q7E3},\quad \mathbf{Q7E6}.
+\]
+This is exactly Table~\ref{tab:first-input-labels} for \(q=7\).
+
+\begin{proposition}[Reduced \(q=7\) frontier]
+\label{prop:q7-frontier}
+After lower-prime avoidance, the six \(q=7\) leaves have the strict
+forced-or-pure frontier recorded in Table~\ref{tab:q7-frontier}.
+\end{proposition}
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{c|c|c|c}
+\toprule
+leaf & cofactor & envelope tuple used & mode\\
+\midrule
+\(\mathbf{Q7N1}\) & \(\Phi_7(p)/7\) & \((7,29,29)\) & forced\\
+\(\mathbf{Q7N3}\) & \(\Phi_3(p)/7^{v_7}\) & \((7,11,13)\) & forced; pure archive-refuted\\
+\(\mathbf{Q7E1}\) & \(\Phi_7(\pi)/7\) & \((7,29,29)\) & forced\\
+\(\mathbf{Q7E2}\) & \((\pi+1)/7^{v_7}\) & \((7,13,11)\), pure \((7,13)\) & forced or pure\\
+\(\mathbf{Q7E3}\) & \(\Phi_3(\pi)/7^{v_7}\) & \((7,37,13)\) & forced; pure archive-refuted\\
+\(\mathbf{Q7E6}\) & \(\Phi_6(\pi)/7^{v_7}\) & \((7,17,13)\), pure \((7,17)\) & forced or pure\\
+\bottomrule
+\end{tabular}
+\caption{Strict \(q=7\) frontier layer.  Each listed envelope tuple satisfies the
+tail inequality with \(B=59\) and \(M=18\).}
+\label{tab:q7-frontier}
+\end{table}
+
+\begin{proof}
+The cofactor statements follow from Lemmas~\ref{lem:forced-prime-alternative}
+and \ref{lem:lower-prime-cofactor-refutation}.  For example, in
+\(\mathbf{Q7N1}\) the order-one source \(p\equiv1\pmod7\) gives
+\(\Phi_7(p)/7>1\), not divisible by \(7\); after excluding lower divisors
+\(3,5\), a surviving divisor is \(r>7\) with \(\ord_r(p)=7\), hence
+\(r\equiv1\pmod7\).  The certificate records the least admissible source and
+forced-prime lower bounds as the envelope tuple \(K_{\rm env}=(7,29,29)\).
+The other rows are
+identical applications of the same reduced-cofactor rule, with the pure rows
+handled by the pure-exception entries displayed in the table.
+\end{proof}
+
+\begin{theorem}[Closure of the \(q=7\) inventory]
+\label{thm:q7-closed}
+Relative to the certificate release \(\Csmall\), the \(q=7\) branch inventory is
+exhausted.
+\end{theorem}
+
+\begin{proof}
+The six leaves in Table~\ref{tab:q7-frontier} cover the \(q=7\) branch by
+Proposition~\ref{prop:general-coverage-split}.  The strict \(q=7\) verifier
+checks each leaf, the lower-prime alternatives, and the exact inequalities
+\[
+  \Hfun(K_{\rm env})\left(\frac{59}{58}\right)^{18}<2
+\]
+for the envelope tuples in Table~\ref{tab:q7-frontier}.  By
+Lemma~\ref{lem:tail-envelope}, each accepted forced or pure envelope tuple excludes
+the corresponding tail.  The wrapper verifies all six frontier records and
+prints
+\[
+  \mathtt{Q7\ forced/pure\ frontier\ closures\ verified:\ 6/6},
+\]
+followed by
+\[
+  \mathtt{q=7\ branch\ inventory\ exhausted}.
+\]
+Thus every child in the complete \(q=7\) coverage split is closed.
+\end{proof}
+
+\section{Closure of the \(q=11\) Branch}
+\label{sec:q11}
+
+For \(q=11\), lower-prime avoidance applies to \(3,5,7\), and the active
+support floor is \(\omega(N)\ge27\).  The first-input coverage split has six
+children:
+\[
+  \mathbf{Q11N1},\quad \mathbf{Q11N5},\quad
+  \mathbf{Q11E1},\quad \mathbf{Q11E2},\quad
+  \mathbf{Q11E5},\quad \mathbf{Q11E10}.
+\]
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabularx}{\textwidth}{c|>{\raggedright\arraybackslash}X|c|>{\raggedright\arraybackslash}p{0.23\textwidth}}
+\toprule
+leaf & cofactor & endpoint kernel & pure status\\
+\midrule
+\(\mathbf{Q11N1}\) & \(\Phi_{11}(p)/11\) & \(\{11,23\}\) & none\\
+\(\mathbf{Q11N5}\) & \(\Phi_5(p)/11^{v_{11}(\Phi_5(p))}\) & \(\{11,31\}\) & \(\Phi_5(x)=11^c\) refuted\\
+\(\mathbf{Q11E1}\) & \(\Phi_{11}(\pi)/11\) & \(\{11,23\}\) & none\\
+\(\mathbf{Q11E2}\) & \((\pi+1)/11^{v_{11}(\pi+1)}\) & \(\{11,13\}\), pure \(\{11,241\}\) & tail-controlled\\
+\(\mathbf{Q11E5}\) & \(\Phi_5(\pi)/11^{v_{11}(\Phi_5(\pi))}\) & \(\{11,31\}\) & \(\Phi_5(x)=11^c\) refuted\\
+\(\mathbf{Q11E10}\) & \(\Phi_{10}(\pi)/11^{v_{11}(\Phi_{10}(\pi))}\) & \(\{11,31\}\) & \(\Phi_{10}(x)=11^c\) refuted\\
+\bottomrule
+\end{tabularx}
+\caption{Strict \(q=11\) frontier layer, with \(B=59\) and \(M=18\).}
+\label{tab:q11-frontier}
+\end{table}
+
+\begin{proposition}[Pure exceptions for \(q=11\)]
+\label{prop:q11-pure}
+The only pure exceptions in the \(q=11\) frontier are the following:
+\begin{enumerate}[label=(\roman*),leftmargin=2.2em]
+\item \(\Phi_5(x)=11^c\), whose certificate-verified positive solution set is
+\(\{(3,2)\}\), impossible in the branch \(q=11\);
+\item the Euler order-two pure family
+\[
+  \pi=2\cdot 11^{2t}-1,\qquad t\ge1,
+\]
+whose first prime endpoint is \(\pi=241\) and whose pure kernel satisfies
+\[
+  \Hfun(\{11,241\})\left(\frac{59}{58}\right)^{18}<2;
+\]
+\item \(\Phi_{10}(x)=11^c\), whose certificate-verified positive solution set is
+\(\{(2,1)\}\), impossible in an odd \(q=11\) support branch.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+These are the three pure-dependency records in
+\(\texttt{q11\_master\_bundle.jsonl}\).  The first and third are Diophantine
+filters: their certificate-verified solutions lie below the minimal prime or outside the
+odd support.  The second is not refuted algebraically; it is accepted only
+after the exact pure-kernel tail inequality is checked.  By
+Lemma~\ref{lem:tail-envelope}, that inequality closes the pure family.
+\end{proof}
+
+\begin{theorem}[Closure of the \(q=11\) inventory]
+\label{thm:q11-closed}
+Relative to the certificate release \(\Csmall\), the \(q=11\) branch inventory is
+exhausted.
+\end{theorem}
+
+\begin{proof}
+The six leaves in Table~\ref{tab:q11-frontier} cover the \(q=11\) branch by
+Proposition~\ref{prop:general-coverage-split}.  The strict verifier checks the
+forced endpoint inequalities for
+\[
+  \{11,23\},\quad \{11,31\},\quad \{11,13\},
+\]
+and the pure endpoint \(\{11,241\}\), all with \(B=59,M=18\).  It also checks
+the pure-dependency set described in Proposition~\ref{prop:q11-pure}.  The
+verified terminal output is
+\[
+  \mathtt{Q11\ strict\ frontier\ closures\ verified:\ 6/6}
+\]
+and
+\[
+  \mathtt{q=11\ branch\ inventory\ exhausted}.
+\]
+Therefore all children in the complete \(q=11\) split are closed.
+\end{proof}
+
+\section{Closure of the \(q=13\) Branch}
+\label{sec:q13}
+
+For \(q=13\), lower-prime avoidance applies to \(3,5,7,11\).  The first-input
+coverage split has the six children
+\[
+  \mathbf{Q13N1},\quad \mathbf{Q13N3},\quad
+  \mathbf{Q13E1},\quad \mathbf{Q13E2},\quad
+  \mathbf{Q13E3},\quad \mathbf{Q13E6}.
+\]
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabularx}{\textwidth}{c|>{\raggedright\arraybackslash}X|c|>{\raggedright\arraybackslash}p{0.23\textwidth}}
+\toprule
+leaf & cofactor & endpoint kernel & pure status\\
+\midrule
+\(\mathbf{Q13N1}\) & \(\Phi_{13}(p)/13\) & \(\{13,53\}\) & none\\
+\(\mathbf{Q13N3}\) & \(\Phi_3(p)/13^{v_{13}(\Phi_3(p))}\) & \(\{13,19\}\) & \(\Phi_3(x)=13^c\) refuted\\
+\(\mathbf{Q13E1}\) & \(\Phi_{13}(\pi)/13\) & \(\{13,53\}\) & none\\
+\(\mathbf{Q13E2}\) & \((\pi+1)/13^{v_{13}(\pi+1)}\) & \(\{13,17\}\), pure \(\{13,337\}\) & tail-controlled\\
+\(\mathbf{Q13E3}\) & \(\Phi_3(\pi)/13^{v_{13}(\Phi_3(\pi))}\) & \(\{13,19\}\) & \(\Phi_3(x)=13^c\) refuted\\
+\(\mathbf{Q13E6}\) & \(\Phi_6(\pi)/13^{v_{13}(\Phi_6(\pi))}\) & \(\{13,19\}\) & \(\Phi_6(x)=13^c\) refuted\\
+\bottomrule
+\end{tabularx}
+\caption{Strict \(q=13\) frontier layer, with \(B=59\) and \(M=18\).}
+\label{tab:q13-frontier}
+\end{table}
+
+\begin{proposition}[Pure exceptions for \(q=13\)]
+\label{prop:q13-pure}
+The \(q=13\) pure screen consists of:
+\begin{enumerate}[label=(\roman*),leftmargin=2.2em]
+\item \(\Phi_3(x)=13^c\), whose certificate-verified positive solution set is
+\(\{(3,1)\}\),
+impossible in the \(q=13\) branch;
+\item the Euler order-two pure family
+\[
+  \pi=2\cdot13^b-1,\qquad b\ge1,
+\]
+whose first prime endpoint is \(337\), with
+\[
+  \Hfun(\{13,337\})\left(\frac{59}{58}\right)^{18}<2;
+\]
+\item \(\Phi_6(\pi)=13^c\), whose certificate-verified positive solution set is
+\(\{(4,1)\}\),
+not a prime.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+These are the pure-dependency records in the \(q=13\) master bundle.  The two
+quadratic pure equations are eliminated by their certificate-verified solution sets and the
+branch hypotheses.  The order-two family is closed by the pure-kernel
+inequality and Lemma~\ref{lem:tail-envelope}.
+\end{proof}
+
+\begin{theorem}[Closure of the \(q=13\) inventory]
+\label{thm:q13-closed}
+Relative to the certificate release \(\Csmall\), the \(q=13\) branch inventory is
+exhausted.
+\end{theorem}
+
+\begin{proof}
+The six leaves in Table~\ref{tab:q13-frontier} cover the branch by
+Proposition~\ref{prop:general-coverage-split}.  The strict verifier checks the
+forced endpoint inequalities for
+\[
+  \{13,53\},\quad \{13,19\},\quad \{13,17\},
+\]
+and the pure endpoint \(\{13,337\}\).  It also checks the three pure
+dependencies of Proposition~\ref{prop:q13-pure}.  The terminal output is
+\[
+  \mathtt{Q13\ strict\ frontier\ closures\ verified:\ 6/6}
+\]
+and
+\[
+  \mathtt{q=13\ branch\ inventory\ exhausted}.
+\]
+Hence every child of the complete \(q=13\) coverage split is closed.
+\end{proof}
+
+\section{Closure of the \(q=17\) Branch}
+\label{sec:q17}
+
+For \(q=17\), lower-prime avoidance applies to
+\[
+  3,\ 5,\ 7,\ 11,\ 13.
+\]
+The possible first-input children are
+\[
+  \mathbf{Q17N1},\qquad \mathbf{Q17E1},\qquad \mathbf{Q17E2}.
+\]
+Indeed, the only odd divisor of \(16\) is \(1\), and the Euler exponent permits
+only orders \(1\) and \(2\).
+
+\begin{proposition}[Reduced \(q=17\) frontier]
+\label{prop:q17-frontier}
+The strict \(q=17\) frontier consists of:
+\[
+\begin{array}{c|c|c}
+\text{leaf} & \text{cofactor} & \text{endpoint kernel}\\
+\hline
+\mathbf{Q17N1} & \Phi_{17}(p)/17 & \{17,103\}\\
+\mathbf{Q17E1} & \Phi_{17}(\pi)/17 & \{17,103\}\\
+\mathbf{Q17E2} & (\pi+1)/17^{v_{17}(\pi+1)} & \{17,19\},\ \text{pure }\{17,577\}.
+\end{array}
+\]
+All endpoints use \(B=59\) and \(M=18\).
+\end{proposition}
+
+\begin{proof}
+In the order-one leaves, the source \(x\) satisfies \(x\equiv1\pmod{17}\) and
+the relevant exponent parameter is divisible by \(17\).  Thus
+\(\Phi_{17}(x)\mid\sigma(x^{e_x})\), and LTE gives
+\[
+  v_{17}(\Phi_{17}(x))=1.
+\]
+Hence \(C_{17}(x)=\Phi_{17}(x)/17\) is an integer \(>1\), not divisible by
+\(17\).  After lower-prime avoidance, any surviving prime divisor \(r\) is
+\(>17\) and has \(\ord_r(x)=17\), so \(r\equiv1\pmod{17}\).  The first
+admissible endpoint used by the certificate is \(r=103\).
+
+In the Euler order-two leaf, \(\pi\equiv-1\pmod{17}\) and
+\(\alpha+1\equiv2\pmod4\), so \(\pi+1\mid\sigma(\pi^\alpha)\).  After removing
+the \(17\)-part, any surviving odd divisor \(r>17\) has \(\ord_r(\pi)=2\), and
+the worst endpoint is \(r=19\).  If no such odd divisor remains, the reduced
+cofactor is a power of \(2\), giving the pure family
+\[
+  \pi=2\cdot17^b-1.
+\]
+The first prime endpoint in this family is \(577\), which is the pure kernel
+recorded in the master bundle.
+\end{proof}
+
+\begin{theorem}[Closure of the \(q=17\) inventory]
+\label{thm:q17-closed}
+Relative to the certificate release \(\Csmall\), the \(q=17\) branch inventory is
+exhausted.
+\end{theorem}
+
+\begin{proof}
+The three leaves \(\mathbf{Q17N1},\mathbf{Q17E1},\mathbf{Q17E2}\) cover the
+\(q=17\) branch by Proposition~\ref{prop:general-coverage-split}.  The strict
+verifier checks
+\[
+  \Hfun(\{17,103\})\left(\frac{59}{58}\right)^{18}<2,
+\]
+\[
+  \Hfun(\{17,19\})\left(\frac{59}{58}\right)^{18}<2,
+\]
+and
+\[
+  \Hfun(\{17,577\})\left(\frac{59}{58}\right)^{18}<2.
+\]
+By Lemma~\ref{lem:tail-envelope}, these inequalities close respectively the
+order-one forced rows, the Euler order-two forced row, and the Euler order-two
+pure family.  The master wrapper verifies all three strict frontier records and
+prints
+\[
+  \mathtt{Q17\ strict\ frontier\ closures\ verified:\ 3/3},
+\]
+followed by
+\[
+  \mathtt{q=17\ branch\ inventory\ exhausted}.
+\]
+Thus every child in the complete \(q=17\) split is closed.
+\end{proof}
+
+\section{Final Branch-Closure Statement}
+\label{sec:final}
+
+\begin{theorem}[Certified closure for \(q=5,7,11,13,17\)]
+\label{thm:final-closure}
+Relative to the explicitly listed verifier contract and certificate release
+\(\Csmall\), there is no odd perfect number \(N\) with
+\[
+  \min\{p:p\mid N\}\in\{5,7,11,13,17\}.
+\]
+Equivalently, the certified branch inventories for
+\[
+  q=5,\ 7,\ 11,\ 13,\ 17
+\]
+are exhausted.
+\end{theorem}
+
+\begin{proof}
+Theorem~\ref{thm:q5-closed} closes \(q=5\).  Theorem~\ref{thm:q7-closed}
+closes \(q=7\).  Theorem~\ref{thm:q11-closed} closes \(q=11\).
+Theorem~\ref{thm:q13-closed} closes \(q=13\).  Theorem~\ref{thm:q17-closed}
+closes \(q=17\).  These are minimal-prime branch statements in the sense of
+Definition~\ref{def:minimal-prime-branch}; by Remark~\ref{rem:scope-warning}
+they do not claim anything about numbers divisible by one of these primes but
+also divisible by a smaller prime.  Combining the five branch theorems gives
+the displayed final statement.
+\end{proof}
+
+\begin{remark}[Remaining branches]
+The closure theorem leaves two tasks outside the scope of this paper:
+\[
+  q=3
+  \qquad\text{and}\qquad
+  q\ge19.
+\]
+The branch \(q=3\) has no lower-prime avoidance constraints.  The residual
+branch \(q\ge19\) requires a separate treatment of the order types for the
+first \(q\)-adic input primes and should not be conflated with the small-branch
+certificates proved here.
+\end{remark}
+
+\nocite{*}
+\FloatBarrier
+\bibliographystyle{alpha}
+\bibliography{references}
+
+\end{document}

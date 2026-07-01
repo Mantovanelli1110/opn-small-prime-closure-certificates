@@ -1,0 +1,3757 @@
+﻿\subsection{A preliminary Euler-residue child in the case $q=5$}
+
+We first eliminate the preliminary Euler-residue child in the branch
+\[
+  \min S=5,
+\]
+namely the branch in which the Euler prime is congruent to \(2\) modulo \(3\).
+This does not yet close the full \(q=5\) branch; the full closure is obtained
+after the three \(5\)-input children are closed.
+
+\begin{definition}[The bad Euler branch in the case $\min S=5$]
+Let $\mathcal B_{5,\pi\equiv 2(3)}$ denote the branch with the following data:
+\[
+  \tau(\mathcal B_{5,\pi\equiv 2(3)})=\mathsf{small}(5),
+\]
+so that
+\[
+  \min S=5.
+\]
+The branch also records that the Euler prime $\pi$ satisfies
+\[
+  \pi\equiv 2\pmod 3
+\]
+and that its exponent $\alpha$ satisfies the Euler schema
+\[
+  \alpha\equiv 1\pmod 4.
+\]
+\end{definition}
+
+\begin{proposition}[Closed $q=5$ branch: Euler prime $2$ modulo $3$]
+\label{prop:q5-euler-2mod3-empty}
+The branch
+\[
+  \mathcal B_{5,\pi\equiv 2(3)}
+\]
+has no realization by an odd perfect number.  Equivalently, if
+\[
+  \min S=5,
+\]
+then the Euler prime must satisfy
+\[
+  \pi\equiv 1\pmod 3.
+\]
+\end{proposition}
+
+\begin{proof}
+Assume for contradiction that $N$ realizes
+\[
+  \mathcal B_{5,\pi\equiv 2(3)}.
+\]
+Since
+\[
+  \min S=5,
+\]
+the prime $3$ is not in the support:
+\[
+  3\notin S.
+\]
+Therefore lower-prime avoidance with $\ell=3$ applies to every prime power in
+the support.  In particular,
+\[
+  \operatorname{Avoid}_3(\pi,\alpha)
+\]
+must hold.
+
+But the branch assumes
+\[
+  \pi\equiv2\pmod3.
+\]
+Hence
+\[
+  \ord_3(\pi)=2.
+\]
+Since $\pi$ is the Euler prime, its exponent satisfies
+\[
+  \alpha\equiv1\pmod4.
+\]
+Thus
+\[
+  \alpha+1\equiv2\pmod4,
+\]
+and in particular
+\[
+  2\mid \alpha+1.
+\]
+By the cyclotomic input condition, this gives
+\[
+  3\mid \sigma(\pi^\alpha).
+\]
+Equivalently,
+\[
+  v_3(\sigma(\pi^\alpha))>0.
+\]
+This contradicts lower-prime avoidance, which requires
+\[
+  v_3(\sigma(\pi^\alpha))=0.
+\]
+Therefore no odd perfect number realizes the branch
+$\mathcal B_{5,\pi\equiv 2(3)}$.
+\end{proof}
+
+\begin{corollary}[The minimal prime $5$ is non-Euler]
+\label{cor:q5-minimal-prime-non-euler}
+If $N$ is an odd perfect number with
+\[
+  \min S=5,
+\]
+then $5$ is not the Euler prime.  Consequently
+\[
+  e_5\equiv0\pmod2.
+\]
+\end{corollary}
+
+\begin{proof}
+The prime $5$ satisfies
+\[
+  5\equiv2\pmod3.
+\]
+If $5$ were the Euler prime, then the Euler prime would lie in the refuted branch
+of Proposition~\ref{prop:q5-euler-2mod3-empty}.  This is impossible.  Hence $5$
+is non-Euler, and by Euler's form its exponent is even:
+\[
+  e_5\equiv0\pmod2.
+\]
+\end{proof}
+
+\begin{corollary}[First coverage split in the $q=5$ branch]
+\label{cor:q5-first-coverage-split}
+In the branch
+\[
+  \mathsf{small}(5),
+\]
+the split
+\[
+  \pi\equiv1\pmod3
+  \qquad\text{or}\qquad
+  \pi\equiv2\pmod3
+\]
+is complete.  The second child is refuted by
+Proposition~\ref{prop:q5-euler-2mod3-empty}.  Hence every surviving
+$q=5$ branch satisfies
+\[
+  \pi\equiv1\pmod3.
+\]
+\end{corollary}
+
+\begin{proof}
+Since $\pi\ne3$ and $\pi$ is an odd prime, exactly one of
+\[
+  \pi\equiv1\pmod3,
+  \qquad
+  \pi\equiv2\pmod3
+\]
+holds.  Proposition~\ref{prop:q5-euler-2mod3-empty} refutes the second case.
+\end{proof}
+
+\begin{lemma}[Surviving exponent schemas in the branch $\min S=5$]
+\label{lem:q5-surviving-exponent-schemas}
+Assume that $N$ is an odd perfect number with
+\[
+  \min S=5.
+\]
+Let $\pi$ be the Euler prime, with Euler exponent $\alpha$.
+
+Then the following constraints hold.
+
+\begin{enumerate}[label=(\roman*),leftmargin=2.2em]
+
+\item The Euler prime satisfies
+      \[
+        \pi\equiv1\pmod3,
+        \qquad
+        \alpha\equiv1\pmod4,
+        \qquad
+        3\nmid \alpha+1.
+      \]
+
+\item The minimal prime $5$ is non-Euler.  Hence
+      \[
+        e_5\equiv0\pmod2,
+        \qquad
+        e_5\ge2.
+      \]
+      Equivalently,
+      \[
+        e_5+1
+      \]
+      is odd.
+
+\item Let $p\in S$, $p\ne5$, be non-Euler.  Then
+      \[
+        e_p\equiv0\pmod2.
+      \]
+      The lower-prime avoidance condition for $\ell=3$ is:
+      \[
+        \begin{cases}
+          3\nmid e_p+1, & p\equiv1\pmod3,\\[4pt]
+          \text{automatic}, & p\equiv2\pmod3.
+        \end{cases}
+      \]
+
+\item A non-Euler prime $p\ne5$ is a $5$-input prime if and only if
+      \[
+        p\equiv1\pmod5
+        \qquad\text{and}\qquad
+        5\mid e_p+1.
+      \]
+      In that case
+      \[
+        v_5(\sigma(p^{e_p}))=v_5(e_p+1).
+      \]
+
+\item The Euler prime $\pi$ is a $5$-input prime precisely in the following two
+      cases:
+      \[
+        \pi\equiv1\pmod5
+        \qquad\text{and}\qquad
+        5\mid\alpha+1,
+      \]
+      or
+      \[
+        \pi\equiv -1\pmod5.
+      \]
+      In the first case
+      \[
+        v_5(\sigma(\pi^\alpha))=v_5(\alpha+1).
+      \]
+      In the second case
+      \[
+        v_5(\sigma(\pi^\alpha))
+        =
+        v_5(\pi^2-1)+v_5\!\left(\frac{\alpha+1}{2}\right).
+      \]
+
+\item If
+      \[
+        \pi\equiv2\pmod5
+        \quad\text{or}\quad
+        \pi\equiv3\pmod5,
+      \]
+      then $\ord_5(\pi)=4$.  Since
+      \[
+        \alpha+1\equiv2\pmod4,
+      \]
+      one has
+      \[
+        4\nmid \alpha+1,
+      \]
+      so such an Euler prime is $5$-neutral.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+The first assertion follows from
+Proposition~\ref{prop:q5-euler-2mod3-empty}.  Since $\pi\equiv1\pmod3$, one has
+\[
+  \ord_3(\pi)=1.
+\]
+Lower-prime avoidance for $\ell=3$ therefore gives
+\[
+  3\nmid\alpha+1.
+\]
+The congruence
+\[
+  \alpha\equiv1\pmod4
+\]
+is Euler's parity condition.
+
+The second assertion is Corollary~\ref{cor:q5-minimal-prime-non-euler}.
+
+Now let $p\ne5$ be non-Euler.  Then Euler's form gives
+\[
+  e_p\equiv0\pmod2.
+\]
+If $p\equiv1\pmod3$, then $\ord_3(p)=1$, so lower-prime avoidance gives
+\[
+  3\nmid e_p+1.
+\]
+If $p\equiv2\pmod3$, then $\ord_3(p)=2$.  Since $e_p$ is even,
+\[
+  e_p+1
+\]
+is odd, so
+\[
+  2\nmid e_p+1.
+\]
+Thus the avoidance condition is automatic in this case.
+
+For the $5$-input classification, apply the cyclotomic input condition with
+$q=5$.  If $p$ is non-Euler, then $e_p+1$ is odd.  The possible exact orders
+modulo $5$ are
+\[
+  1,\ 2,\ 4.
+\]
+The even orders $2$ and $4$ cannot divide the odd integer $e_p+1$.  Thus a
+non-Euler $5$-input can only have
+\[
+  \ord_5(p)=1,
+\]
+i.e.
+\[
+  p\equiv1\pmod5.
+\]
+In the order-one case, the corrected cyclotomic input condition says that input
+occurs precisely when
+\[
+  5\mid e_p+1,
+\]
+and the contribution is
+\[
+  v_5(\sigma(p^{e_p}))=v_5(e_p+1).
+\]
+
+For the Euler prime, put
+\[
+  n_\pi:=\alpha+1.
+\]
+Since
+\[
+  \alpha\equiv1\pmod4,
+\]
+we have
+\[
+  n_\pi\equiv2\pmod4.
+\]
+If $\ord_5(\pi)=1$, then the order-one case gives input precisely when
+\[
+  5\mid n_\pi.
+\]
+If $\ord_5(\pi)=2$, then $2\mid n_\pi$, so the cyclotomic input condition gives
+a $5$-adic contribution
+\[
+  v_5(\pi^2-1)+v_5(n_\pi/2).
+\]
+If $\ord_5(\pi)=4$, then $4\nmid n_\pi$, so there is no $5$-adic contribution.
+This proves the classification.
+\end{proof}
+
+\begin{corollary}[Closed $q=5$ leaf: no $5$-input prime]
+\label{cor:q5-no-input-leaf-empty}
+Assume
+\[
+  \min S=5.
+\]
+The child branch in which every prime
+\[
+  p\in S,\qquad p\ne5,
+\]
+is $5$-neutral has no realization by an odd perfect number.
+\end{corollary}
+
+\begin{proof}
+Since $5\in S$, one has
+\[
+  e_5>0.
+\]
+The $5$-adic valuation balance is
+\[
+  e_5
+  =
+  \sum_{\substack{p\in S\\p\ne5}}
+  v_5(\sigma(p^{e_p})).
+\]
+In the stated child branch every prime $p\ne5$ is $5$-neutral, so every summand
+on the right-hand side is zero.  Hence
+\[
+  e_5=0,
+\]
+contradicting
+\[
+  5\in S.
+\]
+Therefore the branch is empty.
+\end{proof}
+
+\subsubsection{The first necessary $5$-input split}
+
+We now turn the $5$-adic balance in the branch
+\[
+  \min S=5
+\]
+into a first explicit coverage split.
+
+\begin{definition}[$5$-input witness in the branch $\min S=5$]
+Assume
+\[
+  \min S=5.
+\]
+A prime
+\[
+  p\in S,\qquad p\ne5,
+\]
+is called a $5$-input witness if
+\[
+  v_5(\sigma(p^{e_p}))>0.
+\]
+Equivalently, $p$ is a prime power in the support, other than $5^{e_5}$ itself,
+that contributes to the $5$-adic balance
+\[
+  e_5
+  =
+  \sum_{\substack{p\in S\\p\ne5}}
+  v_5(\sigma(p^{e_p})).
+\]
+\end{definition}
+
+\begin{proposition}[Existence of a $5$-input witness]
+\label{prop:q5-input-witness-exists}
+Assume that $N$ is an odd perfect number with
+\[
+  \min S=5.
+\]
+Then there exists at least one $5$-input witness
+\[
+  p\in S,\qquad p\ne5.
+\]
+\end{proposition}
+
+\begin{proof}
+Since
+\[
+  5\in S,
+\]
+one has
+\[
+  e_5>0.
+\]
+The $5$-adic valuation balance gives
+\[
+  e_5
+  =
+  \sum_{\substack{p\in S\\p\ne5}}
+  v_5(\sigma(p^{e_p})).
+\]
+The right-hand side is a sum of nonnegative integers.  Since the left-hand side
+is positive, at least one summand is positive.  Hence there exists
+\[
+  p\in S,\qquad p\ne5,
+\]
+with
+\[
+  v_5(\sigma(p^{e_p}))>0.
+\]
+\end{proof}
+
+\begin{lemma}[Classification of first $5$-input witnesses]
+\label{lem:q5-first-input-classification}
+Assume
+\[
+  \min S=5.
+\]
+Let
+\[
+  p\in S,\qquad p\ne5,
+\]
+be a $5$-input witness.
+
+Then exactly one of the following role cases applies.
+
+\begin{enumerate}[label=(\roman*),leftmargin=2.2em]
+
+\item \textbf{Non-Euler witness.}
+      The prime $p$ is non-Euler.  Then
+      \[
+        e_p\equiv0\pmod2,
+      \]
+      and the $5$-input condition is equivalent to
+      \[
+        p\equiv1\pmod5,
+        \qquad
+        5\mid e_p+1.
+      \]
+      In this case
+      \[
+        v_5(\sigma(p^{e_p}))=v_5(e_p+1).
+      \]
+
+\item \textbf{Euler witness of order one.}
+      The prime $p$ is the Euler prime $\pi$, and
+      \[
+        \pi\equiv1\pmod5,
+        \qquad
+        5\mid \alpha+1.
+      \]
+      In this case
+      \[
+        v_5(\sigma(\pi^\alpha))=v_5(\alpha+1).
+      \]
+
+\item \textbf{Euler witness of order two.}
+      The prime $p$ is the Euler prime $\pi$, and
+      \[
+        \pi\equiv-1\pmod5.
+      \]
+      In this case
+      \[
+        \ord_5(\pi)=2,
+      \]
+      and
+      \[
+        v_5(\sigma(\pi^\alpha))
+        =
+        v_5(\pi^2-1)
+        +
+        v_5\!\left(\frac{\alpha+1}{2}\right).
+      \]
+\end{enumerate}
+
+Moreover, the Euler witness cannot have
+\[
+  \pi\equiv2\pmod5
+  \qquad\text{or}\qquad
+  \pi\equiv3\pmod5,
+\]
+because then
+\[
+  \ord_5(\pi)=4
+\]
+and
+\[
+  4\nmid \alpha+1.
+\]
+\end{lemma}
+
+\begin{proof}
+Let
+\[
+  n_p:=e_p+1.
+\]
+
+First suppose that $p$ is non-Euler.  Then Euler's form gives
+\[
+  e_p\equiv0\pmod2,
+\]
+so
+\[
+  n_p=e_p+1
+\]
+is odd.  Since $p$ is a $5$-input witness, the cyclotomic input condition gives
+\[
+  \ord_5(p)\mid n_p
+\]
+if $\ord_5(p)>1$, and gives
+\[
+  5\mid n_p
+\]
+if $\ord_5(p)=1$.
+
+The possible orders modulo $5$ are
+\[
+  1,\ 2,\ 4.
+\]
+The orders $2$ and $4$ are even and therefore cannot divide the odd integer
+$n_p$.  Hence the only possible non-Euler input order is
+\[
+  \ord_5(p)=1,
+\]
+which is equivalent to
+\[
+  p\equiv1\pmod5.
+\]
+In the order-one case the corrected cyclotomic input condition gives input
+precisely when
+\[
+  5\mid e_p+1,
+\]
+and the valuation is
+\[
+  v_5(\sigma(p^{e_p}))=v_5(e_p+1).
+\]
+
+Now suppose that $p=\pi$ is the Euler prime, with exponent $\alpha$.  Put
+\[
+  n_\pi:=\alpha+1.
+\]
+Since
+\[
+  \alpha\equiv1\pmod4,
+\]
+we have
+\[
+  n_\pi\equiv2\pmod4.
+\]
+
+If
+\[
+  \ord_5(\pi)=1,
+\]
+then
+\[
+  \pi\equiv1\pmod5,
+\]
+and the order-one case gives input precisely when
+\[
+  5\mid \alpha+1.
+\]
+The valuation is then
+\[
+  v_5(\sigma(\pi^\alpha))=v_5(\alpha+1).
+\]
+
+If
+\[
+  \ord_5(\pi)=2,
+\]
+then
+\[
+  \pi\equiv-1\pmod5.
+\]
+Since
+\[
+  2\mid n_\pi,
+\]
+the cyclotomic input condition gives a $5$-adic contribution, and the valuation
+formula is
+\[
+  v_5(\sigma(\pi^\alpha))
+  =
+  v_5(\pi^2-1)
+  +
+  v_5\!\left(\frac{\alpha+1}{2}\right).
+\]
+
+Finally, if
+\[
+  \ord_5(\pi)=4,
+\]
+then
+\[
+  \pi\equiv2\pmod5
+  \quad\text{or}\quad
+  \pi\equiv3\pmod5.
+\]
+But
+\[
+  n_\pi\equiv2\pmod4,
+\]
+so
+\[
+  4\nmid n_\pi.
+\]
+Thus no $5$-adic contribution occurs in these two residue classes.
+\end{proof}
+
+\begin{corollary}[First necessary $5$-input coverage split]
+\label{cor:q5-first-input-coverage-split}
+In the branch
+\[
+  \min S=5,
+\]
+the following split is complete:
+\[
+  \text{there exists a non-Euler $5$-input witness}
+\]
+or
+\[
+  \text{the Euler prime is a $5$-input witness}.
+\]
+More explicitly, every odd perfect number with
+\[
+  \min S=5
+\]
+realizes at least one of the following child branches:
+
+\[
+\mathbf{Q5N}:\quad
+\exists p\in S,\ p\ne5,\ p\ne\pi,\quad
+p\equiv1\pmod5,\quad
+5\mid e_p+1;
+\]
+
+\[
+\mathbf{Q5E1}:\quad
+\pi\equiv1\pmod5,\quad
+5\mid \alpha+1;
+\]
+
+\[
+\mathbf{Q5E2}:\quad
+\pi\equiv-1\pmod5.
+\]
+
+The complementary child branch, in which every prime
+\[
+  p\in S,\qquad p\ne5,
+\]
+is $5$-neutral, is empty.
+\end{corollary}
+
+\begin{proof}
+By Proposition~\ref{prop:q5-input-witness-exists}, at least one $5$-input
+witness exists.
+
+If some $5$-input witness is non-Euler, then
+Lemma~\ref{lem:q5-first-input-classification} gives the child branch
+\[
+  \mathbf{Q5N}.
+\]
+
+If no non-Euler witness exists, then some $5$-input witness must be the Euler
+prime $\pi$.  Lemma~\ref{lem:q5-first-input-classification} shows that the Euler
+witness is either of order one modulo $5$, giving
+\[
+  \mathbf{Q5E1},
+\]
+or of order two modulo $5$, giving
+\[
+  \mathbf{Q5E2}.
+\]
+
+The branch in which all primes $p\ne5$ are $5$-neutral is exactly the branch
+refuted by Corollary~\ref{cor:q5-no-input-leaf-empty}.
+\end{proof}
+
+\begin{remark}[Non-disjointness of the first $5$-input split]
+The split in Corollary~\ref{cor:q5-first-input-coverage-split} is a coverage
+split, not necessarily a disjoint split.  For example, a hypothetical branch
+could contain both a non-Euler $5$-input witness and an Euler $5$-input witness.
+For the finite search, this is harmless: coverage requires that every
+hypothetical odd perfect number realizes at least one child branch, not that it
+realizes exactly one.
+\end{remark}
+
+\begin{remark}[Certificate data for the first $5$-input split]
+A certificate for the first $5$-input split records one of the following witness
+types:
+\[
+  \mathtt{Q5N},\qquad \mathtt{Q5E1},\qquad \mathtt{Q5E2}.
+\]
+For a \(\mathtt{Q5N}\) record the verifier checks
+\[
+  p\ne5,\quad p\ne\pi,\quad p\equiv1\pmod5,\quad 5\mid e_p+1,
+  \quad e_p\equiv0\pmod2.
+\]
+For a \(\mathtt{Q5E1}\) record it checks
+\[
+  \pi\equiv1\pmod5,\quad 5\mid\alpha+1,\quad \alpha\equiv1\pmod4.
+\]
+For a \(\mathtt{Q5E2}\) record it checks
+\[
+  \pi\equiv-1\pmod5,\quad \alpha\equiv1\pmod4.
+\]
+In each case the cyclotomic input condition proves
+\[
+  v_5(\sigma(p^{e_p}))>0
+\]
+for the recorded witness.
+\end{remark}
+
+\begin{proposition}[Completeness of the first \(q=5\) coverage split]
+\label{prop:q5-first-input-three-child-coverage}
+Assume that \(N\) is an odd perfect number with
+\[
+  \min\{p:p\mid N\}=5.
+\]
+Then \(N\) realizes at least one of the following three branch families:
+\[
+  \mathbf{Q5E2},
+  \qquad
+  \mathbf{Q5E1},
+  \qquad
+  \mathbf{Q5N}.
+\]
+More explicitly, at least one of the following alternatives holds.
+
+\[
+\mathbf{Q5E2}:
+\qquad
+\pi\equiv -1\pmod5.
+\]
+
+\[
+\mathbf{Q5E1}:
+\qquad
+\pi\equiv1\pmod5,
+\qquad
+5\mid \alpha+1.
+\]
+
+\[
+\mathbf{Q5N}:
+\qquad
+\text{there exists a non-Euler prime }p\in S
+\text{ such that }
+p\ne5,\ p\ne\pi,
+\]
+\[
+  p\equiv1\pmod5,
+  \qquad
+  5\mid e_p+1.
+\]
+
+Thus the three children
+\[
+  \mathbf{Q5E2},
+  \qquad
+  \mathbf{Q5E1},
+  \qquad
+  \mathbf{Q5N}
+\]
+form a complete coverage split of the \(q=5\) minimal-prime branch.  The split is
+a coverage split, not necessarily a disjoint split.
+\end{proposition}
+
+\begin{proof}
+Assume
+\[
+  \min\{p:p\mid N\}=5.
+\]
+Then \(5\in S\), so
+\[
+  e_5>0.
+\]
+The \(5\)-adic valuation balance for
+\[
+  \sigma(N)=2N
+\]
+is
+\[
+  e_5
+  =
+  \sum_{\substack{p\in S\\p\ne5}}
+  v_5(\sigma(p^{e_p})).
+\]
+The right-hand side is a sum of nonnegative integers.  Since \(e_5>0\), at least
+one summand is positive.  Hence there exists a prime
+\[
+  p\in S,
+  \qquad
+  p\ne5,
+\]
+such that
+\[
+  v_5(\sigma(p^{e_p}))>0.
+\]
+We call such a prime a \(5\)-input witness.
+
+We now distinguish whether the witness is the Euler prime or not.
+
+First suppose the witness is not the Euler prime.  Then \(p\ne\pi\), and Euler's
+form gives
+\[
+  e_p\equiv0\pmod2.
+\]
+Thus
+\[
+  e_p+1
+\]
+is odd.  Since
+\[
+  v_5(\sigma(p^{e_p}))>0,
+\]
+the cyclotomic input condition gives either
+\[
+  \operatorname{ord}_5(p)\mid e_p+1
+\]
+if \(\operatorname{ord}_5(p)>1\), or
+\[
+  5\mid e_p+1
+\]
+if \(\operatorname{ord}_5(p)=1\).
+
+The possible exact orders modulo \(5\) are
+\[
+  1,\ 2,\ 4.
+\]
+The orders \(2\) and \(4\) cannot divide the odd integer \(e_p+1\).  Therefore
+\[
+  \operatorname{ord}_5(p)=1.
+\]
+Equivalently,
+\[
+  p\equiv1\pmod5.
+\]
+The order-one input condition then gives
+\[
+  5\mid e_p+1.
+\]
+This is precisely the branch
+\[
+  \mathbf{Q5N}.
+\]
+
+It remains to treat the case in which every \(5\)-input witness is the Euler
+prime \(\pi\).  Let \(\alpha=e_\pi\) be its exponent.  Euler's form gives
+\[
+  \alpha\equiv1\pmod4,
+\]
+and hence
+\[
+  \alpha+1\equiv2\pmod4.
+\]
+
+Since \(\pi\) is a \(5\)-input witness,
+\[
+  v_5(\sigma(\pi^\alpha))>0.
+\]
+Let
+\[
+  d:=\operatorname{ord}_5(\pi).
+\]
+The possible exact orders modulo \(5\) are again
+\[
+  d\in\{1,2,4\}.
+\]
+
+If
+\[
+  d=1,
+\]
+then
+\[
+  \pi\equiv1\pmod5,
+\]
+and the order-one cyclotomic input condition gives
+\[
+  5\mid\alpha+1.
+\]
+This is exactly the branch
+\[
+  \mathbf{Q5E1}.
+\]
+
+If
+\[
+  d=2,
+\]
+then
+\[
+  \pi\equiv -1\pmod5.
+\]
+This is exactly the branch
+\[
+  \mathbf{Q5E2}.
+\]
+
+Finally, if
+\[
+  d=4,
+\]
+then a \(5\)-adic input from \(\sigma(\pi^\alpha)\) would require
+\[
+  4\mid \alpha+1.
+\]
+But
+\[
+  \alpha+1\equiv2\pmod4,
+\]
+so this is impossible.  Hence the Euler witness cannot have order \(4\) modulo
+\(5\).
+
+Thus every possible \(5\)-input witness leads to one of
+\[
+  \mathbf{Q5N},
+  \qquad
+  \mathbf{Q5E1},
+  \qquad
+  \mathbf{Q5E2}.
+\]
+Therefore the three displayed children cover all realizations of the branch
+\[
+  \min\{p:p\mid N\}=5.
+\]
+
+The split need not be disjoint.  A hypothetical branch could contain both a
+non-Euler \(5\)-input witness and an Euler \(5\)-input witness.  For branch
+coverage this is harmless: completeness requires that every realization lies in
+at least one child, not in exactly one child.
+\end{proof}
+
+\begin{corollary}[Reduction of the \(q=5\) branch to the three certified children]
+\label{cor:q5-reduction-to-three-certified-children}
+To exhaust the \(\CertRelease\) \(q=5\) minimal-prime branch it is enough to close
+the three child inventories
+\[
+  \mathbf{Q5E2},
+  \qquad
+  \mathbf{Q5E1},
+  \qquad
+  \mathbf{Q5N}.
+\]
+In particular, if each of these three child inventories has no remaining
+reduced, unresolved, or delegated terminal obligation, then the \(\CertRelease\)
+\(q=5\) branch inventory is exhausted.
+\end{corollary}
+
+\begin{proof}
+By Proposition~\ref{prop:q5-first-input-three-child-coverage}, every odd perfect
+number in the branch
+\[
+  \min\{p:p\mid N\}=5
+\]
+realizes at least one of
+\[
+  \mathbf{Q5E2},
+  \qquad
+  \mathbf{Q5E1},
+  \qquad
+  \mathbf{Q5N}.
+\]
+If all three child inventories are closed, then no realization remains in any
+child.  Since the children cover the parent branch, no realization remains in
+the \(q=5\) branch.
+\end{proof}
+
+
+
+\subsubsection{Forced extensions in the first $5$-input branches}
+
+We now attach the first forced cyclotomic obligations to the three child
+branches
+\[
+  \mathbf{Q5N},\qquad \mathbf{Q5E1},\qquad \mathbf{Q5E2}
+\]
+from Corollary~\ref{cor:q5-first-input-coverage-split}.
+
+\begin{lemma}[Forced extension in the branch $\mathbf{Q5N}$]
+\label{lem:q5n-forced-extension}
+Assume
+\[
+  \min S=5.
+\]
+Let
+\[
+  p\in S,\qquad p\ne5,\qquad p\ne\pi,
+\]
+be a non-Euler $5$-input witness in the branch $\mathbf{Q5N}$.  Thus
+\[
+  p\equiv1\pmod5
+  \qquad\text{and}\qquad
+  5\mid e_p+1.
+\]
+Then
+\[
+  \Phi_5(p)=p^4+p^3+p^2+p+1
+\]
+divides
+\[
+  \sigma(p^{e_p}),
+\]
+and
+\[
+  v_5(\Phi_5(p))=1.
+\]
+Consequently
+\[
+  C_5(p):=\frac{\Phi_5(p)}5
+\]
+is an integer with
+\[
+  C_5(p)>1.
+\]
+
+If \(C_5(p)\) has a prime divisor equal to \(3\), then the branch is immediately
+refuted by lower-prime avoidance.  Otherwise \(C_5(p)\) has a prime divisor
+\[
+  r>5,
+\]
+and every such divisor is forced into the support:
+\[
+  r\in S.
+\]
+Moreover, for every prime divisor
+\[
+  r\mid C_5(p)
+\]
+with \(r>5\), one has
+\[
+  \ord_r(p)=5,
+\]
+and hence
+\[
+  r\equiv1\pmod5.
+\]
+\end{lemma}
+
+\begin{proof}
+Since
+\[
+  5\mid e_p+1,
+\]
+the cyclotomic factor
+\[
+  \Phi_5(p)
+\]
+divides
+\[
+  \sigma(p^{e_p}).
+\]
+
+Because
+\[
+  p\equiv1\pmod5,
+\]
+LTE gives
+\[
+  v_5(p^5-1)=v_5(p-1)+1.
+\]
+Since
+\[
+  \Phi_5(p)=\frac{p^5-1}{p-1},
+\]
+we obtain
+\[
+  v_5(\Phi_5(p))=1.
+\]
+Thus
+\[
+  C_5(p)=\frac{\Phi_5(p)}5
+\]
+is an integer.
+
+Also
+\[
+  \Phi_5(p)>5
+\]
+for every prime \(p\ge7\), and in the branch \(\min S=5\) we have
+\[
+  p\ne5.
+\]
+Hence
+\[
+  C_5(p)>1.
+\]
+
+Let
+\[
+  r\mid C_5(p)
+\]
+be prime.  Then
+\[
+  r\mid \Phi_5(p)\mid\sigma(p^{e_p})\mid\sigma(N)=2N.
+\]
+Since \(r\) is odd, this gives
+\[
+  r\mid N,
+\]
+so
+\[
+  r\in S.
+\]
+
+If \(r=3\), this contradicts
+\[
+  \min S=5,
+\]
+because \(3\notin S\).  Hence any surviving branch has a prime divisor
+\[
+  r>5
+\]
+of \(C_5(p)\), and such an \(r\) is forced into \(S\).
+
+For \(r>5\), we have
+\[
+  r\nmid 5.
+\]
+Also
+\[
+  r\ne p,
+\]
+because
+\[
+  \Phi_5(p)=p^4+p^3+p^2+p+1\equiv1\pmod p.
+\]
+Since
+\[
+  r\mid\Phi_5(p),
+\]
+the exact order of \(p\) modulo \(r\) is
+\[
+  \ord_r(p)=5.
+\]
+Therefore
+\[
+  5\mid r-1,
+\]
+so
+\[
+  r\equiv1\pmod5.
+\]
+\end{proof}
+
+\begin{lemma}[Forced extension in the branch $\mathbf{Q5E1}$]
+\label{lem:q5e1-forced-extension}
+Assume
+\[
+  \min S=5.
+\]
+Suppose the Euler prime satisfies the branch condition
+\[
+  \mathbf{Q5E1}:\qquad
+  \pi\equiv1\pmod5,
+  \qquad
+  5\mid\alpha+1.
+\]
+Then
+\[
+  \Phi_5(\pi)=\pi^4+\pi^3+\pi^2+\pi+1
+\]
+divides
+\[
+  \sigma(\pi^\alpha),
+\]
+and
+\[
+  v_5(\Phi_5(\pi))=1.
+\]
+Consequently
+\[
+  C_5(\pi):=\frac{\Phi_5(\pi)}5
+\]
+is an integer with
+\[
+  C_5(\pi)>1.
+\]
+
+If \(C_5(\pi)\) has a prime divisor equal to \(3\), then the branch is
+immediately refuted by lower-prime avoidance.  Otherwise \(C_5(\pi)\) has a
+prime divisor
+\[
+  r>5,
+\]
+and every such divisor is forced into the support:
+\[
+  r\in S.
+\]
+Moreover, for every prime divisor
+\[
+  r\mid C_5(\pi)
+\]
+with \(r>5\), one has
+\[
+  \ord_r(\pi)=5,
+\]
+and hence
+\[
+  r\equiv1\pmod5.
+\]
+\end{lemma}
+
+\begin{proof}
+The proof is identical to Lemma~\ref{lem:q5n-forced-extension}, with \(p\)
+replaced by the Euler prime \(\pi\).  Since
+\[
+  5\mid\alpha+1,
+\]
+the factor
+\[
+  \Phi_5(\pi)
+\]
+divides
+\[
+  \sigma(\pi^\alpha).
+\]
+Since
+\[
+  \pi\equiv1\pmod5,
+\]
+LTE gives
+\[
+  v_5(\Phi_5(\pi))=1.
+\]
+Thus
+\[
+  C_5(\pi)=\Phi_5(\pi)/5
+\]
+is a positive integer.
+
+If a prime divisor of \(C_5(\pi)\) is \(3\), the branch is refuted because
+\[
+  3\notin S
+\]
+when
+\[
+  \min S=5.
+\]
+Otherwise \(C_5(\pi)\) has a prime divisor \(r>5\), and every such divisor is
+forced into \(S\).  Since
+\[
+  r\mid\Phi_5(\pi),
+  \qquad
+  r\nmid5,
+\]
+and
+\[
+  \Phi_5(\pi)\equiv1\pmod\pi,
+\]
+we have
+\[
+  r\ne\pi
+\]
+and
+\[
+  \ord_r(\pi)=5.
+\]
+Hence
+\[
+  r\equiv1\pmod5.
+\]
+\end{proof}
+
+\begin{lemma}[No pure $\mathbf{Q5E2}$ exceptional branch]
+\label{lem:no-pure-q5e2-exception}
+There is no prime \(\pi\equiv1\pmod4\) and no integer \(c\ge1\) such that
+\[
+  \pi+1=5^c.
+\]
+Consequently, in the branch
+\[
+  \mathbf{Q5E2}:\qquad \pi\equiv-1\pmod5,
+\]
+the cofactor obtained from \(\pi+1\) after removing its full \(5\)-power is
+never equal to \(1\).
+\end{lemma}
+
+\begin{proof}
+Assume
+\[
+  \pi+1=5^c
+\]
+with
+\[
+  \pi\equiv1\pmod4.
+\]
+Then
+\[
+  \pi+1\equiv2\pmod4.
+\]
+But
+\[
+  5^c\equiv1\pmod4
+\]
+for every \(c\ge1\).  This is impossible.  Hence no such \(\pi\) and \(c\) exist.
+\end{proof}
+
+\begin{lemma}[Forced extension in the branch $\mathbf{Q5E2}$]
+\label{lem:q5e2-forced-extension}
+Assume
+\[
+  \min S=5.
+\]
+Suppose the Euler prime satisfies the branch condition
+\[
+  \mathbf{Q5E2}:\qquad
+  \pi\equiv-1\pmod5.
+\]
+Then
+\[
+  \Phi_2(\pi)=\pi+1
+\]
+divides
+\[
+  \sigma(\pi^\alpha),
+\]
+and
+\[
+  v_5(\pi+1)\ge1.
+\]
+Put
+\[
+  c_\pi:=v_5(\pi+1),
+  \qquad
+  C_2(\pi):=\frac{\pi+1}{5^{c_\pi}}.
+\]
+Then
+\[
+  C_2(\pi)>1.
+\]
+
+If \(C_2(\pi)\) has a prime divisor equal to \(3\), then the branch is
+immediately refuted by lower-prime avoidance.  Otherwise \(C_2(\pi)\) has a
+prime divisor
+\[
+  r>5,
+\]
+and every such divisor is forced into the support:
+\[
+  r\in S.
+\]
+Moreover, for every prime divisor
+\[
+  r\mid C_2(\pi)
+\]
+with \(r>5\), one has
+\[
+  \pi\equiv-1\pmod r,
+\]
+so
+\[
+  \ord_r(\pi)=2
+\]
+and therefore
+\[
+  r\equiv1\pmod2.
+\]
+\end{lemma}
+
+\begin{proof}
+Since \(\pi\) is the Euler prime,
+\[
+  \alpha\equiv1\pmod4.
+\]
+Hence
+\[
+  2\mid \alpha+1.
+\]
+Therefore the cyclotomic factor
+\[
+  \Phi_2(\pi)=\pi+1
+\]
+divides
+\[
+  \sigma(\pi^\alpha).
+\]
+
+The branch condition
+\[
+  \pi\equiv-1\pmod5
+\]
+gives
+\[
+  5\mid \pi+1,
+\]
+so
+\[
+  c_\pi=v_5(\pi+1)\ge1.
+\]
+
+If
+\[
+  C_2(\pi)=1,
+\]
+then
+\[
+  \pi+1=5^{c_\pi},
+\]
+contradicting Lemma~\ref{lem:no-pure-q5e2-exception}.  Hence
+\[
+  C_2(\pi)>1.
+\]
+
+Let
+\[
+  r\mid C_2(\pi)
+\]
+be prime.  Then
+\[
+  r\mid \pi+1\mid\sigma(\pi^\alpha)\mid\sigma(N)=2N.
+\]
+Since \(r\) is odd, this gives
+\[
+  r\mid N,
+\]
+so
+\[
+  r\in S.
+\]
+
+If \(r=3\), this contradicts
+\[
+  \min S=5.
+\]
+Thus every surviving branch has a prime divisor
+\[
+  r>5
+\]
+of \(C_2(\pi)\), and such an \(r\) is forced into \(S\).
+
+For every such \(r\), one has
+\[
+  \pi\equiv-1\pmod r.
+\]
+Since \(r>5\), in particular \(r\ne2\), and therefore
+\[
+  \ord_r(\pi)=2.
+\]
+\end{proof}
+
+\begin{corollary}[Certified first-step reduction after the $5$-input split]
+\label{cor:q5-first-input-forced-reduction}
+In the branch
+\[
+  \min S=5,
+\]
+each child branch from the first \(5\)-input split has the following certified
+outcome.
+
+\begin{enumerate}[label=(\roman*),leftmargin=2.2em]
+
+\item In \(\mathbf{Q5N}\), the witness \(p\) forces the cofactor
+      \[
+        C_5(p)=\frac{\Phi_5(p)}5.
+      \]
+      If \(3\mid C_5(p)\), the branch is refuted by lower-prime avoidance.
+      Otherwise a prime divisor
+      \[
+        r>5,\qquad r\equiv1\pmod5,
+      \]
+      is forced into \(S\).
+
+\item In \(\mathbf{Q5E1}\), the Euler prime \(\pi\) forces the cofactor
+      \[
+        C_5(\pi)=\frac{\Phi_5(\pi)}5.
+      \]
+      If \(3\mid C_5(\pi)\), the branch is refuted by lower-prime avoidance.
+      Otherwise a prime divisor
+      \[
+        r>5,\qquad r\equiv1\pmod5,
+      \]
+      is forced into \(S\).
+
+\item In \(\mathbf{Q5E2}\), the Euler prime \(\pi\) forces the cofactor
+      \[
+        C_2(\pi)=\frac{\pi+1}{5^{v_5(\pi+1)}}.
+      \]
+      The pure case \(C_2(\pi)=1\) is impossible by
+      Lemma~\ref{lem:no-pure-q5e2-exception}.  If \(3\mid C_2(\pi)\), the branch
+      is refuted by lower-prime avoidance.  Otherwise a prime divisor
+      \[
+        r>5
+      \]
+      is forced into \(S\), and it satisfies
+      \[
+        \ord_r(\pi)=2.
+      \]
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+The three cases are exactly Lemmas~\ref{lem:q5n-forced-extension},
+\ref{lem:q5e1-forced-extension}, and \ref{lem:q5e2-forced-extension}.
+\end{proof}
+
+\begin{remark}[Certificate data for the forced $5$-input extensions]
+A certificate for the forced extension after the first \(5\)-input split records
+one of the following types:
+\[
+  \mathtt{Q5N\_Phi5},
+  \qquad
+  \mathtt{Q5E1\_Phi5},
+  \qquad
+  \mathtt{Q5E2\_Phi2}.
+\]
+For the two \(\Phi_5\)-records the verifier checks
+\[
+  \Phi_5(x)=x^4+x^3+x^2+x+1,
+  \qquad
+  v_5(\Phi_5(x))=1,
+\]
+where \(x=p\) in \(\mathbf{Q5N}\) and \(x=\pi\) in \(\mathbf{Q5E1}\).
+It then factors
+\[
+  \Phi_5(x)/5.
+\]
+A divisor \(3\) gives a lower-prime avoidance refutation, while any divisor
+\(r>5\) is a forced support prime with
+\[
+  \ord_r(x)=5.
+\]
+
+For the \(\mathbf{Q5E2}\)-record the verifier checks
+\[
+  \Phi_2(\pi)=\pi+1,
+  \qquad
+  c_\pi=v_5(\pi+1),
+\]
+and factors
+\[
+  (\pi+1)/5^{c_\pi}.
+\]
+The case in which this cofactor is \(1\) is disallowed by
+Lemma~\ref{lem:no-pure-q5e2-exception}.  A divisor \(3\) gives a lower-prime
+avoidance refutation, while any divisor \(r>5\) is a forced support prime with
+\[
+  \ord_r(\pi)=2.
+\]
+\end{remark}
+
+\subsubsection{Second-level coverage splits after the forced $5$-input extensions}
+
+We now refine the forced extensions obtained from the first \(5\)-input split.
+The goal is to turn each forced cofactor into a certified second-level branch:
+either a lower-prime avoidance contradiction occurs, or a new support prime is
+forced.
+
+\begin{definition}[Second-level cofactors in the \(q=5\) branch]
+In the branches \(\mathbf{Q5N}\) and \(\mathbf{Q5E1}\), put
+\[
+  C_5(x):=\frac{\Phi_5(x)}5
+  =
+  \frac{x^4+x^3+x^2+x+1}{5},
+\]
+where
+\[
+  x=p
+  \quad\text{in }\mathbf{Q5N},
+  \qquad
+  x=\pi
+  \quad\text{in }\mathbf{Q5E1}.
+\]
+
+In the branch \(\mathbf{Q5E2}\), put
+\[
+  C_2(\pi):=
+  \frac{\pi+1}{5^{v_5(\pi+1)}}.
+\]
+\end{definition}
+
+\begin{proposition}[Second-level split in the branches \(\mathbf{Q5N}\) and \(\mathbf{Q5E1}\)]
+\label{prop:q5-phi5-second-level-split}
+Assume
+\[
+  \min S=5.
+\]
+Let \(x\) denote either the non-Euler witness \(p\) in \(\mathbf{Q5N}\), or the
+Euler prime \(\pi\) in \(\mathbf{Q5E1}\).  Thus
+\[
+  x\equiv1\pmod5,
+  \qquad
+  5\mid e_x+1,
+\]
+where \(e_x=e_p\) in \(\mathbf{Q5N}\), and \(e_x=\alpha\) in
+\(\mathbf{Q5E1}\).
+
+Then the split
+\[
+  3\mid C_5(x)
+  \qquad\text{or}\qquad
+  3\nmid C_5(x)
+\]
+is complete.
+
+If
+\[
+  3\mid C_5(x),
+\]
+then the branch is refuted by lower-prime avoidance.
+
+If
+\[
+  3\nmid C_5(x),
+\]
+then there exists a prime
+\[
+  r>5
+\]
+such that
+\[
+  r\mid C_5(x),
+  \qquad
+  r\in S,
+\]
+and
+\[
+  \ord_r(x)=5.
+\]
+Consequently
+\[
+  r\equiv1\pmod5.
+\]
+\end{proposition}
+
+\begin{proof}
+By Lemmas~\ref{lem:q5n-forced-extension} and
+\ref{lem:q5e1-forced-extension}, the cofactor
+\[
+  C_5(x)=\frac{\Phi_5(x)}5
+\]
+is an integer and satisfies
+\[
+  C_5(x)>1.
+\]
+Therefore \(C_5(x)\) has at least one prime divisor.
+
+The split
+\[
+  3\mid C_5(x)
+  \qquad\text{or}\qquad
+  3\nmid C_5(x)
+\]
+is exhaustive.
+
+If
+\[
+  3\mid C_5(x),
+\]
+then
+\[
+  3\mid \Phi_5(x)\mid \sigma(x^{e_x}).
+\]
+Hence
+\[
+  3\mid \sigma(N)=2N.
+\]
+Since \(3\) is odd, this forces
+\[
+  3\mid N,
+\]
+contradicting
+\[
+  \min S=5.
+\]
+Thus this child branch is refuted by lower-prime avoidance.
+
+Now suppose
+\[
+  3\nmid C_5(x).
+\]
+Since \(C_5(x)>1\), choose a prime divisor
+\[
+  r\mid C_5(x).
+\]
+The divisor \(r\) is not \(3\) by assumption.  It is also not \(5\), because the
+full \(5\)-factor of \(\Phi_5(x)\) has been removed:
+\[
+  v_5(\Phi_5(x))=1.
+\]
+Therefore
+\[
+  r>5.
+\]
+
+Since
+\[
+  r\mid C_5(x)\mid \Phi_5(x)\mid \sigma(x^{e_x})\mid \sigma(N)=2N,
+\]
+and \(r\) is odd, we get
+\[
+  r\mid N.
+\]
+Thus
+\[
+  r\in S.
+\]
+
+Moreover,
+\[
+  r\ne x,
+\]
+because
+\[
+  \Phi_5(x)=x^4+x^3+x^2+x+1\equiv1\pmod x.
+\]
+Since
+\[
+  r\mid\Phi_5(x)
+\]
+and
+\[
+  r\nmid5,
+\]
+the exact order of \(x\) modulo \(r\) is
+\[
+  \ord_r(x)=5.
+\]
+Hence
+\[
+  5\mid r-1,
+\]
+so
+\[
+  r\equiv1\pmod5.
+\]
+\end{proof}
+
+\begin{proposition}[Second-level split in the branch \(\mathbf{Q5E2}\)]
+\label{prop:q5e2-second-level-split}
+Assume
+\[
+  \min S=5.
+\]
+Suppose the Euler prime satisfies
+\[
+  \mathbf{Q5E2}:\qquad \pi\equiv-1\pmod5.
+\]
+Put
+\[
+  C_2(\pi):=\frac{\pi+1}{5^{v_5(\pi+1)}}.
+\]
+Then the split
+\[
+  3\mid C_2(\pi)
+  \qquad\text{or}\qquad
+  3\nmid C_2(\pi)
+\]
+is complete.
+
+If
+\[
+  3\mid C_2(\pi),
+\]
+then the branch is refuted by lower-prime avoidance.
+
+If
+\[
+  3\nmid C_2(\pi),
+\]
+then there exists a prime
+\[
+  r>5
+\]
+such that
+\[
+  r\mid C_2(\pi),
+  \qquad
+  r\in S,
+\]
+and
+\[
+  \ord_r(\pi)=2.
+\]
+\end{proposition}
+
+\begin{proof}
+By Lemma~\ref{lem:q5e2-forced-extension}, the cofactor
+\[
+  C_2(\pi)=\frac{\pi+1}{5^{v_5(\pi+1)}}
+\]
+is an integer satisfying
+\[
+  C_2(\pi)>1.
+\]
+Thus \(C_2(\pi)\) has at least one prime divisor.
+
+The split
+\[
+  3\mid C_2(\pi)
+  \qquad\text{or}\qquad
+  3\nmid C_2(\pi)
+\]
+is exhaustive.
+
+If
+\[
+  3\mid C_2(\pi),
+\]
+then
+\[
+  3\mid \pi+1=\Phi_2(\pi)\mid\sigma(\pi^\alpha).
+\]
+Hence
+\[
+  3\mid\sigma(N)=2N.
+\]
+Since \(3\) is odd, this forces
+\[
+  3\mid N,
+\]
+contradicting
+\[
+  \min S=5.
+\]
+Thus this child branch is refuted by lower-prime avoidance.
+
+Now suppose
+\[
+  3\nmid C_2(\pi).
+\]
+Since \(C_2(\pi)>1\), choose a prime divisor
+\[
+  r\mid C_2(\pi).
+\]
+The divisor \(r\) is not \(3\) by assumption, and it is not \(5\) by the
+definition of \(C_2(\pi)\).  Therefore
+\[
+  r>5.
+\]
+
+Since
+\[
+  r\mid C_2(\pi)\mid \pi+1\mid\sigma(\pi^\alpha)\mid\sigma(N)=2N,
+\]
+and \(r\) is odd, we get
+\[
+  r\mid N.
+\]
+Thus
+\[
+  r\in S.
+\]
+
+For every such \(r\), one has
+\[
+  \pi\equiv-1\pmod r.
+\]
+Since
+\[
+  r>5,
+\]
+in particular \(r\ne2\), and therefore
+\[
+  \ord_r(\pi)=2.
+\]
+\end{proof}
+
+\begin{corollary}[Certified second-level reduction in the \(q=5\) branch]
+\label{cor:q5-second-level-forced-reduction}
+In the branch
+\[
+  \min S=5,
+\]
+the three child branches from the first \(5\)-input split admit the following
+second-level certified reductions.
+
+\begin{enumerate}[label=(\roman*),leftmargin=2.2em]
+
+\item In \(\mathbf{Q5N}\), with non-Euler witness \(p\), the split
+      \[
+        3\mid C_5(p)
+        \qquad\text{or}\qquad
+        3\nmid C_5(p)
+      \]
+      is complete.  The first child is refuted by lower-prime avoidance.  The
+      second child forces a support prime
+      \[
+        r>5,
+        \qquad
+        \ord_r(p)=5,
+        \qquad
+        r\equiv1\pmod5.
+      \]
+
+\item In \(\mathbf{Q5E1}\), with Euler prime \(\pi\), the split
+      \[
+        3\mid C_5(\pi)
+        \qquad\text{or}\qquad
+        3\nmid C_5(\pi)
+      \]
+      is complete.  The first child is refuted by lower-prime avoidance.  The
+      second child forces a support prime
+      \[
+        r>5,
+        \qquad
+        \ord_r(\pi)=5,
+        \qquad
+        r\equiv1\pmod5.
+      \]
+
+\item In \(\mathbf{Q5E2}\), the split
+      \[
+        3\mid C_2(\pi)
+        \qquad\text{or}\qquad
+        3\nmid C_2(\pi)
+      \]
+      is complete.  The first child is refuted by lower-prime avoidance.  The
+      second child forces a support prime
+      \[
+        r>5,
+        \qquad
+        \ord_r(\pi)=2.
+      \]
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+The three cases are exactly Propositions~\ref{prop:q5-phi5-second-level-split}
+and \ref{prop:q5e2-second-level-split}, applied to the corresponding child
+branches.
+\end{proof}
+
+\begin{definition}[Exponent schemas for second-level forced primes in the \(q=5\) branch]
+\label{def:q5-second-level-forced-prime-schemas}
+Let
+\[
+  r>5
+\]
+be a prime forced by Corollary~\ref{cor:q5-second-level-forced-reduction}.
+
+\begin{enumerate}[label=(\roman*),leftmargin=2.2em]
+
+\item If \(r\) is non-Euler, then its exponent satisfies
+      \[
+        e_r\equiv0\pmod2.
+      \]
+      Since \(\min S=5\), the lower-prime avoidance condition for \(3\) must
+      also hold:
+      \[
+        \operatorname{Avoid}_3(r,e_r).
+      \]
+      Equivalently,
+      \[
+        \begin{cases}
+          3\nmid e_r+1, & r\equiv1\pmod3,\\[4pt]
+          \text{automatic}, & r\equiv2\pmod3.
+        \end{cases}
+      \]
+
+\item If \(r\) is the Euler prime, then
+      \[
+        r\equiv1\pmod4,
+        \qquad
+        e_r=\alpha\equiv1\pmod4.
+      \]
+      In the branch \(\min S=5\), Proposition~\ref{prop:q5-euler-2mod3-empty}
+      also forces
+      \[
+        r\equiv1\pmod3,
+      \]
+      and lower-prime avoidance gives
+      \[
+        3\nmid \alpha+1.
+      \]
+\end{enumerate}
+
+In the branches \(\mathbf{Q5E1}\) and \(\mathbf{Q5E2}\), the forced prime
+\(r\) is automatically non-Euler, because the Euler prime is already \(\pi\).
+In the branch \(\mathbf{Q5N}\), the forced prime \(r\) may be either non-Euler
+or the Euler prime, and this must be recorded as a further role split.
+\end{definition}
+
+\begin{corollary}[Role split for the forced prime in \(\mathbf{Q5N}\)]
+\label{cor:q5n-forced-prime-role-split}
+In the child branch \(\mathbf{Q5N}\) with
+\[
+  3\nmid C_5(p),
+\]
+let
+\[
+  r>5,
+  \qquad
+  r\mid C_5(p),
+  \qquad
+  \ord_r(p)=5
+\]
+be a forced support prime.  Then the split
+\[
+  r=\pi
+  \qquad\text{or}\qquad
+  r\ne\pi
+\]
+is complete.
+
+If
+\[
+  r=\pi,
+\]
+then
+\[
+  r\equiv1\pmod4,
+  \qquad
+  \alpha\equiv1\pmod4,
+  \qquad
+  r\equiv1\pmod3,
+  \qquad
+  3\nmid\alpha+1.
+\]
+If
+\[
+  r\ne\pi,
+\]
+then \(r\) is non-Euler and
+\[
+  e_r\equiv0\pmod2,
+  \qquad
+  \operatorname{Avoid}_3(r,e_r)
+\]
+must hold.
+\end{corollary}
+
+\begin{proof}
+Every support prime is either the Euler prime or non-Euler, and Euler's form
+allows exactly one Euler prime.  Thus the split
+\[
+  r=\pi
+  \qquad\text{or}\qquad
+  r\ne\pi
+\]
+is exhaustive.
+
+If \(r=\pi\), then Euler's form gives
+\[
+  r\equiv1\pmod4,
+  \qquad
+  \alpha\equiv1\pmod4.
+\]
+In the branch \(\min S=5\), Proposition~\ref{prop:q5-euler-2mod3-empty}
+excludes the Euler residue
+\[
+  \pi\equiv2\pmod3.
+\]
+Hence
+\[
+  r=\pi\equiv1\pmod3.
+\]
+Since
+\[
+  \ord_3(\pi)=1,
+\]
+lower-prime avoidance gives
+\[
+  3\nmid\alpha+1.
+\]
+
+If \(r\ne\pi\), then \(r\) is non-Euler.  Euler's form gives
+\[
+  e_r\equiv0\pmod2.
+\]
+Since
+\[
+  \min S=5,
+\]
+the lower-prime avoidance condition
+\[
+  \operatorname{Avoid}_3(r,e_r)
+\]
+must hold.
+\end{proof}
+
+\begin{remark}[Certificate data for the second-level \(q=5\) splits]
+A certificate for the second-level \(q=5\) split records one of the following
+types:
+\[
+  \mathtt{Q5N\_Phi5\_second},
+  \qquad
+  \mathtt{Q5E1\_Phi5\_second},
+  \qquad
+  \mathtt{Q5E2\_Phi2\_second}.
+\]
+
+For a \(\Phi_5\)-record the verifier checks
+\[
+  C_5(x)=\frac{\Phi_5(x)}5,
+  \qquad
+  \Phi_5(x)=x^4+x^3+x^2+x+1,
+\]
+and verifies the split
+\[
+  3\mid C_5(x)
+  \qquad\text{or}\qquad
+  3\nmid C_5(x).
+\]
+If \(3\mid C_5(x)\), the certificate records a lower-prime avoidance
+refutation.  If \(3\nmid C_5(x)\), the certificate records a prime divisor
+\[
+  r>5
+\]
+of \(C_5(x)\), verifies
+\[
+  \ord_r(x)=5,
+\]
+and records \(r\) as a forced support prime.
+
+For a \(\Phi_2\)-record in \(\mathbf{Q5E2}\), the verifier checks
+\[
+  C_2(\pi)=\frac{\pi+1}{5^{v_5(\pi+1)}}
+\]
+and verifies the split
+\[
+  3\mid C_2(\pi)
+  \qquad\text{or}\qquad
+  3\nmid C_2(\pi).
+\]
+If \(3\mid C_2(\pi)\), the certificate records a lower-prime avoidance
+refutation.  If \(3\nmid C_2(\pi)\), it records a prime divisor
+\[
+  r>5
+\]
+of \(C_2(\pi)\), verifies
+\[
+  \ord_r(\pi)=2,
+\]
+and records \(r\) as a forced support prime.
+
+For forced primes in \(\mathbf{Q5N}\), the certificate must additionally record
+the role split
+\[
+  r=\pi
+  \qquad\text{or}\qquad
+  r\ne\pi.
+\]
+For forced primes in \(\mathbf{Q5E1}\) and \(\mathbf{Q5E2}\), the forced prime
+is automatically non-Euler.
+\end{remark}
+
+
+\subsection{Closure of the release \texorpdfstring{\(q=5\)}{q=5} branch}
+\label{sec:q5-branch-closure}
+
+We now prove the first complete small-prime branch closure in the present
+certificate system.  Throughout this section we work under the minimal-prime
+hypothesis
+\[
+  q=\min\{p:p\mid N\}=5.
+\]
+The first \(5\)-input coverage split reduces this branch to the three child
+inventories
+\[
+  \mathbf{Q5E2},
+  \qquad
+  \mathbf{Q5E1},
+  \qquad
+  \mathbf{Q5N}.
+\]
+The split is a coverage split, not a disjoint split: every hypothetical odd
+perfect number with smallest prime divisor \(5\) realizes at least one of these
+three children.
+
+The purpose of this section is to close the three child inventories separately
+and then combine them into a closure theorem for the \(\CertRelease\) \(q=5\)
+branch inventory.  The child closures are proved in the following order:
+\[
+  \mathbf{Q5E2},
+  \qquad
+  \mathbf{Q5E1},
+  \qquad
+  \mathbf{Q5N}.
+\]
+Finally, Theorem~\ref{thm:q5-current-branch-inventory-closed} combines the three
+closures with the first \(5\)-input coverage split.
+
+
+\subsection{Closure of the \(\mathbf{Q5E2}\) successor inventory}
+
+We first close the order-two Euler-input child branch 
+\[ 
+\mathbf{Q5E2}:\qquad \pi\equiv-1\pmod5. 
+\] 
+After the frozen first-window archive, the release terminal
+\(\mathbf{Q5E2}\) successor inventory has four post-window pairs:
+\[ 
+(109,11), \qquad (229,23), \qquad (349,7), \qquad (409,41). 
+\] 
+The finite part of each pair is checked by an aggregation-safe successor archive, while the infinite tail is closed by a parametric Zsigmondy--tail certificate.
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{c|c|c|c}
+\((\pi,r)\) & finite window & parametric window & status \\
+\hline
+\((109,11)\) &
+\(e_{11}=22,\ldots,40\) &
+all even \(e_{11}\ge22\) &
+closed \\
+\hline
+\((229,23)\) &
+\(e_{23}=22,\ldots,40\) &
+all even \(e_{23}\ge22\) &
+closed \\
+\hline
+\((349,7)\) &
+\(e_7=22,\ldots,92\) &
+all even \(e_7\ge94\) &
+closed \\
+\hline
+\((409,41)\) &
+\(e_{41}=22,\ldots,40\) &
+all even \(e_{41}\ge22\) &
+closed \\
+\end{tabular}
+\caption{Final \(\mathbf{Q5E2}\) post-window frontier.  All four
+post-window pairs occurring in the \(\CertRelease\) \(\mathbf{Q5E2}\) successor
+inventory are closed by finite aggregation-safe successor archives together
+with parametric post-window certificates.}
+\label{tab:q5e2-final-post-window-frontier}
+\end{table}
+
+\begin{criterion}[Parametric post-window closure for \((\pi,r)=(349,7)\)]
+\label{crit:q5e2-pi349-r7-parametric-post-window}
+Work in the \(\mathbf{Q5E2}\) successor branch with
+\[
+  (\pi,r)=(349,7).
+\]
+Let \(e_7\ge94\) be even and put
+\[
+  n:=e_7+1.
+\]
+Then the corresponding post-window row is closed.
+
+More precisely, if
+\[
+  3\mid n,
+\]
+then the row is refuted by lower-prime avoidance, since
+\[
+  \operatorname{ord}_3(7)=1
+\]
+and hence
+\[
+  3\mid \sigma(7^{e_7}).
+\]
+
+If
+\[
+  3\nmid n,
+\]
+then Zsigmondy's theorem applied to \(7^n-1\) gives a primitive prime divisor
+\[
+  s\mid 7^n-1
+\]
+with
+\[
+  \operatorname{ord}_s(7)=n.
+\]
+Thus
+\[
+  s\mid \Phi_n(7)\mid\sigma(7^{e_7}),
+\]
+so \(s\) is forced into the support.  Since
+\[
+  n\mid s-1
+\]
+and \(n\) is odd, one has
+\[
+  s\ge 2n+1.
+\]
+For \(e_7\ge94\), this gives
+\[
+  n=e_7+1\ge95
+\]
+and hence
+\[
+  s\ge191.
+\]
+Therefore
+\[
+  H(\{5,7,349,s\})
+  \left(\frac{59}{58}\right)^{18}<2.
+\]
+The row is consequently tail-controlled with
+\[
+  B=59,
+  \qquad
+  M=18.
+\]
+\end{criterion}
+
+\begin{proof}
+The case \(3\mid n\) follows from lower-prime avoidance.  Since \(7\equiv1\pmod3\),
+one has \(\operatorname{ord}_3(7)=1\), so \(3\mid n=e_7+1\) implies
+\[
+  3\mid\sigma(7^{e_7}),
+\]
+contradicting \(3\notin S\).
+
+Assume \(3\nmid n\).  Since \(e_7\) is even, \(n\) is odd.  Also \(n\ge95\), so
+Zsigmondy's exceptional cases for \(7^n-1\) do not apply.  Thus \(7^n-1\) has a
+primitive prime divisor \(s\).  By primitivity,
+\[
+  \operatorname{ord}_s(7)=n,
+\]
+so \(s\mid\Phi_n(7)\).  Since \(\Phi_n(7)\) divides \(\sigma(7^{e_7})\), the
+prime \(s\) is forced into the support.
+
+The order relation gives
+\[
+  n\mid s-1.
+\]
+Because \(n\) is odd and \(s\) is odd, \(s-1\) is an even multiple of \(n\), so
+\[
+  s\ge2n+1.
+\]
+For \(n\ge95\), this gives
+\[
+  s\ge191.
+\]
+The verifier-facing tail inequality
+\[
+  H(\{5,7,349,s\})
+  \left(\frac{59}{58}\right)^{18}<2
+\]
+is monotone decreasing in \(s\), and it holds already at \(s=191\).  Hence it
+holds for every such primitive forced prime \(s\).  The row is tail-controlled.
+\end{proof}
+
+\begin{criterion}[Parametric post-window closure for \texorpdfstring{\((\pi,r)=(109,11)\)}{(pi,r)=(109,11)}]
+\label{crit:q5e2-pi109-r11-parametric-post-window}
+Work in the \(\mathbf{Q5E2}\) successor branch with
+\[
+  (\pi,r)=(109,11).
+\]
+Let
+\[
+  e_{11}\ge22
+\]
+be even and put
+\[
+  n:=e_{11}+1.
+\]
+Then the corresponding post-window row is tail-controlled.
+
+More precisely, since \(e_{11}\) is even, \(n\) is odd.  The divisor-sum factor
+is
+\[
+  \sigma(11^{e_{11}})
+  =
+  \frac{11^n-1}{10}
+  =
+  \prod_{\substack{d\mid n\\ d>1}}\Phi_d(11).
+\]
+By Zsigmondy's theorem, applied to \(11^n-1\), there exists a primitive prime
+divisor
+\[
+  s\mid 11^n-1
+\]
+with
+\[
+  \operatorname{ord}_s(11)=n.
+\]
+Equivalently,
+\[
+  s\mid \Phi_n(11).
+\]
+Hence \(s\) is forced into the support.
+
+Since
+\[
+  \operatorname{ord}_s(11)=n,
+\]
+one has
+\[
+  n\mid s-1.
+\]
+Moreover \(n\) is odd and \(s\) is odd, so \(s-1\) is an even multiple of \(n\).
+Therefore
+\[
+  s\ge2n+1.
+\]
+Because
+\[
+  e_{11}\ge22,
+\]
+we have
+\[
+  n=e_{11}+1\ge23,
+\]
+and hence
+\[
+  s\ge47.
+\]
+
+The tail-control inequality
+\[
+  H(\{5,11,109,s\})
+  \left(\frac{59}{58}\right)^{18}<2
+\]
+is monotone decreasing in \(s\), and it already holds for \(s=47\).  Therefore
+it holds for every primitive forced prime \(s\) arising from \(\Phi_n(11)\).
+Consequently every even post-window row
+\[
+  e_{11}\ge22
+\]
+is tail-controlled with
+\[
+  B=59,
+  \qquad
+  M=18.
+\]
+\end{criterion}
+
+\begin{proof}
+The identity
+\[
+  \sigma(11^{e_{11}})
+  =
+  \frac{11^{e_{11}+1}-1}{11-1}
+\]
+gives the cyclotomic factorization after setting \(n=e_{11}+1\).
+
+Since \(e_{11}\ge22\) and \(e_{11}\) is even, \(n\) is odd and at least \(23\).
+Thus the exceptional cases in Zsigmondy's theorem do not apply.  Hence
+\(11^n-1\) has a primitive prime divisor \(s\).  By primitivity,
+\[
+  \operatorname{ord}_s(11)=n,
+\]
+so \(s\mid\Phi_n(11)\).  Since \(\Phi_n(11)\mid\sigma(11^{e_{11}})\), this
+prime \(s\) is forced into the support.
+
+The order relation gives
+\[
+  n\mid s-1.
+\]
+Because \(n\) is odd and \(s\) is odd, \(s-1\) is an even multiple of \(n\), so
+\[
+  s\ge2n+1.
+\]
+For \(n\ge23\), this gives
+\[
+  s\ge47.
+\]
+
+Finally,
+\[
+  H(\{5,11,109,s\})
+  =
+  \frac54\cdot\frac{11}{10}\cdot\frac{109}{108}\cdot\frac{s}{s-1}.
+\]
+The expression is decreasing in \(s\).  Therefore it is enough to check the
+endpoint \(s=47\), where the verifier confirms
+\[
+  H(\{5,11,109,47\})
+  \left(\frac{59}{58}\right)^{18}<2.
+\]
+Hence all rows \(e_{11}\ge22\), \(e_{11}\equiv0\pmod2\), are tail-controlled.
+\end{proof}
+
+\begin{criterion}[Parametric post-window closure for \texorpdfstring{\((\pi,r)=(229,23)\)}{(pi,r)=(229,23)}]
+\label{crit:q5e2-pi229-r23-parametric-post-window}
+Work in the \(\mathbf{Q5E2}\) successor branch with
+\[
+  (\pi,r)=(229,23).
+\]
+Let
+\[
+  e_{23}\ge22
+\]
+be even and put
+\[
+  n:=e_{23}+1.
+\]
+Then the corresponding post-window row is tail-controlled.
+
+More precisely, since \(e_{23}\) is even, the integer \(n\) is odd.  The
+divisor-sum factor is
+\[
+  \sigma(23^{e_{23}})
+  =
+  \frac{23^n-1}{23-1}
+  =
+  \frac{23^n-1}{22}.
+\]
+Equivalently, its odd cyclotomic part is contained in
+\[
+  \prod_{\substack{d\mid n\\ d>1}}\Phi_d(23).
+\]
+By Zsigmondy's theorem, applied to \(23^n-1\), there exists a primitive prime
+divisor
+\[
+  s\mid 23^n-1
+\]
+with
+\[
+  \operatorname{ord}_s(23)=n.
+\]
+Equivalently,
+\[
+  s\mid \Phi_n(23).
+\]
+Thus \(s\) divides \(\sigma(23^{e_{23}})\), and hence \(s\) is forced into the
+support.
+
+Since
+\[
+  \operatorname{ord}_s(23)=n,
+\]
+one has
+\[
+  n\mid s-1.
+\]
+Moreover \(n\) is odd and \(s\) is odd, so \(s-1\) is an even multiple of
+\(n\).  Therefore
+\[
+  s\ge2n+1.
+\]
+Because
+\[
+  e_{23}\ge22,
+\]
+we have
+\[
+  n=e_{23}+1\ge23,
+\]
+and hence
+\[
+  s\ge47.
+\]
+
+The verifier-facing tail-control inequality
+\[
+  H(\{5,23,229,s\})
+  \left(\frac{59}{58}\right)^{18}<2
+\]
+is monotone decreasing in \(s\), and it already holds for \(s=19\).  Therefore
+it certainly holds for every primitive forced prime \(s\ge47\) arising from
+\(\Phi_n(23)\).  Consequently every even post-window row
+\[
+  e_{23}\ge22
+\]
+is tail-controlled with
+\[
+  B=59,
+  \qquad
+  M=18.
+\]
+\end{criterion}
+
+\begin{proof}
+Set
+\[
+  n=e_{23}+1.
+\]
+Since \(e_{23}\) is even, \(n\) is odd.  Also \(e_{23}\ge22\), so
+\[
+  n\ge23.
+\]
+Thus the exceptional cases in Zsigmondy's theorem do not apply to
+\[
+  23^n-1.
+\]
+Hence there exists a primitive prime divisor \(s\) of \(23^n-1\).  By
+primitivity,
+\[
+  \operatorname{ord}_s(23)=n.
+\]
+Therefore \(s\) divides the primitive cyclotomic factor
+\[
+  \Phi_n(23).
+\]
+Since
+\[
+  \Phi_n(23)\mid \sigma(23^{e_{23}}),
+\]
+the prime \(s\) is forced into the support of any realization of the branch.
+
+The order relation gives
+\[
+  n\mid s-1.
+\]
+Because \(n\) is odd and \(s\) is odd, \(s-1\) is an even multiple of \(n\).
+Thus
+\[
+  s\ge2n+1.
+\]
+For \(n\ge23\), this gives
+\[
+  s\ge47.
+\]
+
+Now
+\[
+  H(\{5,23,229,s\})
+  =
+  \frac54\cdot\frac{23}{22}\cdot\frac{229}{228}\cdot\frac{s}{s-1}.
+\]
+This expression is decreasing in \(s\).  Hence it is enough to check the
+smallest permitted value.  In fact the stronger endpoint check
+\[
+  H(\{5,23,229,19\})
+  \left(\frac{59}{58}\right)^{18}<2
+\]
+already holds.  Therefore the inequality also holds for every \(s\ge47\).
+The row is tail-controlled with \(B=59\) and \(M=18\).
+\end{proof}
+
+
+
+\begin{criterion}[Parametric post-window closure for \texorpdfstring{\((\pi,r)=(409,41)\)}{(pi,r)=(409,41)}]
+\label{crit:q5e2-pi409-r41-parametric-post-window}
+Work in the \(\mathbf{Q5E2}\) successor branch with
+\[
+  (\pi,r)=(409,41).
+\]
+Let
+\[
+  e_{41}\ge22
+\]
+be even and put
+\[
+  n:=e_{41}+1.
+\]
+Then the corresponding post-window row is tail-controlled.
+
+More precisely, since \(e_{41}\) is even, the integer \(n\) is odd.  The
+divisor-sum factor is
+\[
+  \sigma(41^{e_{41}})
+  =
+  \frac{41^n-1}{41-1}
+  =
+  \frac{41^n-1}{40}.
+\]
+Its primitive odd cyclotomic part is represented by
+\[
+  \Phi_n(41).
+\]
+By Zsigmondy's theorem, applied to \(41^n-1\), there exists a primitive prime
+divisor
+\[
+  s\mid 41^n-1
+\]
+with
+\[
+  \operatorname{ord}_s(41)=n.
+\]
+Equivalently,
+\[
+  s\mid \Phi_n(41).
+\]
+Thus \(s\) divides \(\sigma(41^{e_{41}})\), and hence \(s\) is forced into the
+support.
+
+Since
+\[
+  \operatorname{ord}_s(41)=n,
+\]
+one has
+\[
+  n\mid s-1.
+\]
+Moreover \(n\) is odd and \(s\) is odd, so \(s-1\) is an even multiple of \(n\).
+Therefore
+\[
+  s\ge2n+1.
+\]
+Because
+\[
+  e_{41}\ge22,
+\]
+we have
+\[
+  n=e_{41}+1\ge23,
+\]
+and hence
+\[
+  s\ge47.
+\]
+
+The verifier-facing tail-control inequality
+\[
+  H(\{5,41,409,s\})
+  \left(\frac{59}{58}\right)^{18}<2
+\]
+is monotone decreasing in \(s\), and it already holds for \(s=47\).  Therefore
+it holds for every primitive forced prime \(s\ge47\) arising from
+\(\Phi_n(41)\).  Consequently every even post-window row
+\[
+  e_{41}\ge22
+\]
+is tail-controlled with
+\[
+  B=59,
+  \qquad
+  M=18.
+\]
+\end{criterion}
+
+\begin{proof}
+Set
+\[
+  n=e_{41}+1.
+\]
+Since \(e_{41}\) is even, \(n\) is odd.  Also \(e_{41}\ge22\), so
+\[
+  n\ge23.
+\]
+Thus the exceptional cases in Zsigmondy's theorem do not apply to
+\[
+  41^n-1.
+\]
+Hence there exists a primitive prime divisor \(s\) of \(41^n-1\).  By
+primitivity,
+\[
+  \operatorname{ord}_s(41)=n.
+\]
+Therefore \(s\) divides the primitive cyclotomic factor
+\[
+  \Phi_n(41).
+\]
+Since
+\[
+  \Phi_n(41)\mid \sigma(41^{e_{41}}),
+\]
+the prime \(s\) is forced into the support of any realization of the branch.
+
+The order relation gives
+\[
+  n\mid s-1.
+\]
+Because \(n\) is odd and \(s\) is odd, \(s-1\) is an even multiple of \(n\).
+Thus
+\[
+  s\ge2n+1.
+\]
+For \(n\ge23\), this gives
+\[
+  s\ge47.
+\]
+
+Now
+\[
+  H(\{5,41,409,s\})
+  =
+  \frac54\cdot\frac{41}{40}\cdot\frac{409}{408}\cdot\frac{s}{s-1}.
+\]
+This expression is decreasing in \(s\).  Hence it is enough to check the
+endpoint \(s=47\).  The verifier confirms
+\[
+  H(\{5,41,409,47\})
+  \left(\frac{59}{58}\right)^{18}<2.
+\]
+Therefore the same inequality holds for every \(s\ge47\).  The row is
+tail-controlled with \(B=59\) and \(M=18\).
+\end{proof}
+
+
+\begin{theorem}[Closure of the release \texorpdfstring{\(\mathbf{Q5E2}\)}{Q5E2} successor inventory]
+\label{thm:q5e2-current-successor-inventory-closed}
+In the \(\CertRelease\) \(\mathbf{Q5E2}\) successor inventory, the branch has no remaining
+reduced, unresolved, or delegated terminal obligation.
+
+More precisely, the terminal verified \(\mathbf{Q5E2}\) successor archive has
+status
+\[
+  106/106\ \text{leaves checked},
+\]
+with status distribution
+\[
+  12\ \mathtt{lower\_prime\_refuted},
+  \qquad
+  16\ \mathtt{directly\_closed},
+\]
+\[
+  10\ \mathtt{tail\_controlled},
+  \qquad
+  68\ \mathtt{child\_archive\_tail\_controlled}.
+\]
+It has no leaves with status
+\[
+  \mathtt{reduced}
+  \qquad\text{or}\qquad
+  \mathtt{unresolved}.
+\]
+Hence
+\[
+  \mathtt{recursive\_controlled}=\mathtt{true}.
+\]
+
+The post-window pairs occurring in the \(\CertRelease\) \(\mathbf{Q5E2}\) inventory are
+exactly
+\[
+  (109,11),
+  \qquad
+  (229,23),
+  \qquad
+  (349,7),
+  \qquad
+  (409,41).
+\]
+Each of these pairs is closed by a finite aggregation-safe successor archive
+together with a parametric post-window tail-control certificate.  Therefore the
+\(\CertRelease\) \(\mathbf{Q5E2}\) successor inventory is exhausted.
+\end{theorem}
+
+\begin{proof}
+The pair
+\[
+  (349,7)
+\]
+is closed by finite verification of the rows
+\[
+  22\le e_7\le92,
+  \qquad
+  e_7\equiv0\pmod2,
+\]
+together with the parametric Zsigmondy--tail-control criterion for all even
+\[
+  e_7\ge94.
+\]
+
+The pair
+\[
+  (109,11)
+\]
+is closed by the aggregation-safe \(E40\) successor archive and by the
+parametric post-window criterion for all even
+\[
+  e_{11}\ge22.
+\]
+The corresponding primitive-prime argument uses
+\[
+  n=e_{11}+1,
+  \qquad
+  s\mid\Phi_n(11),
+  \qquad
+  \operatorname{ord}_s(11)=n,
+\]
+so that
+\[
+  s\ge2n+1\ge47.
+\]
+The verifier checks
+\[
+  H(\{5,11,109,s\})
+  \left(\frac{59}{58}\right)^{18}<2
+\]
+at the endpoint \(s=47\).
+
+The pair
+\[
+  (229,23)
+\]
+is closed in the same way.  Its finite \(E40\) successor archive is
+aggregation-safe, and its parametric certificate covers every even
+\[
+  e_{23}\ge22.
+\]
+The verifier checks the endpoint inequality
+\[
+  H(\{5,23,229,47\})
+  \left(\frac{59}{58}\right)^{18}<2.
+\]
+
+The pair
+\[
+  (409,41)
+\]
+is also closed by an aggregation-safe \(E40\) successor archive and a
+parametric certificate for all even
+\[
+  e_{41}\ge22.
+\]
+The endpoint inequality checked by the verifier is
+\[
+  H(\{5,41,409,47\})
+  \left(\frac{59}{58}\right)^{18}<2.
+\]
+
+The terminal archive contains no reduced or unresolved leaves, and the
+machine-readable frontier inventory contains no additional \(\mathbf{Q5E2}\)
+post-window pair outside the four pairs listed above.  Thus every terminal
+obligation in the \(\CertRelease\) \(\mathbf{Q5E2}\) successor inventory is either
+directly closed, lower-prime refuted, tail-controlled, or controlled by a
+tail-controlled child archive.  This proves the claimed exhaustion of the
+\(\CertRelease\) \(\mathbf{Q5E2}\) successor inventory.
+\end{proof}
+
+\begin{remark}[Scope of the \(\mathbf{Q5E2}\) exhaustion statement]
+\label{rem:scope-q5e2-current-successor-inventory-closed}
+Theorem~\ref{thm:q5e2-current-successor-inventory-closed} is an exhaustion
+statement for the \(\CertRelease\) \(\mathbf{Q5E2}\) successor inventory.  It
+closes the \(\mathbf{Q5E2}\) child branch, not by itself the parent
+minimal-prime branch \(q=5\).
+
+The parent \(q=5\) branch is closed only after combining this theorem with the
+corresponding closures of
+\[
+  \mathbf{Q5E1}
+  \qquad\text{and}\qquad
+  \mathbf{Q5N}
+\]
+and with the certified first \(5\)-input coverage split.
+\end{remark}
+
+\subsection{Closure of the \texorpdfstring{\(\mathbf{Q5E1}\)}{Q5E1} successor inventory}
+\label{subsec:q5e1-successor-inventory-closure}
+
+We next close the order-one Euler-input child branch
+\[
+  \mathbf{Q5E1}:\qquad
+  \pi\equiv1\pmod5,
+  \qquad
+  5\mid\alpha+1.
+\]
+In the surviving \(q=5\) branch the Euler prime also satisfies
+\[
+  \pi\equiv1\pmod3
+  \qquad\text{and}\qquad
+  \pi\equiv1\pmod4.
+\]
+Hence every \(\mathbf{Q5E1}\) Euler-prime candidate satisfies
+\[
+  \pi\equiv1\pmod{60}.
+\]
+The finite exceptional window
+\[
+  \pi<1381,
+  \qquad
+  \pi\equiv1\pmod{60},
+\]
+is exhausted by the frozen finite archive, while all remaining rows
+\[
+  \pi\ge1381,
+  \qquad
+  \pi\equiv1\pmod{60},
+\]
+are closed by the parametric \(C_5(\pi)\)-tail certificate below.
+
+
+
+\begin{criterion}[Parametric Euler-prime window closure in \texorpdfstring{\(\mathbf{Q5E1}\)}{Q5E1}]
+\label{crit:q5e1-parametric-pi-window-closure}
+Work in the branch
+\[
+  \mathbf{Q5E1}.
+\]
+Thus the Euler prime satisfies
+\[
+  \pi\equiv1\pmod5,
+  \qquad
+  5\mid \alpha+1.
+\]
+Together with the surviving \(q=5\) constraints
+\[
+  \pi\equiv1\pmod3,
+  \qquad
+  \pi\equiv1\pmod4,
+\]
+this gives
+\[
+  \pi\equiv1\pmod{60}.
+\]
+
+Assume
+\[
+  \pi\ge1381.
+\]
+Then the \(\mathbf{Q5E1}\) row attached to \(\pi\) is tail-controlled.
+
+More precisely, the forced cofactor is
+\[
+  C_5(\pi)
+  :=
+  \frac{\Phi_5(\pi)}5
+  =
+  \frac{\pi^4+\pi^3+\pi^2+\pi+1}{5}.
+\]
+Since
+\[
+  \pi\equiv1\pmod5,
+\]
+one has
+\[
+  v_5(\Phi_5(\pi))=1,
+\]
+so \(C_5(\pi)\) is an integer.  Moreover,
+\[
+  C_5(\pi)>1.
+\]
+Any prime divisor
+\[
+  r\mid C_5(\pi)
+\]
+is forced into the support.  The primes \(3\) and \(5\) do not divide
+\(C_5(\pi)\), and every remaining prime divisor satisfies
+\[
+  r>5,
+  \qquad
+  \operatorname{ord}_r(\pi)=5,
+  \qquad
+  r\equiv1\pmod5.
+\]
+Hence
+\[
+  r\ge11.
+\]
+
+The verifier checks the worst-case tail-control inequality at
+\[
+  \pi=1381,
+  \qquad
+  r=11.
+\]
+Namely,
+\[
+  H(\{5,1381,11\})
+  \left(\frac{59}{58}\right)^{18}
+  <2.
+\]
+Since
+\[
+  H(\{5,\pi,r\})
+\]
+is decreasing in both \(\pi\) and \(r\), this endpoint check implies
+\[
+  H(\{5,\pi,r\})
+  \left(\frac{59}{58}\right)^{18}
+  <2
+\]
+for every
+\[
+  \pi\ge1381,
+  \qquad
+  \pi\equiv1\pmod{60},
+  \qquad
+  r\mid C_5(\pi).
+\]
+Thus every \(\mathbf{Q5E1}\) row with \(\pi\ge1381\) is tail-controlled with
+\[
+  B=59,
+  \qquad
+  M=18.
+\]
+\end{criterion}
+
+\begin{proof}
+The congruence
+\[
+  \pi\equiv1\pmod{60}
+\]
+follows from the \(\mathbf{Q5E1}\) branch conditions together with the surviving
+\(q=5\) Euler-prime constraints.
+
+Because \(5\mid\alpha+1\), the cyclotomic factor
+\[
+  \Phi_5(\pi)
+\]
+divides
+\[
+  \sigma(\pi^\alpha).
+\]
+Since \(\pi\equiv1\pmod5\), the standard LTE calculation gives
+\[
+  v_5(\Phi_5(\pi))=1.
+\]
+Thus
+\[
+  C_5(\pi)=\Phi_5(\pi)/5
+\]
+is an integer.  It is greater than \(1\) for every \(\pi\ge61\), hence in
+particular for every \(\pi\ge1381\).
+
+Let
+\[
+  r\mid C_5(\pi)
+\]
+be prime.  Then
+\[
+  r\mid \Phi_5(\pi)\mid\sigma(\pi^\alpha)\mid\sigma(N)=2N.
+\]
+Since \(r\) is odd, it follows that
+\[
+  r\mid N,
+\]
+so \(r\) is forced into the support.
+
+The full \(5\)-factor of \(\Phi_5(\pi)\) has been removed, so \(r\ne5\).
+Also \(r\ne3\): because \(\pi\equiv1\pmod3\), one has
+\[
+  \Phi_5(\pi)
+  =
+  \pi^4+\pi^3+\pi^2+\pi+1
+  \equiv
+  5
+  \equiv2
+  \pmod3.
+\]
+Hence
+\[
+  3\nmid C_5(\pi).
+\]
+Thus every prime divisor \(r\) of \(C_5(\pi)\) satisfies
+\[
+  r>5.
+\]
+
+For such an \(r\), since
+\[
+  r\mid\Phi_5(\pi)
+  \qquad\text{and}\qquad
+  r\nmid5,
+\]
+we have
+\[
+  \operatorname{ord}_r(\pi)=5.
+\]
+Therefore
+\[
+  5\mid r-1,
+\]
+so
+\[
+  r\equiv1\pmod5.
+\]
+The smallest possible such prime is
+\[
+  r=11.
+\]
+
+Now
+\[
+  H(\{5,\pi,r\})
+  =
+  \frac54\cdot\frac{\pi}{\pi-1}\cdot\frac{r}{r-1}.
+\]
+This expression is decreasing in both \(\pi\) and \(r\).  Therefore the worst
+case in the range
+\[
+  \pi\ge1381,
+  \qquad
+  r\ge11
+\]
+is
+\[
+  (\pi,r)=(1381,11).
+\]
+The verifier checks
+\[
+  H(\{5,1381,11\})
+  \left(\frac{59}{58}\right)^{18}
+  =
+  1.871757645581\ldots
+  <2.
+\]
+Hence the same inequality holds throughout the whole parametric window.
+\end{proof}
+
+\begin{theorem}[Closure of the release \texorpdfstring{\(\mathbf{Q5E1}\)}{Q5E1} successor inventory]
+\label{thm:q5e1-current-successor-inventory-closed}
+The \(\CertRelease\) \(\mathbf{Q5E1}\) successor inventory is exhausted.
+
+More precisely, the finite exceptional Euler-prime window
+\[
+  \pi<1381,
+  \qquad
+  \pi\equiv1\pmod{60},
+\]
+contains exactly the ten candidates
+\[
+  61,181,241,421,541,601,661,1021,1201,1321.
+\]
+These are precisely the leaves of the frozen first finite domain
+\[
+  \mathcal D_{5,E1}^{(1)}.
+\]
+That domain has verified status
+\[
+  10/10\ \text{leaves checked},
+  \qquad
+  10\ \mathtt{child\_archive\_tail\_controlled},
+\]
+with no reduced or unresolved leaves.  Hence
+\[
+  \mathtt{recursive\_controlled}=\mathtt{true}.
+\]
+
+For every remaining Euler-prime candidate
+\[
+  \pi\ge1381,
+  \qquad
+  \pi\equiv1\pmod{60},
+\]
+Criterion~\ref{crit:q5e1-parametric-pi-window-closure} gives a parametric
+tail-control certificate with
+\[
+  B=59,
+  \qquad
+  M=18.
+\]
+Therefore the \(\CertRelease\) \(\mathbf{Q5E1}\) successor inventory has no remaining
+reduced, unresolved, or delegated terminal obligation.
+\end{theorem}
+
+\begin{proof}
+The finite window
+\[
+  \pi<1381,
+  \qquad
+  \pi\equiv1\pmod{60},
+\]
+is exhausted by direct enumeration of the corresponding prime candidates:
+\[
+  61,181,241,421,541,601,661,1021,1201,1321.
+\]
+The frozen package
+\[
+  \mathcal D_{5,E1}^{(1)}
+\]
+certifies all ten leaves as
+\[
+  \mathtt{child\_archive\_tail\_controlled}.
+\]
+
+For every remaining candidate, one has
+\[
+  \pi\ge1381,
+  \qquad
+  \pi\equiv1\pmod{60}.
+\]
+The parametric criterion applies and supplies a forced support prime
+\[
+  r\mid C_5(\pi)
+\]
+with
+\[
+  r\ge11.
+\]
+The endpoint inequality
+\[
+  H(\{5,1381,11\})
+  \left(\frac{59}{58}\right)^{18}<2
+\]
+then implies the tail-control inequality for all larger \(\pi\) and all
+admissible forced primes \(r\).  Hence every remaining row is tail-controlled.
+Combining the finite exceptional window with the parametric window proves the
+claimed exhaustion.
+\end{proof}
+
+\begin{remark}[Scope of the \(\mathbf{Q5E1}\) closure]
+\label{rem:scope-q5e1-current-successor-inventory-closed}
+Theorem~\ref{thm:q5e1-current-successor-inventory-closed} closes the
+\(\CertRelease\) \(\mathbf{Q5E1}\) successor inventory.  It is one of the three child
+closures needed for the \(q=5\) minimal-prime branch.
+
+Together with the corresponding closures of
+\[
+  \mathbf{Q5E2}
+  \qquad\text{and}\qquad
+  \mathbf{Q5N},
+\]
+and with the first \(5\)-input coverage split, it contributes to the final
+closure of the \(\CertRelease\) \(q=5\) branch inventory.
+\end{remark}
+
+\subsection{Closure of the \(\mathbf{Q5N}\) successor inventory}
+
+We finally close the non-Euler \(5\)-input child branch
+\[
+  \mathbf{Q5N}.
+\]
+In this child branch there is a non-Euler witness prime
+\[
+  p\in S,
+  \qquad
+  p\ne5,
+  \qquad
+  p\ne\pi,
+\]
+such that
+\[
+  p\equiv1\pmod5,
+  \qquad
+  5\mid e_p+1,
+  \qquad
+  e_p\equiv0\pmod2.
+\]
+The finite exceptional witness window
+\[
+  p<211,
+  \qquad
+  p\equiv1\pmod5,
+\]
+is exhausted by the frozen finite archive, while all remaining rows
+\[
+  p\ge211,
+  \qquad
+  p\equiv1\pmod5,
+\]
+are closed by the parametric \(C_5(p)\)-tail certificate below.
+
+
+\begin{criterion}[Parametric witness-window closure in \texorpdfstring{\(\mathbf{Q5N}\)}{Q5N}]
+\label{crit:q5n-parametric-witness-window-closure}
+Work in the branch
+\[
+  \mathbf{Q5N}.
+\]
+Thus there is a non-Euler \(5\)-input witness
+\[
+  p\in S,
+  \qquad
+  p\ne5,
+  \qquad
+  p\ne\pi,
+\]
+with
+\[
+  p\equiv1\pmod5,
+  \qquad
+  5\mid e_p+1,
+  \qquad
+  e_p\equiv0\pmod2.
+\]
+
+Assume
+\[
+  p\ge211.
+\]
+Then the \(\mathbf{Q5N}\) witness row attached to \(p\) is tail-controlled.
+
+More precisely, the forced cofactor is
+\[
+  C_5(p)
+  :=
+  \frac{\Phi_5(p)}5
+  =
+  \frac{p^4+p^3+p^2+p+1}{5}.
+\]
+Since
+\[
+  p\equiv1\pmod5,
+\]
+one has
+\[
+  v_5(\Phi_5(p))=1,
+\]
+so \(C_5(p)\) is an integer.  Moreover,
+\[
+  C_5(p)>1.
+\]
+
+Any prime divisor
+\[
+  r\mid C_5(p)
+\]
+is forced into the support.  The primes \(3\) and \(5\) do not divide
+\(C_5(p)\), and every remaining prime divisor satisfies
+\[
+  r>5,
+  \qquad
+  \operatorname{ord}_r(p)=5,
+  \qquad
+  r\equiv1\pmod5.
+\]
+Hence
+\[
+  r\ge11.
+\]
+
+The verifier checks the worst-case tail-control inequality at
+\[
+  p=211,
+  \qquad
+  r=11.
+\]
+Namely,
+\[
+  H(\{5,211,11\})
+  \left(\frac{59}{58}\right)^{18}
+  <2.
+\]
+Since
+\[
+  H(\{5,p,r\})
+\]
+is decreasing in both \(p\) and \(r\), this endpoint check implies
+\[
+  H(\{5,p,r\})
+  \left(\frac{59}{58}\right)^{18}
+  <2
+\]
+for every
+\[
+  p\ge211,
+  \qquad
+  p\equiv1\pmod5,
+  \qquad
+  r\mid C_5(p).
+\]
+Thus every \(\mathbf{Q5N}\) witness row with \(p\ge211\) is tail-controlled with
+\[
+  B=59,
+  \qquad
+  M=18.
+\]
+\end{criterion}
+
+\begin{proof}
+Because \(5\mid e_p+1\), the cyclotomic factor
+\[
+  \Phi_5(p)
+\]
+divides
+\[
+  \sigma(p^{e_p}).
+\]
+Since \(p\equiv1\pmod5\), the standard LTE calculation gives
+\[
+  v_5(\Phi_5(p))=1.
+\]
+Thus
+\[
+  C_5(p)=\Phi_5(p)/5
+\]
+is an integer.
+
+Let
+\[
+  r\mid C_5(p)
+\]
+be prime.  Then
+\[
+  r\mid \Phi_5(p)\mid\sigma(p^{e_p})\mid\sigma(N)=2N.
+\]
+Since \(r\) is odd, it follows that
+\[
+  r\mid N,
+\]
+so \(r\) is forced into the support.
+
+The full \(5\)-factor of \(\Phi_5(p)\) has been removed, so
+\[
+  r\ne5.
+\]
+Also \(r\ne3\).  Indeed, in the \(\mathbf{Q5N}\) first witness window one has
+\(p\equiv1\pmod5\), and the lower-prime avoidance condition for \(3\) rules out
+the branch in which \(3\mid C_5(p)\).  Equivalently, every surviving
+\(\mathbf{Q5N}\) witness row has
+\[
+  3\nmid C_5(p).
+\]
+Hence every surviving prime divisor \(r\) of \(C_5(p)\) satisfies
+\[
+  r>5.
+\]
+
+For such an \(r\), since
+\[
+  r\mid\Phi_5(p)
+  \qquad\text{and}\qquad
+  r\nmid5,
+\]
+we have
+\[
+  \operatorname{ord}_r(p)=5.
+\]
+Therefore
+\[
+  5\mid r-1,
+\]
+so
+\[
+  r\equiv1\pmod5.
+\]
+The smallest possible such prime is
+\[
+  r=11.
+\]
+
+Now
+\[
+  H(\{5,p,r\})
+  =
+  \frac54\cdot\frac{p}{p-1}\cdot\frac{r}{r-1}.
+\]
+This expression is decreasing in both \(p\) and \(r\).  Therefore the worst case
+in the range
+\[
+  p\ge211,
+  \qquad
+  r\ge11
+\]
+is
+\[
+  (p,r)=(211,11).
+\]
+The verifier checks
+\[
+  H(\{5,211,11\})
+  \left(\frac{59}{58}\right)^{18}
+  =
+  1.879308959140\ldots
+  <2.
+\]
+Hence the same inequality holds throughout the whole parametric witness window.
+\end{proof}
+
+\begin{theorem}[Closure of the release \texorpdfstring{\(\mathbf{Q5N}\)}{Q5N} successor inventory]
+\label{thm:q5n-current-successor-inventory-closed}
+The \(\CertRelease\) \(\mathbf{Q5N}\) successor inventory is exhausted.
+
+More precisely, the finite exceptional witness-prime window
+\[
+  p<211,
+  \qquad
+  p\equiv1\pmod5,
+\]
+contains exactly the ten witness candidates
+\[
+  11,31,41,61,71,101,131,151,181,191.
+\]
+These are precisely the leaves of the frozen first finite domain
+\[
+  \mathcal D_{5,N}^{(1)}.
+\]
+That domain has verified status
+\[
+  10/10\ \text{leaves checked},
+  \qquad
+  10\ \mathtt{child\_archive\_tail\_controlled},
+\]
+with no reduced or unresolved leaves.  Hence
+\[
+  \mathtt{recursive\_controlled}=\mathtt{true}.
+\]
+
+For every remaining witness-prime candidate
+\[
+  p\ge211,
+  \qquad
+  p\equiv1\pmod5,
+\]
+Criterion~\ref{crit:q5n-parametric-witness-window-closure} gives a parametric
+tail-control certificate with
+\[
+  B=59,
+  \qquad
+  M=18.
+\]
+Therefore the \(\CertRelease\) \(\mathbf{Q5N}\) successor inventory has no remaining
+reduced, unresolved, or delegated terminal obligation.
+\end{theorem}
+
+\begin{proof}
+The finite window
+\[
+  p<211,
+  \qquad
+  p\equiv1\pmod5,
+\]
+is exhausted by direct enumeration of the corresponding prime candidates:
+\[
+  11,31,41,61,71,101,131,151,181,191.
+\]
+The frozen package
+\[
+  \mathcal D_{5,N}^{(1)}
+\]
+certifies all ten leaves as
+\[
+  \mathtt{child\_archive\_tail\_controlled}.
+\]
+
+For every remaining candidate, one has
+\[
+  p\ge211,
+  \qquad
+  p\equiv1\pmod5.
+\]
+The parametric criterion applies and supplies a forced support prime
+\[
+  r\mid C_5(p)
+\]
+with
+\[
+  r\ge11.
+\]
+The endpoint inequality
+\[
+  H(\{5,211,11\})
+  \left(\frac{59}{58}\right)^{18}<2
+\]
+then implies the tail-control inequality for all larger \(p\) and all admissible
+forced primes \(r\).  Hence every remaining witness row is tail-controlled.
+
+The possible Euler-role split
+\[
+  r=\pi
+  \qquad\text{or}\qquad
+  r\ne\pi
+\]
+does not affect the tail-control inequality, since the verified kernel
+\[
+  \{5,p,r\}
+\]
+is already sufficient in either role.  Combining the finite exceptional window
+with the parametric witness window proves the claimed exhaustion.
+\end{proof}
+
+\begin{remark}[Scope of the \(\mathbf{Q5N}\) closure]
+\label{rem:scope-q5n-current-successor-inventory-closed}
+Theorem~\ref{thm:q5n-current-successor-inventory-closed} closes the
+\(\CertRelease\) \(\mathbf{Q5N}\) successor inventory.  Together with the corresponding
+closures of
+\[
+  \mathbf{Q5E2}
+  \qquad\text{and}\qquad
+  \mathbf{Q5E1},
+\]
+and with the first \(5\)-input coverage split, this completes the three child
+branches of the \(\CertRelease\) \(q=5\) branch inventory.
+\end{remark}
+
+\subsection{Combination of the three child closures}
+\label{subsec:q5-current-branch-inventory-closure}
+
+\begin{theorem}[Closure of the release \texorpdfstring{\(q=5\)}{q=5} branch inventory]
+\label{thm:q5-current-branch-inventory-closed}
+The \(\CertRelease\) \(q=5\) branch inventory is exhausted.
+
+Equivalently, within the certificate release \(\CertRelease\), there is no odd
+perfect number \(N\) with
+\[
+  \min\{p:p\mid N\}=5.
+\]
+\end{theorem}
+
+\begin{proof}
+Assume
+\[
+  \min\{p:p\mid N\}=5.
+\]
+The first necessary \(5\)-input coverage split gives the three branch families
+\[
+  \mathbf{Q5E2},
+  \qquad
+  \mathbf{Q5E1},
+  \qquad
+  \mathbf{Q5N}.
+\]
+This split is complete: every realization of the \(q=5\) branch realizes at
+least one of these three children.
+
+The \(\CertRelease\) \(\mathbf{Q5E2}\) successor inventory is exhausted by the finite
+post-window closures for
+\[
+  (109,11),
+  \qquad
+  (229,23),
+  \qquad
+  (349,7),
+  \qquad
+  (409,41),
+\]
+together with their parametric post-window certificates.
+
+The \(\CertRelease\) \(\mathbf{Q5E1}\) successor inventory is exhausted by the finite
+exceptional Euler-prime window
+\[
+  \pi<1381,
+  \qquad
+  \pi\equiv1\pmod{60},
+\]
+together with the parametric Euler-prime window closure for
+\[
+  \pi\ge1381.
+\]
+
+The \(\CertRelease\) \(\mathbf{Q5N}\) successor inventory is exhausted by the finite
+exceptional witness-prime window
+\[
+  p<211,
+  \qquad
+  p\equiv1\pmod5,
+\]
+together with the parametric witness-prime window closure for
+\[
+  p\ge211.
+\]
+
+Thus every child of the complete \(q=5\) first-input split is closed in the
+\(\CertRelease\) successor inventory.  Hence the \(\CertRelease\) \(q=5\) branch
+inventory is exhausted.
+\end{proof}
+
+\begin{remark}[Meaning of the \(q=5\) closure]
+\label{rem:meaning-of-q5-closure}
+Theorem~\ref{thm:q5-current-branch-inventory-closed} is a statement about the
+minimal-prime branch
+\[
+  q=\min\{p:p\mid N\}=5.
+\]
+It therefore excludes odd perfect numbers whose smallest prime divisor is \(5\)
+inside the certificate release \(\CertRelease\).
+
+It should not be read as the statement that no odd perfect number is divisible
+by \(5\).  An odd perfect number divisible by \(5\) could also lie in the
+branch
+\[
+  q=3,
+\]
+if it were divisible by both \(3\) and \(5\).  Such a number is not part of the
+\(q=5\) minimal-prime branch.
+\end{remark}
+
+
+
+
