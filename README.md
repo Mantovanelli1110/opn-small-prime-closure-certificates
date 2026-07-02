@@ -29,7 +29,13 @@ They use only the Python standard library.
 - `cert_verifier_q5_strict.py`, `cert_verifier_q7_strict.py`,
   `cert_verifier_domain_extension_parametric_q5_all_q5n.py`: local verifier
   modules imported by the q=5 and q=7 wrapper scripts.
+- `RELEASE_MANIFEST.tsv`: complete frozen file list, including entry-point
+  artifacts and imported dependency modules.
 - `SHA256SUMS.txt`: SHA256 manifest for the release files.
+
+The paper's Table 6 lists the entry-point bundles and verifier scripts used in
+the proof.  The complete frozen release is described by `RELEASE_MANIFEST.tsv`;
+the corresponding file hashes are duplicated in `SHA256SUMS.txt`.
 
 ## Hash Check
 
@@ -38,6 +44,10 @@ Before running the verifiers, check the frozen release hashes:
 ```bash
 sha256sum -c SHA256SUMS.txt
 ```
+
+The release check for this revision is: first verify that all entries in
+`SHA256SUMS.txt` match, then run the five verifier commands below.  The frozen
+release was checked in that order.
 
 ## Clone and Verify the Frozen Release
 
