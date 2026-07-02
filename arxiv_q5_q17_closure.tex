@@ -549,7 +549,7 @@ separate Diophantine filter or controlled by a pure-kernel tail certificate.
 branch & pure-exception mechanism used in the certificate package\\
 \midrule
 \(q=5\) &
-parametric \(C_5(x)\)-tail and \(C_2(\pi)\)-post-window records\\
+parametric \(C_5(x)\)-tail, pure \(C_2(\pi)=2\) tail, and \(C_2(\pi)\)-post-window records\\
 \(q=7\) &
 order-three pure leaves are archive-refuted; \(E_2\) and \(E_6\) pure kernels are tail-controlled\\
 \(q=11\) &
@@ -786,7 +786,7 @@ listed in Table~\ref{tab:q17-endpoint-certificates}.
 5 &
 bundle &
 \path{q5_master_bundle.jsonl} &
-\shasplit{90fc8b3a1210f3397e9a6baef9c43a4cd}{7bdb347f3f418efd81ca75ec1dc62aa} &
+\shasplit{95b536eb2ed411df8b229bfcb133a2d2}{ee5eb8d503c614e0c5c3b7edd159f867} &
 \texttt{q=5 branch inventory exhausted}\\
  &
 verifier &
@@ -935,8 +935,10 @@ avoidance.  Otherwise \(C_5(x)\) forces a support prime \(r>5\) with
 \[
   C_2(\pi)=\frac{\pi+1}{5^{v_5(\pi+1)}}
 \]
-is an integer \(>1\).  If \(3\mid C_2(\pi)\), the row is refuted by
-lower-prime avoidance.  Otherwise it forces a support prime \(r>5\) with
+is an integer \(>1\).  If \(C_2(\pi)=2\), the row is the pure family
+\(\pi=2\cdot5^b-1\) and is delegated to the pure \(C_2\)-tail certificate.  If
+\(3\mid C_2(\pi)\), the row is refuted by lower-prime avoidance.  Otherwise
+\(C_2(\pi)\) has an odd prime divisor and forces a support prime \(r>5\) with
 \[
   \ord_r(\pi)=2.
 \]
@@ -954,8 +956,11 @@ and has \(\ord_r(x)=5\).
 For \(\mathbf{Q5E2}\), \(\pi\equiv-1\pmod5\) and
 \(\alpha+1\equiv2\pmod4\), so \(\Phi_2(\pi)=\pi+1\) divides
 \(\sigma(\pi^\alpha)\).  Removing the full \(5\)-power gives \(C_2(\pi)\).
-The same lower-prime and forced-prime argument applies, and a surviving odd
-prime divisor \(r>5\) of \(\pi+1\) has \(\ord_r(\pi)=2\).
+Since \(\pi\equiv1\pmod4\), the quotient has exactly one factor \(2\).  Thus
+the case \(C_2(\pi)=2\) is precisely the pure family
+\(\pi=2\cdot5^b-1\).  Outside this pure case, a quotient not divisible by \(3\)
+has a surviving odd prime divisor \(r>5\), and this divisor of \(\pi+1\) has
+\(\ord_r(\pi)=2\).
 \end{proof}
 
 \begin{theorem}[Closure of the \(q=5\) inventory]
@@ -974,7 +979,9 @@ for the four post-window pairs
 \[
   (109,11),\quad (229,23),\quad (349,7),\quad (409,41),
 \]
-together with parametric post-window records.  It closes \(\mathbf{Q5E1}\) by
+together with parametric post-window records and the pure
+\(C_2(\pi)=2\) tail certificate at the endpoint \(\pi=1249\).  It closes
+\(\mathbf{Q5E1}\) by
 the exact finite Euler-prime window
 \[
   \pi<1381,\qquad \pi\equiv1\pmod{60},

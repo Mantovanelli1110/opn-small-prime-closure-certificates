@@ -723,7 +723,7 @@ forced into \(S\).  Since \(r\mid\Phi_5(\pi)\), \(r\nmid5\), and
 Hence \(r\equiv1\pmod5\).
 \end{proof}
 
-\begin{lemma}[No pure $\mathbf{Q5E2}$ exceptional branch]
+\begin{lemma}[Pure alternatives in $\mathbf{Q5E2}$]
 \label{lem:no-pure-q5e2-exception}
 There is no prime \(\pi\equiv1\pmod4\) and no integer \(c\ge1\) such that
 \[
@@ -732,13 +732,25 @@ There is no prime \(\pi\equiv1\pmod4\) and no integer \(c\ge1\) such that
 Consequently, in the branch
 \(\mathbf{Q5E2}\), where \(\pi\equiv-1\pmod5\),
 the cofactor obtained from \(\pi+1\) after removing its full \(5\)-power is
-never equal to \(1\).
+never equal to \(1\).  The remaining pure possibility is exactly
+\[
+  C_2(\pi)=2
+  \quad\Longleftrightarrow\quad
+  \pi=2\cdot5^b-1
+  \quad(b\ge1).
+\]
+Its first prime endpoint is \(b=4\), namely \(\pi=1249\); the values
+\(b=1,2,3\) give \(9,49,249\), respectively.
 \end{lemma}
 
 \begin{proof}
 Assume \(\pi+1=5^c\) with \(\pi\equiv1\pmod4\).  Then
 \(\pi+1\equiv2\pmod4\), but \(5^c\equiv1\pmod4\) for every \(c\ge1\).  This is
-impossible.  Hence no such \(\pi\) and \(c\) exist.
+impossible.  Hence no such \(\pi\) and \(c\) exist.  If
+\(C_2(\pi)=2\), then \(\pi+1=2\cdot5^{v_5(\pi+1)}\), giving the displayed
+family.  Conversely, any prime of the displayed form has
+\(C_2(\pi)=2\).  Finally, \(9=3^2\), \(49=7^2\), \(249=3\cdot83\), and
+\(1249\) is prime.
 \end{proof}
 
 \begin{lemma}[Forced extension in the branch $\mathbf{Q5E2}$]
@@ -757,14 +769,14 @@ Put
   \qquad
   C_2(\pi):=\frac{\pi+1}{5^{c_\pi}}.
 \]
-Then \(C_2(\pi)>1\).
-
-If \(C_2(\pi)\) has a prime divisor equal to \(3\), then the branch is
-immediately refuted by lower-prime avoidance.  Otherwise \(C_2(\pi)\) has a
-prime divisor \(r>5\), and every such divisor is forced into the support, with
-\(r\in S\).  Moreover, for every prime divisor \(r\mid C_2(\pi)\) with \(r>5\),
-one has \(\pi\equiv-1\pmod r\), so \(\ord_r(\pi)=2\), and therefore
-\(r\equiv1\pmod2\).
+Then \(C_2(\pi)>1\).  If \(C_2(\pi)=2\), the row is the pure family
+\(\pi=2\cdot5^b-1\) of Lemma~\ref{lem:no-pure-q5e2-exception} and is delegated
+to the pure \(C_2\)-tail certificate.  If \(3\mid C_2(\pi)\), the branch is
+immediately refuted by lower-prime avoidance.  In the remaining case
+\(C_2(\pi)\ne2\) and \(3\nmid C_2(\pi)\), the cofactor has an odd prime divisor
+\(r>5\), and every such divisor is forced into the support, with \(r\in S\).
+Moreover, for every prime divisor \(r\mid C_2(\pi)\) with \(r>5\), one has
+\(\pi\equiv-1\pmod r\), so \(\ord_r(\pi)=2\).
 \end{lemma}
 
 \begin{proof}
@@ -773,16 +785,17 @@ Since \(\pi\) is the Euler prime, \(\alpha\equiv1\pmod4\), hence
 \(\sigma(\pi^\alpha)\).  The branch condition \(\pi\equiv-1\pmod5\) gives
 \(5\mid\pi+1\), so \(c_\pi=v_5(\pi+1)\ge1\).  If \(C_2(\pi)=1\), then
 \(\pi+1=5^{c_\pi}\), contradicting Lemma~\ref{lem:no-pure-q5e2-exception}.
-Hence \(C_2(\pi)>1\).
+Hence \(C_2(\pi)>1\).  Since \(\pi\equiv1\pmod4\), the number \(\pi+1\) has
+exactly one factor \(2\), and so does \(C_2(\pi)\).  If \(C_2(\pi)=2\), the
+pure alternative in Lemma~\ref{lem:no-pure-q5e2-exception} applies.
 
-Let \(r\mid C_2(\pi)\) be prime.  Then
-\(r\mid\pi+1\mid\sigma(\pi^\alpha)\mid\sigma(N)=2N\).  Since \(r\) is odd,
-this gives \(r\mid N\), so \(r\in S\).  If \(r=3\), this contradicts
-\(\min S=5\).  Thus every surviving branch has a prime divisor \(r>5\) of
-\(C_2(\pi)\), and such an \(r\) is forced into \(S\).
-
-For every such \(r\), one has \(\pi\equiv-1\pmod r\).  Since \(r>5\), in
-particular \(r\ne2\), and therefore \(\ord_r(\pi)=2\).
+Assume now \(C_2(\pi)\ne2\).  If \(3\mid C_2(\pi)\), then
+\(3\mid\pi+1\mid\sigma(\pi^\alpha)\mid\sigma(N)=2N\).  Since \(3\) is odd,
+this forces \(3\mid N\), contradicting \(\min S=5\).  If
+\(3\nmid C_2(\pi)\), choose an odd prime divisor \(r\mid C_2(\pi)\).  The full
+\(5\)-power has been removed, and \(r\ne3\), so \(r>5\).  Since
+\(r\mid\pi+1\mid\sigma(\pi^\alpha)\mid\sigma(N)=2N\), the odd prime \(r\)
+lies in \(S\).  Finally \(\pi\equiv-1\pmod r\), hence \(\ord_r(\pi)=2\).
 \end{proof}
 
 \begin{corollary}[Certified first-step reduction after the $5$-input split]
@@ -823,8 +836,9 @@ outcome.
         C_2(\pi)=\frac{\pi+1}{5^{v_5(\pi+1)}}.
       \]
       The pure case \(C_2(\pi)=1\) is impossible by
-      Lemma~\ref{lem:no-pure-q5e2-exception}.  If \(3\mid C_2(\pi)\), the branch
-      is refuted by lower-prime avoidance.  Otherwise a prime divisor
+      Lemma~\ref{lem:no-pure-q5e2-exception}.  If \(C_2(\pi)=2\), the row is
+      delegated to the pure \(C_2\)-tail certificate.  If \(3\mid C_2(\pi)\),
+      the branch is refuted by lower-prime avoidance.  Otherwise a prime divisor
       \[
         r>5
       \]
@@ -878,8 +892,9 @@ and factors
   (\pi+1)/5^{c_\pi}.
 \]
 The case in which this cofactor is \(1\) is disallowed by
-Lemma~\ref{lem:no-pure-q5e2-exception}.  A divisor \(3\) gives a lower-prime
-avoidance refutation, while any divisor \(r>5\) is a forced support prime with
+Lemma~\ref{lem:no-pure-q5e2-exception}.  The case \(C_2(\pi)=2\) is routed to
+the pure \(C_2\)-tail certificate.  A divisor \(3\) gives a lower-prime
+avoidance refutation, while any remaining divisor \(r>5\) is a forced support prime with
 \[
   \ord_r(\pi)=2.
 \]
@@ -1074,49 +1089,28 @@ so
 
 \begin{proposition}[Second-level split in the branch \(\mathbf{Q5E2}\)]
 \label{prop:q5e2-second-level-split}
-Assume
-\[
-  \min S=5.
-\]
-Suppose the Euler prime satisfies
-\[
-  \mathbf{Q5E2}:\qquad \pi\equiv-1\pmod5.
-\]
+Assume \(\min S=5\), and suppose the Euler prime satisfies
+\(\mathbf{Q5E2}\), i.e. \(\pi\equiv-1\pmod5\).
 Put
 \[
   C_2(\pi):=\frac{\pi+1}{5^{v_5(\pi+1)}}.
 \]
 Then the split
 \[
-  3\mid C_2(\pi)
+  C_2(\pi)=2,
   \qquad\text{or}\qquad
-  3\nmid C_2(\pi)
+  3\mid C_2(\pi),
+  \qquad\text{or}\qquad
+  C_2(\pi)\ne2\ \text{ and }\ 3\nmid C_2(\pi)
 \]
 is complete.
 
-If
+If \(C_2(\pi)=2\), the row is the pure family
+\(\pi=2\cdot5^b-1\) and is delegated to the pure \(C_2\)-tail certificate.  If
+\(3\mid C_2(\pi)\), the branch is refuted by lower-prime avoidance.  In the
+remaining case there exists a prime \(r>5\) such that
 \[
-  3\mid C_2(\pi),
-\]
-then the branch is refuted by lower-prime avoidance.
-
-If
-\[
-  3\nmid C_2(\pi),
-\]
-then there exists a prime
-\[
-  r>5
-\]
-such that
-\[
-  r\mid C_2(\pi),
-  \qquad
-  r\in S,
-\]
-and
-\[
-  \ord_r(\pi)=2.
+  r\mid C_2(\pi),\qquad r\in S,\qquad \ord_r(\pi)=2.
 \]
 \end{proposition}
 
@@ -1125,81 +1119,25 @@ By Lemma~\ref{lem:q5e2-forced-extension}, the cofactor
 \[
   C_2(\pi)=\frac{\pi+1}{5^{v_5(\pi+1)}}
 \]
-is an integer satisfying
-\[
-  C_2(\pi)>1.
-\]
-Thus \(C_2(\pi)\) has at least one prime divisor.
+is an integer \(>1\); Lemma~\ref{lem:no-pure-q5e2-exception} also excludes the
+case \(C_2(\pi)=1\).  The three displayed alternatives are therefore
+exhaustive.  If \(C_2(\pi)=2\), the same lemma identifies the pure family
+\(\pi=2\cdot5^b-1\), which is handled by the pure tail certificate.
 
-The split
-\[
-  3\mid C_2(\pi)
-  \qquad\text{or}\qquad
-  3\nmid C_2(\pi)
-\]
-is exhaustive.
+If \(3\mid C_2(\pi)\), then
+\(3\mid\pi+1=\Phi_2(\pi)\mid\sigma(\pi^\alpha)\), so
+\(3\mid\sigma(N)=2N\).  Since \(3\) is odd, this forces \(3\mid N\),
+contradicting \(\min S=5\).
 
-If
-\[
-  3\mid C_2(\pi),
-\]
-then
-\[
-  3\mid \pi+1=\Phi_2(\pi)\mid\sigma(\pi^\alpha).
-\]
-Hence
-\[
-  3\mid\sigma(N)=2N.
-\]
-Since \(3\) is odd, this forces
-\[
-  3\mid N,
-\]
-contradicting
-\[
-  \min S=5.
-\]
-Thus this child branch is refuted by lower-prime avoidance.
-
-Now suppose
-\[
-  3\nmid C_2(\pi).
-\]
-Since \(C_2(\pi)>1\), choose a prime divisor
-\[
-  r\mid C_2(\pi).
-\]
-The divisor \(r\) is not \(3\) by assumption, and it is not \(5\) by the
-definition of \(C_2(\pi)\).  Therefore
-\[
-  r>5.
-\]
-
-Since
+Finally suppose \(C_2(\pi)\ne2\) and \(3\nmid C_2(\pi)\).  Since
+\(\pi\equiv1\pmod4\), the quotient \(C_2(\pi)\) has exactly one factor \(2\).
+It is not equal to \(2\), so it has an odd prime divisor \(r\).  This divisor
+is not \(3\) by assumption and not \(5\) by construction, hence \(r>5\).  Since
 \[
   r\mid C_2(\pi)\mid \pi+1\mid\sigma(\pi^\alpha)\mid\sigma(N)=2N,
 \]
-and \(r\) is odd, we get
-\[
-  r\mid N.
-\]
-Thus
-\[
-  r\in S.
-\]
-
-For every such \(r\), one has
-\[
-  \pi\equiv-1\pmod r.
-\]
-Since
-\[
-  r>5,
-\]
-in particular \(r\ne2\), and therefore
-\[
-  \ord_r(\pi)=2.
-\]
+the odd prime \(r\) lies in \(S\), and \(\pi\equiv-1\pmod r\) gives
+\(\ord_r(\pi)=2\).
 \end{proof}
 
 \begin{corollary}[Certified second-level reduction in the \(q=5\) branch]
@@ -1247,12 +1185,14 @@ second-level certified reductions.
 
 \item In \(\mathbf{Q5E2}\), the split
       \[
-        3\mid C_2(\pi)
-        \qquad\text{or}\qquad
-        3\nmid C_2(\pi)
+        C_2(\pi)=2,
+        \qquad
+        3\mid C_2(\pi),
+        \qquad
+        C_2(\pi)\ne2\ \text{ and }\ 3\nmid C_2(\pi)
       \]
-      is complete.  The first child is refuted by lower-prime avoidance.  The
-      second child forces a support prime
+      is complete.  The first child is pure-tail controlled, the second is
+      refuted by lower-prime avoidance, and the third forces a support prime
       \[
         r>5,
         \qquad
@@ -1455,12 +1395,16 @@ For a \(\Phi_2\)-record in \(\mathbf{Q5E2}\), the verifier checks
 \]
 and verifies the split
 \[
-  3\mid C_2(\pi)
-  \qquad\text{or}\qquad
-  3\nmid C_2(\pi).
+  C_2(\pi)=2,
+  \qquad
+  3\mid C_2(\pi),
+  \qquad
+  C_2(\pi)\ne2\ \text{ and }\ 3\nmid C_2(\pi).
 \]
-If \(3\mid C_2(\pi)\), the certificate records a lower-prime avoidance
-refutation.  If \(3\nmid C_2(\pi)\), it records a prime divisor
+If \(C_2(\pi)=2\), the certificate records the pure family
+\(\pi=2\cdot5^b-1\) and delegates to the pure \(C_2\)-tail certificate.  If
+\(3\mid C_2(\pi)\), it records a lower-prime avoidance refutation.  In the
+remaining case it records a prime divisor
 \[
   r>5
 \]
@@ -1510,6 +1454,9 @@ After the frozen first-window archive, the release terminal
 \(\mathbf{Q5E2}\) successor inventory has four post-window pairs:
 \((109,11)\), \((229,23)\), \((349,7)\), and \((409,41)\).
 The finite part of each pair is checked by an aggregation-safe successor archive, while the infinite tail is closed by a parametric Zsigmondy--tail certificate.
+The separate pure row \(C_2(\pi)=2\) is not a post-window pair; it is the family
+\(\pi=2\cdot5^b-1\), and the release closes it by the pure tail certificate at
+the first prime endpoint \(\pi=1249\).
 
 \begin{table}[ht]
 \centering
@@ -1770,8 +1717,9 @@ tail-controlled with \(B=59\) and \(M=18\).
 
 \begin{theorem}[Closure of the release \texorpdfstring{\(\mathbf{Q5E2}\)}{Q5E2} successor inventory]
 \label{thm:q5e2-current-successor-inventory-closed}
-In the \(\Csmall\) \(\mathbf{Q5E2}\) successor inventory, the branch has no remaining
-reduced, unresolved, or delegated terminal obligation.
+In the \(\Csmall\) \(\mathbf{Q5E2}\) inventory, the pure \(C_2(\pi)=2\) row and
+the successor inventory have no remaining reduced, unresolved, or delegated
+terminal obligation.
 
 More precisely, the terminal verified \(\mathbf{Q5E2}\) successor archive has
 status
@@ -1817,6 +1765,15 @@ together with a parametric post-window tail-control certificate.  Therefore the
 \end{theorem}
 
 \begin{proof}
+The pure row \(C_2(\pi)=2\) is the family \(\pi=2\cdot5^b-1\).  The release
+record checks that \(b=1,2,3\) give \(9,49,249\), while \(b=4\) gives the first
+prime endpoint \(\pi=1249\), and verifies
+\[
+  H(\{5,1249\})
+  \left(\frac{59}{58}\right)^{18}<2.
+\]
+Thus the pure row is tail-controlled.
+
 The pair \((349,7)\) is closed by finite verification of the rows
 \(22\le e_7\le92\), \(e_7\equiv0\pmod2\), together with the parametric
 Zsigmondy--tail-control criterion for all even \(e_7\ge94\).
@@ -1853,10 +1810,10 @@ The endpoint inequality checked by the verifier is
 The terminal archive contains no reduced or unresolved leaves, and the
 machine-readable frontier inventory contains no additional \(\mathbf{Q5E2}\)
 post-window pair outside the four pairs listed above.  Thus every terminal
-obligation in the \(\Csmall\) \(\mathbf{Q5E2}\) successor inventory is either
+obligation in the \(\Csmall\) \(\mathbf{Q5E2}\) inventory is either
 directly closed, lower-prime refuted, tail-controlled, or controlled by a
 tail-controlled child archive.  This proves the claimed exhaustion of the
-\(\Csmall\) \(\mathbf{Q5E2}\) successor inventory.
+\(\Csmall\) \(\mathbf{Q5E2}\) inventory.
 \end{proof}
 
 \begin{remark}[Scope of the \(\mathbf{Q5E2}\) exhaustion statement]
@@ -2241,9 +2198,10 @@ gives the three branch families \(\mathbf{Q5E2}\), \(\mathbf{Q5E1}\), and
 \(\mathbf{Q5N}\).  This split is complete: every realization of the \(q=5\)
 branch realizes at least one of these three children.
 
-The \(\mathbf{Q5E2}\) successor inventory in \(\Csmall\) is exhausted by the
-finite post-window closures for the four pairs \((109,11)\), \((229,23)\),
-\((349,7)\), and \((409,41)\), together with their parametric post-window
+The \(\mathbf{Q5E2}\) inventory in \(\Csmall\) is exhausted by the pure
+\(C_2(\pi)=2\) tail certificate at \(\pi=1249\), by the finite post-window
+closures for the four pairs \((109,11)\), \((229,23)\), \((349,7)\), and
+\((409,41)\), together with their parametric post-window
 certificates.
 
 The \(\mathbf{Q5E1}\) successor inventory in \(\Csmall\) is exhausted by the

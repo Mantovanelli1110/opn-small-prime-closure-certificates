@@ -132,6 +132,39 @@ def verify_lhs(record: Dict[str, Any], lhs: Fraction) -> None:
         require(supplied["holds"] is (lhs < 2), f"{record.get('id')}: holds mismatch")
 
 
+def check_q5e2_pure_c2_tail_certificate(records_by_id: Dict[str, Dict[str, Any]]) -> str:
+    rid = "q5e2_pure_c2_equals_2_tail_certificate"
+    record = records_by_id.get(rid)
+    require(isinstance(record, dict), "Q5E2 pure C2=2 tail certificate missing")
+    require(record.get("type") == "tail_count_certificate", f"{rid}: must be a tail_count_certificate")
+    require(record.get("branch") == "Q5E2", f"{rid}: branch must be Q5E2")
+    require(record.get("pure_family") == "C2(pi)=2", f"{rid}: pure_family must be C2(pi)=2")
+    require(record.get("equation") == "pi=2*5^b-1", f"{rid}: equation must be pi=2*5^b-1")
+
+    endpoint_b = int_field(record, "endpoint_exponent_b")
+    endpoint = 2 * (5 ** endpoint_b) - 1
+    require(endpoint_b == 4, f"{rid}: expected endpoint exponent b=4")
+    require(int_field(record, "first_prime_endpoint") == endpoint, f"{rid}: endpoint mismatch")
+    require(is_prime(endpoint), f"{rid}: endpoint {endpoint} is not prime")
+
+    composite_exponents = list_int_field(record, "composite_exponents")
+    require(composite_exponents == [1, 2, 3], f"{rid}: expected composite exponents [1, 2, 3]")
+    for b in composite_exponents:
+        candidate = 2 * (5 ** b) - 1
+        require(not is_prime(candidate), f"{rid}: b={b} gives prime candidate {candidate}")
+
+    K = list_int_field(record, "K")
+    require(K == [5, endpoint], f"{rid}: expected K=[5, {endpoint}]")
+    B = int_field(record, "B")
+    M = int_field(record, "M") if "M" in record else int_field(record, "tail_count_bound")
+    require(B == 59 and M == 18, f"{rid}: expected B=59 and M=18")
+
+    lhs = exact_H(K) * (Fraction(B, B - 1) ** M)
+    require(lhs < 2, f"{rid}: endpoint tail-control inequality fails")
+    verify_lhs(record, lhs)
+    return f"{rid}: pure Q5E2 C2=2 endpoint pi={endpoint} tail-controlled"
+
+
 def check_phi5_over_5_forced_prime_bound(record: Dict[str, Any], variable: str, lower_key: str, modulus: int, residue: int) -> str:
     """Check the Q5 Phi_5(x)/5 theorem-level forced-prime bound.
 
@@ -224,7 +257,8 @@ def check_q5_closure_dependencies(records_by_id: Dict[str, Dict[str, Any]]) -> L
             "q5e2_409_41_parametric_post_window_closure",
         ]:
             require(parametric_ok(records_by_id.get(rid, {}), "parametric_post_window_closure", "Q5E2"), f"Q5E2 parametric closure missing or invalid: {rid}")
-        messages.append("Q5E2 closure dependencies present")
+        messages.append(check_q5e2_pure_c2_tail_certificate(records_by_id))
+        messages.append("Q5E2 closure dependencies present, including pure C2=2")
 
     if "q5e1_first_domain" in records_by_id or "q5e1_pi_ge_1381_parametric_tail_closure" in records_by_id:
         messages.append(check_q5e1_finite_window(records_by_id))
