@@ -32,8 +32,8 @@
 \newcommand{\B}{\mathcal B}
 \newcommand{\K}{\mathcal K}
 \newcommand{\Hfun}{H}
-\newcommand{\CertRelease}{\ensuremath{\mathcal C^{(2026\text{-}07)}_{5,7,11,13,17}}}
 \newcommand{\Csmall}{\ensuremath{\mathcal C_{\mathrm{small}}}}
+\newcommand{\CertRelease}{\Csmall}
 \newcommand{\sha}[1]{\nolinkurl{#1}}
 \newcommand{\shasplit}[2]{\begin{tabular}[t]{@{}l@{}}{\ttfamily\tiny #1}\\[-1pt]{\ttfamily\tiny #2}\end{tabular}}
 \urlstyle{same}
@@ -179,13 +179,13 @@ branch calculation is carried out under Euler's form and the equation
 
 \begin{definition}[Frozen certificate release]
 \label{def:frozen-certificate-release}
-The symbol \(\CertRelease\) denotes the July 2026 release of the five small
-minimal-prime certificate packages used in this paper.  It consists of the
-bundle files, verifier files, expected terminal outputs, and SHA256 hashes
-listed in the reproducibility table in Section~\ref{sec:certificates}.  The
-word ``release'' is meant literally: the proof statements below are relative to
-these frozen files, not to whatever local working copy may exist later.  For
-readability, after this definition we also write \(\Csmall := \CertRelease\).
+Let \(\Csmall\) denote the immutable certificate release with release identifier
+\texttt{C-small-2026-07}.  It consists of the bundle files, verifier files,
+expected terminal outputs, and SHA256 hashes listed in the reproducibility
+table in Section~\ref{sec:certificates}.  The word ``release'' is meant
+literally: the proof statements below are relative to these frozen files, not
+to whatever local working copy may exist later.  The subscript ``small'' refers
+to the five minimal-prime branches \(q=5,7,11,13,17\).
 \end{definition}
 
 \begin{definition}[Release branch inventory]
@@ -839,8 +839,7 @@ verifier &
 \\
 \bottomrule
 \end{tabularx}
-\caption{Reproducibility table for the frozen certificate release
-\(\Csmall=\CertRelease\).}
+\caption{Reproducibility table for the frozen certificate release \(\Csmall\).}
 \label{tab:reproducibility-release}
 \end{table}
 \FloatBarrier
