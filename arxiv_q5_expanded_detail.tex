@@ -1,166 +1,74 @@
 ﻿\subsection{A preliminary Euler-residue child in the case $q=5$}
 
 We first eliminate the preliminary Euler-residue child in the branch
-\[
-  \min S=5,
-\]
-namely the branch in which the Euler prime is congruent to \(2\) modulo \(3\).
+\(\min S=5\), namely the branch in which the Euler prime is congruent to
+\(2\) modulo \(3\).
 This does not yet close the full \(q=5\) branch; the full closure is obtained
 after the three \(5\)-input children are closed.
 
 \begin{definition}[The bad Euler branch in the case $\min S=5$]
 Let $\mathcal B_{5,\pi\equiv 2(3)}$ denote the branch with the following data:
-\[
-  \tau(\mathcal B_{5,\pi\equiv 2(3)})=\mathsf{small}(5),
-\]
-so that
-\[
-  \min S=5.
-\]
-The branch also records that the Euler prime $\pi$ satisfies
-\[
-  \pi\equiv 2\pmod 3
-\]
-and that its exponent $\alpha$ satisfies the Euler schema
-\[
-  \alpha\equiv 1\pmod 4.
-\]
+\(\tau(\mathcal B_{5,\pi\equiv 2(3)})=\mathsf{small}(5)\), so that
+\(\min S=5\).  The branch also records that the Euler prime \(\pi\) satisfies
+\(\pi\equiv2\pmod3\), and that its exponent \(\alpha\) satisfies the Euler
+schema \(\alpha\equiv1\pmod4\).
 \end{definition}
 
 \begin{proposition}[Closed $q=5$ branch: Euler prime $2$ modulo $3$]
 \label{prop:q5-euler-2mod3-empty}
-The branch
-\[
-  \mathcal B_{5,\pi\equiv 2(3)}
-\]
-has no realization by an odd perfect number.  Equivalently, if
-\[
-  \min S=5,
-\]
-then the Euler prime must satisfy
-\[
-  \pi\equiv 1\pmod 3.
-\]
+The branch \(\mathcal B_{5,\pi\equiv 2(3)}\) has no realization by an odd
+perfect number.  Equivalently, if \(\min S=5\), then the Euler prime must
+satisfy \(\pi\equiv1\pmod3\).
 \end{proposition}
 
 \begin{proof}
-Assume for contradiction that $N$ realizes
-\[
-  \mathcal B_{5,\pi\equiv 2(3)}.
-\]
-Since
-\[
-  \min S=5,
-\]
-the prime $3$ is not in the support:
-\[
-  3\notin S.
-\]
-Therefore lower-prime avoidance with $\ell=3$ applies to every prime power in
-the support.  In particular,
-\[
-  \operatorname{Avoid}_3(\pi,\alpha)
-\]
-must hold.
-
-But the branch assumes
-\[
-  \pi\equiv2\pmod3.
-\]
-Hence
-\[
-  \ord_3(\pi)=2.
-\]
-Since $\pi$ is the Euler prime, its exponent satisfies
-\[
-  \alpha\equiv1\pmod4.
-\]
-Thus
-\[
-  \alpha+1\equiv2\pmod4,
-\]
-and in particular
-\[
-  2\mid \alpha+1.
-\]
-By the cyclotomic input condition, this gives
-\[
-  3\mid \sigma(\pi^\alpha).
-\]
-Equivalently,
-\[
-  v_3(\sigma(\pi^\alpha))>0.
-\]
-This contradicts lower-prime avoidance, which requires
-\[
-  v_3(\sigma(\pi^\alpha))=0.
-\]
+Assume for contradiction that \(N\) realizes
+\(\mathcal B_{5,\pi\equiv 2(3)}\).  Since \(\min S=5\), the prime \(3\) is
+not in the support, so lower-prime avoidance with \(\ell=3\) applies to every
+prime power in the support.  In particular,
+\(\operatorname{Avoid}_3(\pi,\alpha)\) must hold.  But the branch assumes
+\(\pi\equiv2\pmod3\), hence \(\ord_3(\pi)=2\).  Since \(\pi\) is the Euler
+prime, its exponent satisfies \(\alpha\equiv1\pmod4\).  Thus
+\(\alpha+1\equiv2\pmod4\), and in particular \(2\mid\alpha+1\).  By the
+cyclotomic input condition, this gives \(3\mid\sigma(\pi^\alpha)\), equivalently
+\(v_3(\sigma(\pi^\alpha))>0\).  This contradicts lower-prime avoidance, which
+requires \(v_3(\sigma(\pi^\alpha))=0\).
 Therefore no odd perfect number realizes the branch
 $\mathcal B_{5,\pi\equiv 2(3)}$.
 \end{proof}
 
 \begin{corollary}[The minimal prime $5$ is non-Euler]
 \label{cor:q5-minimal-prime-non-euler}
-If $N$ is an odd perfect number with
-\[
-  \min S=5,
-\]
-then $5$ is not the Euler prime.  Consequently
-\[
-  e_5\equiv0\pmod2.
-\]
+If \(N\) is an odd perfect number with \(\min S=5\), then \(5\) is not the
+Euler prime.  Consequently \(e_5\equiv0\pmod2\).
 \end{corollary}
 
 \begin{proof}
-The prime $5$ satisfies
-\[
-  5\equiv2\pmod3.
-\]
+The prime \(5\) satisfies \(5\equiv2\pmod3\).
 If $5$ were the Euler prime, then the Euler prime would lie in the refuted branch
 of Proposition~\ref{prop:q5-euler-2mod3-empty}.  This is impossible.  Hence $5$
 is non-Euler, and by Euler's form its exponent is even:
-\[
-  e_5\equiv0\pmod2.
-\]
+\(e_5\equiv0\pmod2\).
 \end{proof}
 
 \begin{corollary}[First coverage split in the $q=5$ branch]
 \label{cor:q5-first-coverage-split}
-In the branch
-\[
-  \mathsf{small}(5),
-\]
-the split
-\[
-  \pi\equiv1\pmod3
-  \qquad\text{or}\qquad
-  \pi\equiv2\pmod3
-\]
-is complete.  The second child is refuted by
+In the branch \(\mathsf{small}(5)\), the split \(\pi\equiv1\pmod3\) or
+\(\pi\equiv2\pmod3\) is complete.  The second child is refuted by
 Proposition~\ref{prop:q5-euler-2mod3-empty}.  Hence every surviving
-$q=5$ branch satisfies
-\[
-  \pi\equiv1\pmod3.
-\]
+\(q=5\) branch satisfies \(\pi\equiv1\pmod3\).
 \end{corollary}
 
 \begin{proof}
-Since $\pi\ne3$ and $\pi$ is an odd prime, exactly one of
-\[
-  \pi\equiv1\pmod3,
-  \qquad
-  \pi\equiv2\pmod3
-\]
-holds.  Proposition~\ref{prop:q5-euler-2mod3-empty} refutes the second case.
+Since \(\pi\ne3\) and \(\pi\) is an odd prime, exactly one of
+\(\pi\equiv1\pmod3\) and \(\pi\equiv2\pmod3\) holds.
+Proposition~\ref{prop:q5-euler-2mod3-empty} refutes the second case.
 \end{proof}
 
 \begin{lemma}[Surviving exponent schemas in the branch $\min S=5$]
 \label{lem:q5-surviving-exponent-schemas}
-Assume that $N$ is an odd perfect number with
-\[
-  \min S=5.
-\]
-Let $\pi$ be the Euler prime, with Euler exponent $\alpha$.
+Assume that \(N\) is an odd perfect number with \(\min S=5\).  Let \(\pi\) be
+the Euler prime, with Euler exponent \(\alpha\).
 
 Then the following constraints hold.
 
@@ -181,16 +89,10 @@ Then the following constraints hold.
         \qquad
         e_5\ge2.
       \]
-      Equivalently,
-      \[
-        e_5+1
-      \]
-      is odd.
+      Equivalently, \(e_5+1\) is odd.
 
 \item Let $p\in S$, $p\ne5$, be non-Euler.  Then
-      \[
-        e_p\equiv0\pmod2.
-      \]
+      \(e_p\equiv0\pmod2\).
       The lower-prime avoidance condition for $\ell=3$ is:
       \[
         \begin{cases}
@@ -205,10 +107,7 @@ Then the following constraints hold.
         \qquad\text{and}\qquad
         5\mid e_p+1.
       \]
-      In that case
-      \[
-        v_5(\sigma(p^{e_p}))=v_5(e_p+1).
-      \]
+      In that case \(v_5(\sigma(p^{e_p}))=v_5(e_p+1)\).
 
 \item The Euler prime $\pi$ is a $5$-input prime precisely in the following two
       cases:
@@ -221,10 +120,7 @@ Then the following constraints hold.
       \[
         \pi\equiv -1\pmod5.
       \]
-      In the first case
-      \[
-        v_5(\sigma(\pi^\alpha))=v_5(\alpha+1).
-      \]
+      In the first case \(v_5(\sigma(\pi^\alpha))=v_5(\alpha+1)\).
       In the second case
       \[
         v_5(\sigma(\pi^\alpha))
@@ -656,35 +552,13 @@ or
 \[
   \text{the Euler prime is a $5$-input witness}.
 \]
-More explicitly, every odd perfect number with
-\[
-  \min S=5
-\]
-realizes at least one of the following child branches:
-
-\[
-\mathbf{Q5N}:\quad
-\exists p\in S,\ p\ne5,\ p\ne\pi,\quad
-p\equiv1\pmod5,\quad
-5\mid e_p+1;
-\]
-
-\[
-\mathbf{Q5E1}:\quad
-\pi\equiv1\pmod5,\quad
-5\mid \alpha+1;
-\]
-
-\[
-\mathbf{Q5E2}:\quad
-\pi\equiv-1\pmod5.
-\]
-
-The complementary child branch, in which every prime
-\[
-  p\in S,\qquad p\ne5,
-\]
-is $5$-neutral, is empty.
+More explicitly, every odd perfect number with \(\min S=5\) realizes at least
+one of the following child branches: \(\mathbf{Q5N}\), where there is a
+non-Euler \(p\in S\) with \(p\ne5,\ p\ne\pi,\ p\equiv1\pmod5\), and
+\(5\mid e_p+1\); \(\mathbf{Q5E1}\), where \(\pi\equiv1\pmod5\) and
+\(5\mid\alpha+1\); or \(\mathbf{Q5E2}\), where \(\pi\equiv-1\pmod5\).  The
+complementary child branch, in which every prime \(p\in S\), \(p\ne5\), is
+\(5\)-neutral, is empty.
 \end{corollary}
 
 \begin{proof}
@@ -693,20 +567,12 @@ witness exists.
 
 If some $5$-input witness is non-Euler, then
 Lemma~\ref{lem:q5-first-input-classification} gives the child branch
-\[
-  \mathbf{Q5N}.
-\]
+\(\mathbf{Q5N}\).
 
 If no non-Euler witness exists, then some $5$-input witness must be the Euler
 prime $\pi$.  Lemma~\ref{lem:q5-first-input-classification} shows that the Euler
-witness is either of order one modulo $5$, giving
-\[
-  \mathbf{Q5E1},
-\]
-or of order two modulo $5$, giving
-\[
-  \mathbf{Q5E2}.
-\]
+witness is either of order one modulo \(5\), giving \(\mathbf{Q5E1}\), or of
+order two modulo \(5\), giving \(\mathbf{Q5E2}\).
 
 The branch in which all primes $p\ne5$ are $5$-neutral is exactly the branch
 refuted by Corollary~\ref{cor:q5-no-input-leaf-empty}.
@@ -723,10 +589,7 @@ realizes exactly one.
 
 \begin{remark}[Certificate data for the first $5$-input split]
 A certificate for the first $5$-input split records one of the following witness
-types:
-\[
-  \mathtt{Q5N},\qquad \mathtt{Q5E1},\qquad \mathtt{Q5E2}.
-\]
+types: \(\mathtt{Q5N}\), \(\mathtt{Q5E1}\), or \(\mathtt{Q5E2}\).
 For a \(\mathtt{Q5N}\) record the verifier checks
 \[
   p\ne5,\quad p\ne\pi,\quad p\equiv1\pmod5,\quad 5\mid e_p+1,
@@ -749,18 +612,9 @@ for the recorded witness.
 
 \begin{proposition}[Completeness of the first \(q=5\) coverage split]
 \label{prop:q5-first-input-three-child-coverage}
-Assume that \(N\) is an odd perfect number with
-\[
-  \min\{p:p\mid N\}=5.
-\]
+Assume that \(N\) is an odd perfect number with \(\min\{p:p\mid N\}=5\).
 Then \(N\) realizes at least one of the following three branch families:
-\[
-  \mathbf{Q5E2},
-  \qquad
-  \mathbf{Q5E1},
-  \qquad
-  \mathbf{Q5N}.
-\]
+\(\mathbf{Q5E2}\), \(\mathbf{Q5E1}\), and \(\mathbf{Q5N}\).
 More explicitly, at least one of the following alternatives holds.
 
 \[
@@ -790,16 +644,9 @@ p\ne5,\ p\ne\pi,
   5\mid e_p+1.
 \]
 
-Thus the three children
-\[
-  \mathbf{Q5E2},
-  \qquad
-  \mathbf{Q5E1},
-  \qquad
-  \mathbf{Q5N}
-\]
-form a complete coverage split of the \(q=5\) minimal-prime branch.  The split is
-a coverage split, not necessarily a disjoint split.
+Thus the three children \(\mathbf{Q5E2}\), \(\mathbf{Q5E1}\), and
+\(\mathbf{Q5N}\) form a complete coverage split of the \(q=5\) minimal-prime
+branch.  The split is a coverage split, not necessarily a disjoint split.
 \end{proposition}
 
 \begin{proof}
@@ -971,14 +818,8 @@ at least one child, not in exactly one child.
 \begin{corollary}[Reduction of the \(q=5\) branch to the three certified children]
 \label{cor:q5-reduction-to-three-certified-children}
 To exhaust the \(\CertRelease\) \(q=5\) minimal-prime branch it is enough to close
-the three child inventories
-\[
-  \mathbf{Q5E2},
-  \qquad
-  \mathbf{Q5E1},
-  \qquad
-  \mathbf{Q5N}.
-\]
+the three child inventories \(\mathbf{Q5E2}\), \(\mathbf{Q5E1}\), and
+\(\mathbf{Q5N}\).
 In particular, if each of these three child inventories has no remaining
 reduced, unresolved, or delegated terminal obligation, then the \(\CertRelease\)
 \(q=5\) branch inventory is exhausted.
@@ -987,17 +828,8 @@ reduced, unresolved, or delegated terminal obligation, then the \(\CertRelease\)
 \begin{proof}
 By Proposition~\ref{prop:q5-first-input-three-child-coverage}, every odd perfect
 number in the branch
-\[
-  \min\{p:p\mid N\}=5
-\]
-realizes at least one of
-\[
-  \mathbf{Q5E2},
-  \qquad
-  \mathbf{Q5E1},
-  \qquad
-  \mathbf{Q5N}.
-\]
+\(\min\{p:p\mid N\}=5\) realizes at least one of \(\mathbf{Q5E2}\),
+\(\mathbf{Q5E1}\), and \(\mathbf{Q5N}\).
 If all three child inventories are closed, then no realization remains in any
 child.  Since the children cover the parent branch, no realization remains in
 the \(q=5\) branch.
@@ -1008,11 +840,8 @@ the \(q=5\) branch.
 \subsubsection{Forced extensions in the first $5$-input branches}
 
 We now attach the first forced cyclotomic obligations to the three child
-branches
-\[
-  \mathbf{Q5N},\qquad \mathbf{Q5E1},\qquad \mathbf{Q5E2}
-\]
-from Corollary~\ref{cor:q5-first-input-coverage-split}.
+branches \(\mathbf{Q5N}\), \(\mathbf{Q5E1}\), and \(\mathbf{Q5E2}\) from
+Corollary~\ref{cor:q5-first-input-coverage-split}.
 
 \begin{lemma}[Forced extension in the branch $\mathbf{Q5N}$]
 \label{lem:q5n-forced-extension}
@@ -2178,48 +2007,28 @@ is automatically non-Euler.
 
 We now prove the first complete small-prime branch closure in the present
 certificate system.  Throughout this section we work under the minimal-prime
-hypothesis
-\[
-  q=\min\{p:p\mid N\}=5.
-\]
+hypothesis \(q=\min\{p:p\mid N\}=5\).
 The first \(5\)-input coverage split reduces this branch to the three child
-inventories
-\[
-  \mathbf{Q5E2},
-  \qquad
-  \mathbf{Q5E1},
-  \qquad
-  \mathbf{Q5N}.
-\]
+inventories \(\mathbf{Q5E2}\), \(\mathbf{Q5E1}\), and \(\mathbf{Q5N}\).
 The split is a coverage split, not a disjoint split: every hypothetical odd
 perfect number with smallest prime divisor \(5\) realizes at least one of these
 three children.
 
 The purpose of this section is to close the three child inventories separately
 and then combine them into a closure theorem for the \(\CertRelease\) \(q=5\)
-branch inventory.  The child closures are proved in the following order:
-\[
-  \mathbf{Q5E2},
-  \qquad
-  \mathbf{Q5E1},
-  \qquad
-  \mathbf{Q5N}.
-\]
+branch inventory.  The child closures are proved in the order
+\(\mathbf{Q5E2}\), then \(\mathbf{Q5E1}\), then \(\mathbf{Q5N}\).
 Finally, Theorem~\ref{thm:q5-current-branch-inventory-closed} combines the three
 closures with the first \(5\)-input coverage split.
 
 
 \subsection{Closure of the \(\mathbf{Q5E2}\) successor inventory}
 
-We first close the order-two Euler-input child branch 
-\[ 
-\mathbf{Q5E2}:\qquad \pi\equiv-1\pmod5. 
-\] 
+We first close the order-two Euler-input child branch \(\mathbf{Q5E2}\), where
+\(\pi\equiv-1\pmod5\).
 After the frozen first-window archive, the release terminal
 \(\mathbf{Q5E2}\) successor inventory has four post-window pairs:
-\[ 
-(109,11), \qquad (229,23), \qquad (349,7), \qquad (409,41). 
-\] 
+\((109,11)\), \((229,23)\), \((349,7)\), and \((409,41)\).
 The finite part of each pair is checked by an aggregation-safe successor archive, while the infinite tail is closed by a parametric Zsigmondy--tail certificate.
 
 \begin{table}[ht]
@@ -2258,10 +2067,7 @@ with parametric post-window certificates.}
 
 \begin{criterion}[Parametric post-window closure for \((\pi,r)=(349,7)\)]
 \label{crit:q5e2-pi349-r7-parametric-post-window}
-Work in the \(\mathbf{Q5E2}\) successor branch with
-\[
-  (\pi,r)=(349,7).
-\]
+Work in the \(\mathbf{Q5E2}\) successor branch with \((\pi,r)=(349,7)\).
 Let \(e_7\ge94\) be even and put
 \[
   n:=e_7+1.
