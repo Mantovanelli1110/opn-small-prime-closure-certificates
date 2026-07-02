@@ -89,7 +89,9 @@ An odd perfect number is a positive odd integer \(N\) satisfying
 where \(\sigma\) denotes the sum of divisors.  The existence of odd perfect
 numbers is one of the classical open problems in number theory; Deza's book
 \cite{Deza2022} gives a broad account of the surrounding perfect-number and
-amicable-number landscape.  Euler proved that any such \(N\) has the form
+amicable-number landscape, and Cai's monograph \cite{Cai2022} surveys perfect
+numbers alongside Fibonacci sequences and related recurrences.  Euler proved
+that any such \(N\) has the form
 \[
   N=\pi^\alpha M^2,\qquad
   \pi\equiv \alpha\equiv1\pmod4,\qquad (\pi,M)=1,
@@ -102,17 +104,33 @@ nonexistence proof.  Nielsen proved that every odd perfect number has at least
 nine distinct prime factors and later developed related Diophantine and
 upper-bound methods \cite{Nielsen2007,Nielsen2015}.  Ochem and Rao proved the
 landmark lower bound \(N>10^{1500}\) and strong multiplicity constraints
-\cite{OchemRao2012}.
-Goto--Ohno and Iannucci established large-prime-factor lower bounds
-\cite{GotoOhno2008,Iannucci1999,Iannucci2000}.  More recent work of Zelinsky,
-Bibby--Vyncke--Zelinsky, Clayton--Hansen, and Stone gives further constraints
-on prime counts, largest prime factors, reciprocal abundance, and
-smallest-prime behavior
-\cite{Zelinsky2019,Zelinsky2021,Zelinsky2023SmallPrimes,
-BibbyVynckeZelinsky2021,ClaytonHansen2023,Stone2024,
-Zelinsky2025ReciprocalPrimeDivisors}.  The present paper uses these results
-only as branch filters and consistency checks; the actual branch closures below
-are driven by valuation-labeled cyclotomic input and finite certificates.
+\cite{OchemRao2012}.  Writing \(p_1<p_2<\cdots<p_k\) for the distinct prime
+divisors of a hypothetical odd perfect number, Goto--Ohno
+proved \(p_k>10^8\), while Iannucci proved \(p_{k-1}>10^4\) and
+\(p_{k-2}>100\) \cite{GotoOhno2008,Iannucci1999,Iannucci2000}.  In the opposite
+direction, Zelinsky proved \(p_{k-1}<(2N)^{1/5}\) and
+\(p_{k-1}p_k<6^{1/4}N^{1/2}\), and Bibby--Vyncke--Zelinsky proved
+\(p_{k-2}<(2N)^{1/6}\) and \(p_{k-2}p_{k-1}p_k<(2N)^{3/5}\)
+\cite{Zelinsky2019,BibbyVynckeZelinsky2021}.  For prime-factor counts, Zelinsky
+and Clayton--Hansen sharpened inequalities relating the number \(\omega(N)\) of
+distinct prime factors to the total number \(\Omega(N)\) counted with
+multiplicity; for example Clayton--Hansen proved
+\[
+  \frac{99}{37}\omega(N)-\frac{187}{37}\le \Omega(N),
+  \qquad
+  3\nmid N\Rightarrow
+  \frac{46}{19}\omega(N)-\frac{51}{19}\le \Omega(N)
+\]
+\cite{Zelinsky2021,ClaytonHansen2023}.  Zelinsky also obtained lower bounds for
+the number of distinct prime factors in terms of the second, third, and fourth
+smallest prime factors, Stone proved improved product bounds and
+\(p_1<3k/7+3\) for the smallest prime divisor, and Zelinsky bounded the
+reciprocal sum \(T(N)=\sum_{p\mid N}1/p\) and the product
+\(H(N)=\prod_{p\mid N}p/(p-1)\) in terms of \(p_1\)
+\cite{Zelinsky2023SmallPrimes,Stone2024,Zelinsky2025ReciprocalPrimeDivisors}.
+The present paper uses these results only as branch filters and consistency
+checks; the actual branch closures below are driven by valuation-labeled
+cyclotomic input and finite certificates.
 
 The present paper concerns only a finite list of minimal-prime branches.  Write
 \(S=\{p:p\mid N\}\), \(q=\min S\), and
