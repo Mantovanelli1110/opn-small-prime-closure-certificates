@@ -54,9 +54,12 @@ Independent Researcher\\[0.5em]
 For an odd perfect number \(N\), write
 \(q=\min\{p:p\mid N\}\) for its smallest prime divisor.  This paper closes the
 five certified minimal-prime branches
-\(q=5,7,11,13,17\): every branch generated from the exact \(q\)-adic valuation
-balance for \(\sigma(N)=2N\) and the lower-prime avoidance constraints
-terminates before a compatible branch realization can occur.  The valuation
+\(q=5,7,11,13,17\).  This is a least-prime-divisor assertion: it does not rule
+out the occurrence of these primes in a hypothetical odd perfect number whose
+smallest prime divisor is smaller.  In each of the five branches, every case
+generated from the exact \(q\)-adic valuation balance for \(\sigma(N)=2N\) and
+the lower-prime avoidance constraints terminates before a compatible branch
+realization can occur.  The valuation
 balance specifies the \(q\)-adic contribution that must be supplied by
 cyclotomic factors \(\sigma(p^e)\), while lower-prime avoidance forbids any
 support prime below \(q\) from appearing in those factors.  Together these
@@ -128,9 +131,19 @@ smallest prime factors, Stone proved improved product bounds and
 reciprocal sum \(T(N)=\sum_{p\mid N}1/p\) and the product
 \(H(N)=\prod_{p\mid N}p/(p-1)\) in terms of \(p_1\)
 \cite{Zelinsky2023SmallPrimes,Stone2024,Zelinsky2025ReciprocalPrimeDivisors}.
-In this work, these results serve only as branch filters and consistency
-checks; the closures below are driven by valuation-labeled cyclotomic input and
-finite certificates.
+
+The result proved here is different in kind from these global filters.  It is
+not a new lower bound for \(N\), for \(\omega(N)\), or for the largest prime
+divisors, and it is not a divisibility exclusion such as ``\(5\nmid N\)''.  It
+is an exact closure of five least-prime-divisor branches.  Thus the \(q=5\)
+branch is the case \(5\mid N\) and \(3\nmid N\); a hypothetical odd perfect
+number divisible by both \(3\) and \(5\) would belong to the \(q=3\) branch, not
+to the \(q=5\) branch.  To the author's knowledge, the sources cited above do
+not state the finite exhaustion of the exact minimal-prime branches
+\(q=5,7,11,13,17\) in the certificate sense used below.  In this paper,
+published results serve only as branch filters and consistency checks; the
+closures themselves are driven by valuation-labeled cyclotomic input and finite
+certificates.
 
 We restrict attention to a finite list of minimal-prime branches.  Write
 \(S=\{p:p\mid N\}\), \(q=\min S\), and
@@ -604,6 +617,20 @@ valuation labels, pure-screen records, endpoint records, and exact rational
 inequalities.  The upper layer is a master-wrapper layer: it checks that the
 expected records are present, that their labels match the mathematical coverage
 split, and that no release leaf remains unresolved.
+
+For auditability, the division of labour is deliberately narrow.  The
+handwritten proof establishes Euler-form reductions, the \(q\)-adic valuation
+balance, lower-prime avoidance, the forced-prime alternative, the tail-envelope
+lemma, and the final implication from certified leaf exhaustion to branch
+closure.  The machine layer checks only the frozen finite data: coverage labels,
+factorizations, order and valuation records, the pure Diophantine screen
+records in Table~\ref{tab:pure-screen-details}, the tail-count records
+including the release value \(M=18\), and the exact rational endpoint and tail
+inequalities required by the checker contract in Criterion~\ref{crit:master-wrapper}.
+In particular, the scripts do not discover new branches during verification;
+they verify that the listed frozen branch inventories are complete and that
+each listed terminal leaf has an accepted certificate reason for rejection or
+tail control.
 
 In particular, the \(q=17\) verifier in \(\Csmall\) is explicitly a
 master-wrapper verifier.  It verifies the frontier labels, record types,
