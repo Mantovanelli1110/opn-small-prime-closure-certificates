@@ -1,7 +1,7 @@
 q	artifact	file	sha256	expected_terminal_output
 -	release-control	.gitattributes	a41830927ee697c2e237e78b478ba79e04b7e6429e85718a98250f74458a4f29	-
 -	release-control	.gitignore	fb6b6f9229c406d28e3f8f6841c7ae1428d3bb01c6f69c71cf32d4d209e1ad6f	-
--	paper-source	arxiv_q5_q17_closure.tex	3550c6ae251da5cf3db702226179ca12a4094a6379a263f55158c3a080b25554	-
+-	paper-source	arxiv_q5_q17_closure.tex	b3405115287201f84d52da047657dd5781da3e1b0ef7ab7d934dda97c3966873	-
 -	paper-source	arxiv_q5_expanded_detail.tex	3074e1219683165e991a9c6a4503932db66b60580d8f98cfab6e18b46c21e553	-
 -	bibliography	references.bib	9c90d894328497220ae41ca30980039feab4ff0adc3e3da717552fc1c5f6702a	-
 -	metadata	README.md	eb2fef0aaec810b58a9f8a4dbc1795c1c328d7e31f8044547218883f28aca33e	-
