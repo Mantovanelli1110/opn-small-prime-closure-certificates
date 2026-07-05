@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use these certificates or verifier scripts, please cite the accompanying paper."
-title: "Certified Closures of the Remaining Small Minimal-Prime Branches for Odd Perfect Numbers"
+title: "Every Odd Perfect Number Must Be Divisible by 3"
 authors:
   - family-names: "Mantovanelli"
     given-names: "Marco"
@@ -13,7 +13,7 @@ repository-code: "https://github.com/Mantovanelli1110/opn-small-prime-closure-ce
 url: "https://github.com/Mantovanelli1110/opn-small-prime-closure-certificates/releases/tag/C-small-2026-07"
 preferred-citation:
   type: article
-  title: "Certified Closures of the Remaining Small Minimal-Prime Branches for Odd Perfect Numbers"
+  title: "Every Odd Perfect Number Must Be Divisible by 3"
   authors:
     - family-names: "Mantovanelli"
       given-names: "Marco"

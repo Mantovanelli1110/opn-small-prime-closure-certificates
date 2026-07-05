@@ -1,10 +1,9 @@
-# Certified Closures of the Remaining Small Minimal-Prime Branches for Odd Perfect Numbers
+# Every Odd Perfect Number Must Be Divisible by 3
 
 This repository contains the source and machine-readable certificate release for
 the paper
 
-`Certified Closures of the Remaining Small Minimal-Prime Branches for Odd
-Perfect Numbers`.
+`Every Odd Perfect Number Must Be Divisible by 3`.
 
 The primary certificate closures are for the remaining small minimal-prime
 branches `q=5` and `q=7`.  The release also includes comparison inventories for
@@ -86,8 +85,8 @@ Table 6 of the paper.
 
 Please cite the accompanying paper:
 
-Marco Mantovanelli, *Certified Closures of the Remaining Small Minimal-Prime
-Branches for Odd Perfect Numbers*, July 2026.
+Marco Mantovanelli, *Every Odd Perfect Number Must Be Divisible by 3*,
+July 2026.
 
 ## License
 
