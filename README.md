@@ -1,9 +1,14 @@
-# Certified Minimal-Prime Branch Closures for Odd Perfect Numbers
+# Certified Closures of the Remaining Small Minimal-Prime Branches for Odd Perfect Numbers
 
 This repository contains the source and machine-readable certificate release for
 the paper
 
-`Certified Minimal-Prime Branch Closures for Odd Perfect Numbers`.
+`Certified Closures of the Remaining Small Minimal-Prime Branches for Odd
+Perfect Numbers`.
+
+The primary certificate closures are for the remaining small minimal-prime
+branches `q=5` and `q=7`.  The release also includes comparison inventories for
+the literature-closed branches `q=11,13,17`.
 
 The frozen certificate release is
 
@@ -62,7 +67,9 @@ sha256sum -c SHA256SUMS.txt
 
 ## Reproduction Commands
 
-Run these commands from the repository root:
+Run these commands from the repository root.  The first two commands are the
+primary certificate closures; the last three reproduce the comparison
+inventories for the literature-closed branches.
 
 ```bash
 python q5_branch_closure_verifier_strict.py q5_master_bundle.jsonl
@@ -79,8 +86,8 @@ Table 6 of the paper.
 
 Please cite the accompanying paper:
 
-Marco Mantovanelli, *Certified Minimal-Prime Branch Closures for Odd Perfect
-Numbers*, July 2026.
+Marco Mantovanelli, *Certified Closures of the Remaining Small Minimal-Prime
+Branches for Odd Perfect Numbers*, July 2026.
 
 ## License
 
