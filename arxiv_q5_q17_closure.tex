@@ -183,7 +183,9 @@ The contribution of this paper is threefold.  First, it isolates the
 minimal-prime branch problem from the full odd-perfect-number problem.  Second,
 it gives a uniform valuation-and-avoidance mechanism for the branches
 \(q=5,7,11,13,17\).  Third, it records a frozen, reproducible certificate
-release whose verifiers exhaust all terminal branch inventories.
+release whose verifiers exhaust all terminal branch inventories, and it makes
+explicit the checker contract by which the finite machine layer is connected
+to the handwritten lemmas.
 
 \section{Minimal-Prime Branches and Scope}
 \label{sec:scope}
@@ -642,6 +644,50 @@ they verify that the listed frozen branch inventories are complete and that
 each listed terminal leaf has an accepted certificate reason for rejection or
 tail control.
 
+\begin{table}[ht]
+\centering
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.22\textwidth}|
+  >{\raggedright\arraybackslash}X|
+  >{\raggedright\arraybackslash}X}
+\toprule
+proof component & audited in the paper & checked in the frozen release\\
+\midrule
+first-level branch coverage &
+Lemmas~\ref{lem:q-input-exists} and~\ref{lem:allowed-input-orders},
+Proposition~\ref{prop:general-coverage-split}, and the explicit
+\(q=5\) split in Proposition~\ref{prop:q5-coverage} &
+the master wrappers require the expected root split labels:
+three top-level \(q=5\) children, six \(q=7\) children, six \(q=11\) children,
+six \(q=13\) children, and three \(q=17\) children\\
+\midrule
+terminal arithmetic reasons &
+lower-prime avoidance, forced-prime alternative, pure-row mechanism, and the
+tail-envelope lemma &
+factorizations, orders, valuation labels, pure-screen solution sets, endpoint
+checks, and exact rational tail inequalities\\
+\midrule
+inventory completeness &
+the paper lists the coverage labels and terminal frontier tables used by each
+branch theorem &
+each branch wrapper rejects missing, duplicate, unresolved, or undelegated
+terminal labels and prints the stated branch-exhaustion output only after all
+expected records are accepted\\
+\midrule
+tail-count data &
+Definition~\ref{def:tail-count-certificate} states the mathematical obligation
+carried by \(B\) and \(M\), and Lemma~\ref{lem:tail-envelope} proves the
+resulting contradiction &
+each tail record exposes \(K_{\rm env}\), \(B\), \(M\), and the numerator and
+denominator of the exact value
+\(\Hfun(K_{\rm env})(B/(B-1))^M\), which the verifier recomputes\\
+\bottomrule
+\end{tabularx}
+\caption{Audit boundary between the handwritten proof and the frozen
+certificate release.}
+\label{tab:audit-boundary}
+\end{table}
+
 In particular, the \(q=17\) verifier in \(\Csmall\) is explicitly a
 master-wrapper verifier.  It verifies the frontier labels, record types,
 endpoint inequalities, coverage wrapper, and the small endpoint certificates in
@@ -749,6 +795,24 @@ master wrapper accepts the final tail inequality only after that record has
 been checked.  The proof does not require \(M=18\) to be optimal.
 \end{definition}
 
+\begin{remark}[Auditing the tail-count parameter]
+\label{rem:tail-count-audit}
+The role of \(M\) is deliberately local.  A tail-count record is accepted only
+for the specific node, kernel tuple, and branch ledger named in that record.
+For numerical tail records the verifier recomputes the prime kernel
+\(K_{\rm env}\), the value \(\Hfun(K_{\rm env})\), and the rational number
+\[
+  \Hfun(K_{\rm env})\left(\frac{B}{B-1}\right)^M.
+\]
+It then checks the supplied numerator, denominator, and truth value of the
+inequality against the recomputed value.  Thus the frequently occurring
+\(B=59,\ M=18\) strict-frontier budget is not inferred from a hidden global
+upper bound on \(\omega(N)\); it is a finite certificate obligation attached to
+the relevant terminal records.  Some \(q=5\) child archives use different
+recorded budgets, and the argument uses only the value present in the accepted
+record.
+\end{remark}
+
 \begin{criterion}[Master-wrapper soundness]
 \label{crit:master-wrapper}
 A master wrapper closes a branch when it verifies all of the following:
@@ -762,6 +826,41 @@ pure-tail closure, or certified child archive;
 child archive.
 \end{enumerate}
 \end{criterion}
+
+\begin{proposition}[Soundness of the certified inventory contract]
+\label{prop:certified-inventory-soundness}
+Fix \(q\in\{5,7,11,13,17\}\).  Suppose the handwritten coverage split for the
+branch \(q=\min S\) is one of the splits proved in
+Proposition~\ref{prop:general-coverage-split} or
+Proposition~\ref{prop:q5-coverage}, and suppose the corresponding master
+wrapper satisfies Criterion~\ref{crit:master-wrapper}.  Then no formal
+odd-perfect-number realization in that branch is compatible with the frozen
+\(\Csmall\)-branch inventory.
+\end{proposition}
+
+\begin{proof}
+Assume, for contradiction, that a realization in the branch \(q=\min S\)
+survives the certified inventory.  The handwritten coverage split sends it to
+at least one listed child.  Following the finite coverage records in the
+inventory, the master wrapper must eventually place this child in a terminal
+leaf or in a certified child archive; by Criterion~\ref{crit:master-wrapper},
+there is no unlisted or undelegated terminal alternative.
+
+At an accepted terminal leaf there are only the certificate reasons listed in
+the contract.  A lower-prime refutation contradicts
+Lemma~\ref{lem:lower-prime-cofactor-refutation}.  A forced-prime terminal
+uses Lemma~\ref{lem:forced-prime-alternative} to insert the recorded support
+prime or support-prime lower bound, and then applies
+Lemma~\ref{lem:tail-envelope} to the checked tail inequality.  A pure
+Diophantine terminal is either one of the solution-set exclusions in
+Table~\ref{tab:pure-screen-details}, or a pure-kernel tail terminal, again
+closed by Lemma~\ref{lem:tail-envelope}.  A delegated child archive is handled
+by the same argument applied to the child archive; the archive records are
+finite and the wrapper accepts only after all of their terminal leaves have
+accepted reasons.  Hence every possible terminal continuation contradicts one
+of the handwritten lemmas together with an exactly checked certificate
+obligation.  This contradicts the assumed surviving realization.
+\end{proof}
 
 \begin{table}[ht]
 \centering
@@ -1044,7 +1143,8 @@ The strict wrapper verifies these dependencies and prints the terminal summary
 \end{gathered}
 \]
 Thus no certified leaf remains in any child, and the three children cover the
-parent branch.
+parent branch.  Proposition~\ref{prop:certified-inventory-soundness} converts
+this verified inventory exhaustion into the asserted branch closure.
 \end{proof}
 
 \section{Audit Trail for the \(q=5\) Closure}
@@ -1146,6 +1246,8 @@ followed by
   \mathtt{q=7\ branch\ inventory\ exhausted}.
 \]
 Thus every child in the complete \(q=7\) coverage split is closed.
+Proposition~\ref{prop:certified-inventory-soundness} converts the verified
+six-leaf inventory into the asserted branch closure.
 \end{proof}
 
 \section{Closure of the \(q=11\) Branch}
@@ -1232,6 +1334,8 @@ and
   \mathtt{q=11\ branch\ inventory\ exhausted}.
 \]
 Therefore all children in the complete \(q=11\) split are closed.
+Proposition~\ref{prop:certified-inventory-soundness} gives the asserted
+branch closure.
 \end{proof}
 
 \section{Closure of the \(q=13\) Branch}
@@ -1315,6 +1419,8 @@ and
   \mathtt{q=13\ branch\ inventory\ exhausted}.
 \]
 Hence every child of the complete \(q=13\) coverage split is closed.
+Proposition~\ref{prop:certified-inventory-soundness} gives the asserted
+branch closure.
 \end{proof}
 
 \section{Closure of the \(q=17\) Branch}
@@ -1402,6 +1508,8 @@ followed by
   \mathtt{q=17\ branch\ inventory\ exhausted}.
 \]
 Thus every child in the complete \(q=17\) split is closed.
+Proposition~\ref{prop:certified-inventory-soundness} gives the asserted
+branch closure.
 \end{proof}
 
 \section{Final Branch-Closure Statement}

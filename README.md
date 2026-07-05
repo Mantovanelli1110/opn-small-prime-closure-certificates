@@ -45,6 +45,19 @@ Before running the verifiers, check the frozen release hashes:
 sha256sum -c SHA256SUMS.txt
 ```
 
+On Windows PowerShell, the same check can be performed with:
+
+```powershell
+Get-Content SHA256SUMS.txt | ForEach-Object {
+  if ($_ -match '^([0-9a-fA-F]{64})\s+(.+)$') {
+    $expected = $matches[1].ToLowerInvariant()
+    $file = $matches[2]
+    $actual = (Get-FileHash -Algorithm SHA256 -LiteralPath $file).Hash.ToLowerInvariant()
+    if ($actual -ne $expected) { throw "SHA256 mismatch: $file" }
+  }
+}
+```
+
 The release check for this revision is: first verify that all entries in
 `SHA256SUMS.txt` match, then run the five verifier commands below.  The frozen
 release was checked in that order.
