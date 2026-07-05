@@ -38,7 +38,7 @@
 \newcommand{\shasplit}[2]{\begin{tabular}[t]{@{}l@{}}{\ttfamily\tiny #1}\\[-1pt]{\ttfamily\tiny #2}\end{tabular}}
 \urlstyle{same}
 
-\title{Every Odd Perfect Number Must Be Divisible by 3}
+\title{Certified Minimal-Prime Branch Closures for Odd Perfect Numbers}
 \author{
 Marco Mantovanelli\\
 Independent Researcher\\[0.5em]
@@ -52,26 +52,27 @@ Independent Researcher\\[0.5em]
 
 \begin{abstract}
 For an odd perfect number \(N\), write
-\(q=\min\{p:p\mid N\}\) for its smallest prime divisor.  Gr{\"u}n's upper
-bound for \(q\) in terms of \(\omega(N)\), combined with Nielsen's theorem
-\(\omega(N)\ge 9\), already implies \(q<8\); hence the remaining possible
-minimal-prime branches are \(q=3,5,7\).  This paper gives
-certificate-based closures for the minimal-prime branches \(q=5\) and \(q=7\).
-These are least-prime-divisor assertions: they do not
-rule out divisibility by \(5\) or \(7\) for a hypothetical odd perfect number
-whose smallest prime divisor is \(3\).  In each of the two new branches, every
-case generated from the exact \(q\)-adic valuation balance for \(\sigma(N)=2N\)
-and the lower-prime avoidance constraints terminates before a compatible
-branch realization can occur.  The valuation balance specifies the \(q\)-adic
-contribution that must be supplied by cyclotomic factors \(\sigma(p^e)\), while
-lower-prime avoidance forbids any support prime below \(q\) from appearing in
-those factors.  At the terminal records, the certificates verify the remaining
-arithmetic obstruction: a residual cofactor forces additional support primes, a
-pure cyclotomic equation has only excluded solutions, or an exact
-tail-abundance product stays below \(2\).  The \(q=5\) branch is presented as
-the detailed audit model, the \(q=7\) branch is closed by the same
-forced-or-pure mechanism, and the release also records comparison inventories
-for the literature-closed branches \(q=11,13,17\).
+\(q=\min\{p:p\mid N\}\) for its smallest prime divisor.  This paper closes the
+five certified minimal-prime branches
+\(q=5,7,11,13,17\).  This is a least-prime-divisor assertion: it does not rule
+out divisibility by one of these primes for a hypothetical odd perfect number
+whose smallest prime divisor is smaller.  Nor does it address the branches
+\(q=3\) or \(q\ge19\).  In each of the five branches, every case generated from
+the exact \(q\)-adic valuation balance for
+\(\sigma(N)=2N\) and the lower-prime avoidance constraints terminates before a
+compatible branch realization can occur.  The valuation
+balance specifies the \(q\)-adic contribution that must be supplied by
+cyclotomic factors \(\sigma(p^e)\), while lower-prime avoidance forbids any
+support prime below \(q\) from appearing in those factors.  Together these
+conditions reduce each branch to finite coverage splits in the first relevant
+input prime or Euler-residue class.  At the terminal records, the certificates
+then verify the remaining arithmetic obstruction: a residual cofactor forces
+additional support primes, a pure cyclotomic equation has only excluded
+solutions, an endpoint factorization/order check closes an exceptional case, or
+an exact tail-abundance product stays below \(2\).  The \(q=5\) branch is
+presented as the detailed audit model; the remaining four branches are then
+closed by the same forced-or-pure mechanism and by the included JSONL/Python
+certificates.
 \end{abstract}
 
 \noindent\textbf{Keywords.}
@@ -103,32 +104,21 @@ so exactly one prime divisor of \(N\), called the Euler prime, occurs to an odd
 exponent.
 
 The modern literature supplies strong global filters, but not a complete
-nonexistence proof.  Let
-\[
-  p_1<p_2<\cdots<p_k
-\]
-be the distinct prime divisors of a hypothetical odd perfect number, so that
-\(p_1=q\) and \(k=\omega(N)\).  Gr{\"u}n proved the general least-prime-divisor
+nonexistence proof.  Writing \(p_1<p_2<\cdots<p_k\) for the distinct prime
+divisors of a hypothetical odd perfect number, so that \(p_1\) is the smallest
+prime divisor and \(k=\omega(N)\), Gr{\"u}n proved the general least-prime
 bound
 \[
   p_1 < \frac{2}{3}k+2
 \]
-\cite{Grun1952}.  Nielsen proved \(k\ge9\), and later developed related
-Diophantine and upper-bound methods \cite{Nielsen2007,Nielsen2015}.  Combining
-Gr{\"u}n's bound with \(k\ge9\) gives
-\[
-  p_1 < \frac{2}{3}\cdot 9+2=8.
-\]
-Consequently the literature already restricts the smallest prime divisor of an
-odd perfect number to
-\[
-  p_1\in\{3,5,7\};
-\]
-in particular, \(11,13,17\) cannot occur as smallest prime divisors.
-
-Other global bounds provide additional context.  Ochem and Rao proved the
-landmark lower bound \(N>10^{1500}\) and strong multiplicity constraints
-\cite{OchemRao2012}.  Goto--Ohno
+\cite{Grun1952}.  Nielsen proved that every odd perfect number has at least
+nine distinct prime factors, and at least twelve if \(3\nmid N\), and later
+developed related Diophantine and upper-bound methods
+\cite{Nielsen2007,Nielsen2015}.  These results are important global
+constraints, but they do not by themselves reduce the least-prime-divisor
+problem to the cases \(q=3,5,7\), since Gr{\"u}n's upper bound increases with
+\(\omega(N)\).  Ochem and Rao proved the landmark lower bound \(N>10^{1500}\)
+and strong multiplicity constraints \cite{OchemRao2012}.  Goto--Ohno
 proved \(p_k>10^8\), while Iannucci proved \(p_{k-1}>10^4\) and
 \(p_{k-2}>100\) \cite{GotoOhno2008,Iannucci1999,Iannucci2000}.  In the opposite
 direction, Zelinsky proved \(p_{k-1}<(2N)^{1/5}\) and
@@ -152,47 +142,48 @@ reciprocal sum \(T(N)=\sum_{p\mid N}1/p\) and the product
 \(H(N)=\prod_{p\mid N}p/(p-1)\) in terms of \(p_1\)
 \cite{Zelinsky2023SmallPrimes,Stone2024,Zelinsky2025ReciprocalPrimeDivisors}.
 
-The new part of the present paper begins after the Gr{\"u}n--Nielsen reduction.
-The branches \(q=11,13,17\) are already closed by the preceding literature
-corollary.  The remaining small branches are \(q=5\) and \(q=7\), and these are
-the branches closed here by finite certificates.  This is different in kind
-from a new lower bound for \(N\), for \(\omega(N)\), or for the largest prime
+The result proved here is different in kind from these global filters.  It is
+not a new lower bound for \(N\), for \(\omega(N)\), or for the largest prime
 divisors, and it is not a divisibility exclusion such as ``\(5\nmid N\)''.  It
-is an exact closure of least-prime-divisor branches.  Thus the \(q=5\) branch is
-the case \(5\mid N\) and \(3\nmid N\); a hypothetical odd perfect number
-divisible by both \(3\) and \(5\) would belong to the \(q=3\) branch, not to the
-\(q=5\) branch.  The release also contains certificate inventories for
-\(q=11,13,17\), but those inventories are included only for comparison,
-reproducibility, and stress-testing of the certificate framework, not as the
-source of the exclusion of those three branches.
+is an exact closure of five least-prime-divisor branches.  Thus the \(q=5\)
+branch is the case \(5\mid N\) and \(3\nmid N\); a hypothetical odd perfect
+number divisible by both \(3\) and \(5\) would belong to the \(q=3\) branch, not
+to the \(q=5\) branch.  To the author's knowledge, the sources cited above do
+not state the finite exhaustion of the exact minimal-prime branches
+\(q=5,7,11,13,17\) in the certificate sense used below.  In this paper,
+published results serve only as branch filters and consistency checks; the
+closures themselves are driven by valuation-labeled cyclotomic input and finite
+certificates.
 
 We restrict attention to a finite list of minimal-prime branches.  Write
 \(S=\{p:p\mid N\}\), \(q=\min S\), and
 \(N=\prod_{p\in S}p^{e_p}\).  Thus the branch \(q=5\), for example, means that
 \(5\mid N\) and \(3\nmid N\), not merely that \(5\mid N\).
 
-The main new certificate theorem is the following.
+The main theorem proved here is the following certificate theorem.
 
-\begin{theorem}[Certified closure of the remaining small branches]
+\begin{theorem}[Certified small minimal-prime closure]
 \label{thm:intro-main}
 Relative to the explicitly listed verifier contract and the frozen certificate
 release \(\Csmall\) described in Section~\ref{sec:certificates}, there is
-no odd perfect number with \(\min\{p:p\mid N\}\in\{5,7\}\).
+no odd perfect number with \(\min\{p:p\mid N\}\in\{5,7,11,13,17\}\).
+Equivalently, the five minimal-prime branch inventories in \(\Csmall\)
+are exhausted.
 \end{theorem}
 
-Together with the Gr{\"u}n--Nielsen reduction, this leaves only the branch
-\(q=3\) for any hypothetical odd perfect number.  The theorem is intentionally
-scoped: it is not an unconditional proof that odd perfect numbers do not exist.
+The theorem is intentionally scoped.  It is not an unconditional proof that odd
+perfect numbers do not exist.  The cases \(q=3\) and \(q\ge19\) remain outside
+the scope of this paper.
 The branch \(q=3\) has no lower-prime avoidance layer and therefore behaves
-differently from the branches treated here.
+differently from all branches treated here.  The residual branch \(q\ge19\)
+requires a separate treatment of the possible first \(q\)-adic input orders and
+is left for future work.
 
 The contribution of this paper is threefold.  First, it isolates the
-minimal-prime branch problem from the full odd-perfect-number problem and
-places it after the Gr{\"u}n--Nielsen least-prime-divisor reduction.  Second, it
-gives a uniform valuation-and-avoidance mechanism that certifies the remaining
-small branches \(q=5,7\).  Third, it records a frozen, reproducible certificate
-release whose primary verifiers exhaust the \(q=5\) and \(q=7\) inventories,
-with comparison inventories for the literature-closed branches \(q=11,13,17\).
+minimal-prime branch problem from the full odd-perfect-number problem.  Second,
+it gives a uniform valuation-and-avoidance mechanism for the branches
+\(q=5,7,11,13,17\).  Third, it records a frozen, reproducible certificate
+release whose verifiers exhaust all terminal branch inventories.
 
 \section{Minimal-Prime Branches and Scope}
 \label{sec:scope}
@@ -217,39 +208,31 @@ expected terminal outputs, and SHA256 hashes listed in the reproducibility
 table in Section~\ref{sec:certificates}.  The word ``release'' is meant
 literally: the proof statements below are relative to these frozen files, not
 to whatever local working copy may exist later.  The subscript ``small'' refers
-to the small minimal-prime branch package: the primary branches \(q=5,7\) and
-the comparison inventories for the literature-closed branches \(q=11,13,17\).
+to the five minimal-prime branches \(q=5,7,11,13,17\).
 \end{definition}
 
 \begin{definition}[Release branch inventory]
 \label{def:release-branch-inventory}
-For \(q=5,7,11,13,17\), the \emph{\(\Csmall\)-branch inventory} is the finite,
-machine-readable collection of coverage splits, forced cofactors, leaf-status
-records, tail certificates, pure-exception records, and master coverage wrappers
-listed in the release JSONL certificate files.  The \(q=5\) and \(q=7\)
-inventories are the primary inventories used for the new closure theorem.  The
-\(q=11,13,17\) inventories are comparison inventories: the corresponding
-minimal-prime branches are already excluded by the Gr{\"u}n--Nielsen reduction,
-but the release records them to make the certificate framework reproducible
-across the same small-prime range.  A branch inventory is called \emph{exhausted
-relative to \(\Csmall\)} when every leaf in that inventory is certified as
-refuted, forced-tail-controlled, pure-tail-controlled, or delegated to a
-certified child archive, and when the master wrapper verifies that the listed
-leaves cover the parent branch.
+For \(q=5,7,11,13,17\), the \emph{\(\Csmall\)-branch inventory} is the
+finite, machine-readable collection of coverage splits, forced cofactors,
+leaf-status records, tail certificates, pure-exception records, and master
+coverage wrappers listed in the release JSONL certificate files.  A branch is
+called \emph{closed relative to \(\Csmall\)} when every leaf in that
+inventory is certified as refuted, forced-tail-controlled, pure-tail-controlled,
+or delegated to a certified child archive, and when the master wrapper verifies
+that the listed leaves cover the parent branch.
 \end{definition}
 
 \begin{remark}[Scope warning]
 \label{rem:scope-warning}
 Every closure theorem below is a minimal-prime theorem.  The statement
-``the \(q=7\) branch is closed'' means
+``the \(q=11\) branch is closed'' means
 \[
-  \min\{p:p\mid N\}=7
+  \min\{p:p\mid N\}=11
 \]
 has no realization in the certified branch inventory.  It does not assert that
-no odd perfect number can be divisible by \(7\); it excludes only the case in
-which \(7\) is the smallest prime divisor.  The same convention applies to the
-comparison inventories for \(q=11,13,17\), although those branches are already
-excluded by the Gr{\"u}n--Nielsen literature bound.
+no odd perfect number can be divisible by \(11\); it excludes only the case in
+which \(11\) is the smallest prime divisor.
 \end{remark}
 
 \section{Valuation Balance}
@@ -407,11 +390,10 @@ branch \(q=\min S\) & lower primes avoided by every support prime power \\
 \label{tab:lower-prime-avoidance}
 \end{table}
 
-\begin{corollary}[Support floors used by the certificates]
+\begin{corollary}[Support floors from excluded small primes]
 \label{cor:support-floors}
-In the primary branches \(q=5,7\), and in the comparison inventories
-\(q=11,13,17\), the active published lower bound for the number of distinct
-prime divisors used by the certificates is
+In the minimal-prime branches treated here, the active published lower bound
+for the number of distinct prime divisors is
 \[
 \begin{array}{c|c}
 q & \text{active lower bound for }\omega(N)\\
@@ -427,9 +409,7 @@ If \(q=5\) or \(q=7\), then \(3\nmid N\), so Nielsen's lower bound in the
 form surveyed by Deza \cite{Deza2022,Nielsen2007} gives
 \(\omega(N)\ge12\).  If \(q\ge11\), then \(3,5,7\nmid N\); the same
 Deza--Nielsen sources record the corresponding small-prime-exclusion form,
-which gives \(\omega(N)\ge27\) in this situation.  The latter row is used only
-inside the comparison certificate inventories, since \(q=11,13,17\) are already
-excluded as smallest prime divisors by the Gr{\"u}n--Nielsen reduction.
+which gives \(\omega(N)\ge27\) in this situation.
 \end{proof}
 
 \section{Input Orders and Coverage Splits}
@@ -497,13 +477,11 @@ prime is a \(q\)-input witness of exact order \(d\).}
 \label{tab:first-input-labels}
 \end{table}
 
-\begin{proposition}[Coverage split for the small certificate inventories]
+\begin{proposition}[Coverage split for \(q=5,7,11,13,17\)]
 \label{prop:general-coverage-split}
 For each \(q\in\{5,7,11,13,17\}\), every hypothetical odd perfect number in the
 minimal-prime branch \(q=\min S\) realizes at least one child listed in
-Table~\ref{tab:first-input-labels}.  For \(q=11,13,17\) this is used only to
-describe the comparison inventories, since those branches are already
-literature-closed by Gr{\"u}n--Nielsen.
+Table~\ref{tab:first-input-labels}.
 \end{proposition}
 
 \begin{proof}
@@ -1077,8 +1055,7 @@ auditability, this section includes the fuller \(q=5\) derivation.  This is the
 didactic branch: it shows in detail how lower-prime avoidance, the first
 \(5\)-input split, second-level cofactors, finite successor windows, and
 parametric tail records fit together before the same forced-or-pure pattern is
-used for the \(q=7\) closure and mirrored in the comparison inventories for
-\(q=11,13,17\).
+reused for \(q=7,11,13,17\).
 
 \begingroup
 \setlength{\abovedisplayskip}{6pt plus 2pt minus 2pt}
@@ -1088,11 +1065,9 @@ used for the \(q=7\) closure and mirrored in the comparison inventories for
 \input{arxiv_q5_expanded_detail.tex}
 \endgroup
 
-The \(q=7\) branch is shorter because the same mechanism has already been
-displayed in detail for \(q=5\).  For \(q=11,13,17\), the subsequent sections
-record only comparison frontier layers: these branches are already
-literature-closed, but the certificate release includes their inventories for
-audit and reproducibility.
+The remaining branches are shorter because the same mechanism has already been
+displayed in detail for \(q=5\).  For \(q=7,11,13,17\), the paper records only
+the strict frontier layer and the corresponding certificate closure.
 
 \section{Closure of the \(q=7\) Branch}
 \label{sec:q7}
@@ -1173,12 +1148,10 @@ followed by
 Thus every child in the complete \(q=7\) coverage split is closed.
 \end{proof}
 
-\section{Comparison Certificate for the Literature-Closed \(q=11\) Branch}
+\section{Closure of the \(q=11\) Branch}
 \label{sec:q11}
 
-The branch \(q=11\) is already excluded by the Gr{\"u}n--Nielsen reduction.
-The release nevertheless records a comparison certificate for this branch.  For
-that certificate, lower-prime avoidance applies to \(3,5,7\), and the active
+For \(q=11\), lower-prime avoidance applies to \(3,5,7\), and the active
 support floor is \(\omega(N)\ge27\).  The first-input coverage split has six
 children:
 \[
@@ -1235,7 +1208,7 @@ after the exact pure-kernel tail inequality is checked.  By
 Lemma~\ref{lem:tail-envelope}, that inequality closes the pure family.
 \end{proof}
 
-\begin{theorem}[Comparison exhaustion of the \(q=11\) inventory]
+\begin{theorem}[Closure of the \(q=11\) inventory]
 \label{thm:q11-closed}
 Relative to the certificate release \(\Csmall\), the \(q=11\) branch inventory is
 exhausted.
@@ -1258,19 +1231,14 @@ and
 \[
   \mathtt{q=11\ branch\ inventory\ exhausted}.
 \]
-Therefore all children in the complete \(q=11\) comparison split are certified
-as exhausted.  The exclusion of \(q=11\) as an actual minimal-prime branch does
-not rely on this comparison certificate; it already follows from
-Gr{\"u}n--Nielsen.
+Therefore all children in the complete \(q=11\) split are closed.
 \end{proof}
 
-\section{Comparison Certificate for the Literature-Closed \(q=13\) Branch}
+\section{Closure of the \(q=13\) Branch}
 \label{sec:q13}
 
-The branch \(q=13\) is also literature-closed by Gr{\"u}n--Nielsen.  The
-\(\Csmall\) release includes the following comparison inventory.  For \(q=13\),
-lower-prime avoidance applies to \(3,5,7,11\).  The first-input coverage split
-has the six children
+For \(q=13\), lower-prime avoidance applies to \(3,5,7,11\).  The first-input
+coverage split has the six children
 \[
   \mathbf{Q13N1},\quad \mathbf{Q13N3},\quad
   \mathbf{Q13E1},\quad \mathbf{Q13E2},\quad
@@ -1324,7 +1292,7 @@ branch hypotheses.  The order-two family is closed by the pure-kernel
 inequality and Lemma~\ref{lem:tail-envelope}.
 \end{proof}
 
-\begin{theorem}[Comparison exhaustion of the \(q=13\) inventory]
+\begin{theorem}[Closure of the \(q=13\) inventory]
 \label{thm:q13-closed}
 Relative to the certificate release \(\Csmall\), the \(q=13\) branch inventory is
 exhausted.
@@ -1346,16 +1314,13 @@ and
 \[
   \mathtt{q=13\ branch\ inventory\ exhausted}.
 \]
-Hence every child of the complete \(q=13\) comparison coverage split is
-certified as exhausted.
+Hence every child of the complete \(q=13\) coverage split is closed.
 \end{proof}
 
-\section{Comparison Certificate for the Literature-Closed \(q=17\) Branch}
+\section{Closure of the \(q=17\) Branch}
 \label{sec:q17}
 
-The branch \(q=17\) is likewise already excluded as a smallest-prime branch by
-the Gr{\"u}n--Nielsen reduction.  The release includes a smaller comparison
-inventory for it.  For \(q=17\), lower-prime avoidance applies to
+For \(q=17\), lower-prime avoidance applies to
 \[
   3,\ 5,\ 7,\ 11,\ 13.
 \]
@@ -1405,7 +1370,7 @@ The first prime endpoint in this family is \(577\), which is the pure kernel
 recorded in the master bundle.
 \end{proof}
 
-\begin{theorem}[Comparison exhaustion of the \(q=17\) inventory]
+\begin{theorem}[Closure of the \(q=17\) inventory]
 \label{thm:q17-closed}
 Relative to the certificate release \(\Csmall\), the \(q=17\) branch inventory is
 exhausted.
@@ -1436,59 +1401,45 @@ followed by
 \[
   \mathtt{q=17\ branch\ inventory\ exhausted}.
 \]
-Thus every child in the complete \(q=17\) comparison split is certified as
-exhausted.
+Thus every child in the complete \(q=17\) split is closed.
 \end{proof}
 
 \section{Final Branch-Closure Statement}
 \label{sec:final}
 
-\begin{theorem}[Certified closure for \(q=5,7\)]
+\begin{theorem}[Certified closure for \(q=5,7,11,13,17\)]
 \label{thm:final-closure}
 Relative to the explicitly listed verifier contract and certificate release
 \(\Csmall\), there is no odd perfect number \(N\) with
-\(\min\{p:p\mid N\}\in\{5,7\}\).  Equivalently, the primary certified branch
-inventories for \(q=5\) and \(q=7\) are exhausted.
+\(\min\{p:p\mid N\}\in\{5,7,11,13,17\}\).  Equivalently, the certified branch
+inventories for \(q=5,7,11,13,17\) are exhausted.
 \end{theorem}
 
 \begin{proof}
 Theorem~\ref{thm:q5-closed}, equivalently the detailed
 Theorem~\ref{thm:q5-current-branch-inventory-closed}, closes \(q=5\).
-Theorem~\ref{thm:q7-closed} closes \(q=7\).  These are minimal-prime branch
-statements in the sense of
+Theorem~\ref{thm:q7-closed} closes \(q=7\).
+Theorem~\ref{thm:q11-closed} closes \(q=11\).  Theorem~\ref{thm:q13-closed}
+closes \(q=13\).  Theorem~\ref{thm:q17-closed} closes \(q=17\).
+These are minimal-prime branch statements in the sense of
 Definition~\ref{def:minimal-prime-branch}; by Remark~\ref{rem:scope-warning}
 they do not claim anything about numbers divisible by one of these primes but
-also divisible by a smaller prime.  Combining the two primary branch theorems
-gives the displayed final statement.
-\end{proof}
-
-\begin{corollary}[Remaining minimal-prime branch]
-\label{cor:remaining-q3}
-Assume the Gr{\"u}n--Nielsen least-prime-divisor reduction and the certified
-closure theorem above.  If an odd perfect number exists, then its smallest
-prime divisor is \(3\).
-\end{corollary}
-
-\begin{proof}
-By Gr{\"u}n's bound \(p_1<2\omega(N)/3+2\) and Nielsen's theorem
-\(\omega(N)\ge9\), every odd perfect number has
-\[
-  p_1<8.
-\]
-Thus \(p_1\in\{3,5,7\}\).  Theorem~\ref{thm:final-closure} excludes
-\(p_1=5\) and \(p_1=7\), leaving only \(p_1=3\).
+also divisible by a smaller prime.  Combining the five branch theorems gives
+the displayed final statement.
 \end{proof}
 
 \begin{remark}[Remaining branches]
-The only remaining minimal-prime branch is \(q=3\).  This branch has no
-lower-prime avoidance constraints and therefore lies outside the method used
-for \(q=5\) and \(q=7\).
+The closure theorem leaves two tasks outside the scope of this paper: \(q=3\)
+and \(q\ge19\).
+The branch \(q=3\) has no lower-prime avoidance constraints.  The residual
+branch \(q\ge19\) requires a separate treatment of the possible first
+\(q\)-adic input orders and is left for future work.
 \end{remark}
 
 \section*{Acknowledgements}
 
-I thank Beno\^{\i}t Clo\^{\i}tre for the very helpful feedback on an earlier
-draft of this paper.
+I thank Beno\^{\i}t Clo\^{\i}tre for helpful feedback on an earlier draft of
+this paper.
 
 ChatGPT 5.5 (OpenAI) was used for assistance with LaTeX formatting,
 language refinement, literature search, proof presentation, and coding support.
